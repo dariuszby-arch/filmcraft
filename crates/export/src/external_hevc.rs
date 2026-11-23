@@ -1,7 +1,7 @@
 //! Optional native-desktop HEVC export through an external FFmpeg executable.
 //!
-//! Unlike an H.264 intermediate/transcode, the rendered RGBA frames are streamed
-//! directly to FFmpeg. FFmpeg creates a Main/Main 10 MP4/MOV; FilmCraft's audio
+//! Unlike an H.264 intermediate/transcode, the rendered frames are streamed
+//! directly to FFmpeg (RGBA8 for Main, RGB48 for Main 10). FilmCraft's audio
 //! exporter produces a separate m4a that is copied into the final container.
 //! No FFmpeg dependency is linked into the Rust binary.
 
@@ -185,7 +185,7 @@ fn arg_string(v: impl ToString) -> String {
 fn encoding_args(settings: &ExportSettings, backend: Backend, width: u32, height: u32, fps: &str, bitrate: u32, max_bitrate: u32) -> Vec<String> {
     let mut args: Vec<String> = [
         "-hide_banner", "-loglevel", "error", "-nostdin", "-y", "-f", "rawvideo",
-        "-pixel_format", "rgba", "-video_size",
+        "-pixel_format", if settings.hevc_bit_depth == 10 { "rgb48le" } else { "rgba" }, "-video_size",
     ]
     .into_iter()
     .map(str::to_string)
@@ -275,8 +275,8 @@ pub(crate) fn export(
     if settings.pixel_aspect.is_some_and(|(n, d)| n != d) {
         return Err(ExportError::Unsupported("external HEVC requires square pixels".into()));
     }
-    // The existing SDR renderer supplies RGBA8. Main 10 encodes those SDR codes at 10 bits;
-    // it cannot recreate higher precision that was discarded in the RGBA8 rendering stage.
+    // Main 10 uses RGB48 from the float compositor; 8-bit Main keeps the original RGBA8 path.
+    // Precision previously lost when decoding an 8-bit source is not recoverable.
     if project.sequence(seq).is_some_and(|q| q.settings.color.working.is_hdr()) && !settings.sdr {
         return Err(ExportError::Unsupported("FFmpeg HEVC currently exports SDR BT.709 only; enable SDR export for this HDR sequence".into()));
     }
@@ -309,7 +309,11 @@ pub(crate) fn export(
         if progress.cancel.load(Ordering::Relaxed) {
             return Err(ExportError::Cancelled);
         }
-        let (rgba, _) = pipeline.frame(f, sources);
+        let rgba = if settings.hevc_bit_depth == 10 {
+            pipeline.frame_rgb48(f, sources)
+        } else {
+            pipeline.frame(f, sources).0
+        };
         if filmcraft_media::pending::take() {
             return Err(ExportError::Io("source media is pending; external FFmpeg requires a local ready source".into()));
         }
@@ -364,11 +368,7 @@ pub(crate) fn export(
         render_fps: frames as f64 / seconds.max(1e-6),
         extra_files: Vec::new(),
         encoder: Some(match backend { Backend::IntelQsv => "Intel Quick Sync (FFmpeg)", Backend::Libx265 => "libx265 (FFmpeg)" }.into()),
-        warnings: if settings.hevc_bit_depth == 10 {
-            vec!["HEVC Main 10 is correctly coded at 10 bits, but FilmCraft's SDR renderer produces RGBA8; exporting to Main 10 does not recover colour precision lost in rendering".into()]
-        } else {
-            Vec::new()
-        },
+        warnings: Vec::new(),
     })
 }
 
@@ -384,6 +384,7 @@ mod tests {
         assert!(args.windows(2).any(|w| w[0] == "-c:v" && w[1] == "hevc_qsv"));
         assert!(args.windows(2).any(|w| w[0] == "-profile:v" && w[1] == "main10"));
         assert!(args.iter().any(|a| a.contains("format=p010le")));
+        assert!(args.windows(2).any(|w| w[0] == "-pixel_format" && w[1] == "rgb48le"));
         assert!(args.windows(2).any(|w| w[0] == "-global_quality" && w[1] == "23"));
         assert!(!args.iter().any(|a| a == "-b:v"));
         s.hevc_bit_depth = 8;
@@ -391,6 +392,7 @@ mod tests {
         let args = encoding_args(&s, Backend::Libx265, 1920, 1080, "25/1", 5000, 8000);
         assert!(args.iter().any(|a| a.contains("format=yuv420p")));
         assert!(args.windows(2).any(|w| w[0] == "-profile:v" && w[1] == "main"));
+        assert!(args.windows(2).any(|w| w[0] == "-pixel_format" && w[1] == "rgba"));
         assert!(args.windows(2).any(|w| w[0] == "-b:v" && w[1] == "5000k"));
     }
 }

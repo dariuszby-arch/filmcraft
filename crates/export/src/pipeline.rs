@@ -255,9 +255,10 @@ impl Pipeline {
         })
     }
 
-    /// Output frame `f` as straight sRGB RGBA8 at the output size, or for HDR exports the encoded
-    /// R'G'B' floats (3 per pixel).
-    pub fn frame(&self, f: i64, sources: &dyn SourceProvider) -> (Vec<u8>, Vec<f32>) {
+    /// Render the sequence and all export overlays without quantising to 8-bit.
+    /// CPU delivers linear RGBA f32; the optional GPU path returns the same
+    /// representation after reading its float accumulator.
+    fn render_float(&self, f: i64, sources: &dyn SourceProvider) -> Image {
         let t = self.rate.tick_of(f);
         // The registered GPU renderer goes first; `None` (no adapter, a plan the GPU cannot
         // draw, any internal error) falls back to the CPU reference renderer below. A frame the
@@ -291,6 +292,13 @@ impl Pipeline {
         };
         let mut img = self.place(img);
         self.overlays(&mut img, t);
+        img
+    }
+
+    /// Output frame `f` as straight sRGB RGBA8 at the output size, or for HDR exports the
+    /// encoded R'G'B' floats (3 per pixel). Other export formats keep their DW1 behavior.
+    pub fn frame(&self, f: i64, sources: &dyn SourceProvider) -> (Vec<u8>, Vec<f32>) {
+        let img = self.render_float(f, sources);
         let lim = &self.effects.video_limiter;
         if let Some(tf) = self.out_tf.as_ref().filter(|_| self.hdr_out) {
             let mut out = vec![0f32; img.w * img.h * 3];
@@ -313,6 +321,18 @@ impl Pipeline {
             limit_rgba8(&mut rgba, lim.min_percent, lim.max_percent);
         }
         (rgba, Vec::new())
+    }
+
+    /// Export-only, high-precision SDR path for HEVC Main 10.
+    /// Keep the floating point compositor output until the final RGB48 conversion.
+    /// RGB48 is passed to FFmpeg without an intermediate RGBA8 quantisation.
+    pub fn frame_rgb48(&self, f: i64, sources: &dyn SourceProvider) -> Vec<u8> {
+        let img = self.render_float(f, sources);
+        let lim = &self.effects.video_limiter;
+        let limiter = lim.enabled.then_some((lim.min_percent, lim.max_percent));
+        let rgb = image_to_rgb48(&img, limiter);
+        filmcraft_frame::pool::recycle_f32(img.px);
+        rgb
     }
 
     /// Fit the rendered picture into the output frame.
@@ -381,6 +401,70 @@ impl Pipeline {
         let mut layer = Image::new(img.w, img.h);
         filmcraft_render::graphics::burn_text(&mut layer, text, family, centre, px, 0.6);
         composite(img, &layer, 0, 0, op);
+    }
+}
+
+/// Convert premultiplied linear RGBA f32 to opaque little-endian RGB48.
+/// Like `Image::over_black_rgba8`, RGB is displayed against black, but conversion
+/// uses the continuous transfer curve and quantises only once at 16 bits.
+/// This retains sub-8-bit SDR gradients through the HEVC Main 10 input.
+fn image_to_rgb48(img: &Image, limiter: Option<(f32, f32)>) -> Vec<u8> {
+    let mut out = vec![0u8; img.w * img.h * 6];
+    let limits = limiter.map(|(min, max)| (min.clamp(0.0, 100.0) / 100.0, max.clamp(0.0, 100.0) / 100.0));
+    out.par_chunks_mut(img.w * 6).zip(img.px.par_chunks(img.w * 4)).for_each(|(dst, src)| {
+        for (o, p) in dst.chunks_exact_mut(6).zip(src.chunks_exact(4)) {
+            let mut rgb = [
+                filmcraft_color::linear_to_srgb(p[0].clamp(0.0, 1.0)),
+                filmcraft_color::linear_to_srgb(p[1].clamp(0.0, 1.0)),
+                filmcraft_color::linear_to_srgb(p[2].clamp(0.0, 1.0)),
+            ];
+            if let Some((lo, hi)) = limits {
+                limit_px(&mut rgb, lo, hi);
+            }
+            for (component, value) in rgb.iter().enumerate() {
+                let code = (value.clamp(0.0, 1.0) * 65535.0).round() as u16;
+                o[component * 2..component * 2 + 2].copy_from_slice(&code.to_le_bytes());
+            }
+        }
+    });
+    out
+}
+
+#[cfg(test)]
+mod true10_tests {
+    use super::*;
+
+    #[test]
+    fn rgb48_keeps_distinct_levels_that_rgba8_cannot() {
+        let img = Image {
+            w: 2,
+            h: 1,
+            px: vec![0.4, 0.4, 0.4, 1.0, 0.40005, 0.4, 0.4, 1.0],
+        };
+        let rgba8 = img.over_black_rgba8();
+        assert_eq!(rgba8[0], rgba8[4]);
+        let rgb48 = image_to_rgb48(&img, None);
+        assert_eq!(rgb48.len(), 12);
+        let first = u16::from_le_bytes([rgb48[0], rgb48[1]]);
+        let next = u16::from_le_bytes([rgb48[6], rgb48[7]]);
+        assert!(next > first, "RGB48 should retain the fine gradient");
+    }
+
+    #[test]
+    fn rgb48_black_and_white_are_exact() {
+        let img = Image { w: 2, h: 1, px: vec![0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0] };
+        let rgb48 = image_to_rgb48(&img, None);
+        assert_eq!(&rgb48[..6], &[0u8; 6]);
+        assert_eq!(&rgb48[6..], &[255u8; 6]);
+    }
+
+    #[test]
+    fn rgb48_applies_export_video_limiter_before_quantisation() {
+        let img = Image::filled(1, 1, [1.0, 1.0, 1.0, 1.0]);
+        let rgb48 = image_to_rgb48(&img, Some((0.0, 50.0)));
+        for pair in rgb48.chunks_exact(2) {
+            assert_eq!(u16::from_le_bytes([pair[0], pair[1]]), 32768);
+        }
     }
 }
 

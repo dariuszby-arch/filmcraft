@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - hevc-main10-intel-qsv
+      - feature/hevc-true10-dw2
   workflow_dispatch:
 
 permissions:
@@ -43,7 +44,9 @@ jobs:
         uses: Swatinem/rust-cache@v2
 
       - name: Test HEVC arguments on Linux
-        run: cargo test --locked -p filmcraft-export --lib external_hevc::tests
+        run: |
+          cargo test --locked -p filmcraft-export --lib external_hevc::tests
+          cargo test --locked -p filmcraft-export --lib pipeline::true10_tests
 
       - name: Build native Linux release binaries
         run: cargo build --release --locked -p filmcraft -p filmcraft-cli
