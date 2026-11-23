@@ -27,6 +27,21 @@ pub(crate) enum Backend {
     Libx265,
 }
 
+/// Run FFmpeg without a visible console on Windows. FilmCraft is a GUI app;
+/// CREATE_NO_WINDOW suppresses the transient and long-lived console windows
+/// for version checks, encoder probes, video encoding, and audio/video remuxing.
+/// It does not change pipe handling, logs, progress, or cancellation.
+fn ffmpeg_process(path: &Path) -> Command {
+    let mut command = Command::new(path);
+    #[cfg(windows)]
+    {
+        use std::os::windows::process::CommandExt;
+        const CREATE_NO_WINDOW: u32 = 0x0800_0000;
+        command.creation_flags(CREATE_NO_WINDOW);
+    }
+    command
+}
+
 /// Resolve FFmpeg once. An explicit override is useful for portable Windows builds;
 /// a sibling `ffmpeg.exe` also works when FFmpeg is not on the system PATH.
 fn ffmpeg_executable() -> Option<&'static Path> {
@@ -44,7 +59,7 @@ fn ffmpeg_executable() -> Option<&'static Path> {
         }
         candidates.push(PathBuf::from("ffmpeg"));
         candidates.into_iter().find(|path| {
-            Command::new(path).arg("-version").stdout(Stdio::null()).stderr(Stdio::null()).status().is_ok_and(|s| s.success())
+            ffmpeg_process(path).arg("-version").stdout(Stdio::null()).stderr(Stdio::null()).status().is_ok_and(|s| s.success())
         })
     }).as_deref()
 }
@@ -53,14 +68,14 @@ fn ffmpeg_command() -> Result<Command> {
     let binary = ffmpeg_executable().ok_or_else(|| ExportError::Unsupported(
         "FFmpeg not found. Install it on PATH, place ffmpeg.exe beside FilmCraft, or set FILMCRAFT_FFMPEG".into()
     ))?;
-    Ok(Command::new(binary))
+    Ok(ffmpeg_process(binary))
 }
 
 fn encoder_list() -> &'static str {
     static ENCODERS: OnceLock<String> = OnceLock::new();
     ENCODERS.get_or_init(|| {
         ffmpeg_executable()
-            .and_then(|bin| Command::new(bin).args(["-hide_banner", "-encoders"]).output().ok())
+            .and_then(|bin| ffmpeg_process(bin).args(["-hide_banner", "-encoders"]).output().ok())
             .filter(|out| out.status.success())
             .map(|out| String::from_utf8_lossy(&out.stdout).into_owned())
             .unwrap_or_default()
@@ -79,7 +94,7 @@ pub(crate) fn has_intel_qsv() -> bool {
         if !encoder_list().lines().any(|line| line.split_whitespace().nth(1) == Some("hevc_qsv")) {
             return false;
         }
-        ffmpeg_executable().is_some_and(|bin| Command::new(bin)
+        ffmpeg_executable().is_some_and(|bin| ffmpeg_process(bin)
             .args([
                 "-hide_banner", "-loglevel", "error", "-nostdin", "-f", "lavfi", "-i",
                 "testsrc2=size=640x360:rate=30", "-frames:v", "1", "-vf", "format=p010le",
