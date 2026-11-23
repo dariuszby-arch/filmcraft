@@ -85,6 +85,29 @@ pub enum HardwareEncoding {
     Auto,
 }
 
+/// HEVC encoder selection for native desktop exports. The FFmpeg options require
+/// `ffmpeg` on PATH; Platform keeps the existing NVENC / VideoToolbox implementation.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub enum HevcEncoder {
+    #[default]
+    Auto,
+    IntelQsv,
+    Libx265,
+    Platform,
+}
+
+impl HevcEncoder {
+    pub fn label(self) -> &'static str {
+        match self {
+            HevcEncoder::Auto => "Auto (Intel QSV / CPU)",
+            HevcEncoder::IntelQsv => "Intel Quick Sync (FFmpeg)",
+            HevcEncoder::Libx265 => "CPU libx265 (FFmpeg)",
+            HevcEncoder::Platform => "Native (NVENC / VideoToolbox)",
+        }
+    }
+}
+
 /// Whether the picture of an export may be composited on the GPU (`filmcraft-gpu`'s off-screen
 /// compositor) instead of the CPU reference renderer. Auto = use the GPU when the app registered
 /// a GPU frame renderer and the machine has an adapter; the CPU result is the fallback either
@@ -721,11 +744,11 @@ impl ExportSettings {
                     v += &if self.h264_intra_only { ", every frame a keyframe".to_string() } else { format!(", keyframe every {} frames", r.keyint) };
                 }
                 Format::Hevc => {
-                    // Main 10 only where a registered encoder writes HDR (NVENC); VideoToolbox is 8-bit
-                    let profile = if crate::hdr_available(Format::Hevc) { "HEVC Main / Main 10 for HDR" } else { "HEVC Main" };
-                    v += &format!(", {profile} (hardware encoder), {}", self.bitrate_mode.label());
+                    let profile = if self.hevc_bit_depth == 10 { "HEVC Main 10 (10-bit)" } else { "HEVC Main (8-bit)" };
+                    v += &format!(", {profile}, {}, {}", self.hevc_encoder.label(), self.bitrate_mode.label());
                     v += &match self.bitrate_mode {
                         BitrateMode::Cbr => format!(", {}", mbps(r.target_kbps)),
+                        BitrateMode::Crf => format!(", Quality {}", self.crf),
                         _ => format!(", Target {}, Max {}", mbps(r.target_kbps), mbps(r.max_kbps)),
                     };
                     v += &format!(", keyframe every {} frames", r.keyint);

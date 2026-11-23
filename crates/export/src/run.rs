@@ -76,8 +76,14 @@ pub fn export(project: &Arc<Project>, seq: ItemId, settings: &ExportSettings, so
 }
 
 /// [`export`] on the threads it is called from.
-fn export_here(project: &Arc<Project>, seq: ItemId, settings: &ExportSettings, sources: &dyn SourceProvider, progress: &Progress) -> Result<Report> {
+pub(crate) fn export_here(project: &Arc<Project>, seq: ItemId, settings: &ExportSettings, sources: &dyn SourceProvider, progress: &Progress) -> Result<Report> {
     settings.validate()?;
+    #[cfg(not(target_arch = "wasm32"))]
+    if settings.format == Format::Hevc
+        && let Some(backend) = crate::external_hevc::select(settings)?
+    {
+        return crate::external_hevc::export(project, seq, settings, sources, progress, backend);
+    }
     if stepped(settings.format) {
         let mut ex = Exporter::new(project.clone(), seq, settings, progress)?;
         loop {

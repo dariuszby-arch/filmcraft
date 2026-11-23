@@ -1,0 +1,63 @@
+name: FilmCraft HEVC - Windows build (Intel QSV / libx265)
+
+# Branch for the HEVC development build. A manual run is also possible after
+# the workflow has been added to the fork's default branch.
+on:
+  push:
+    branches:
+      - hevc-main10-intel-qsv
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hevc-windows-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-windows-x64:
+    name: Build FilmCraft Windows x64
+    runs-on: windows-2022
+    timeout-minutes: 120
+    steps:
+      - name: Checkout FilmCraft
+        uses: actions/checkout@v4
+
+      - name: Install Rust 1.95
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: '1.95.0'
+
+      - name: Rust build cache
+        uses: Swatinem/rust-cache@v2
+
+      - name: Validate HEVC argument construction
+        shell: pwsh
+        run: cargo test --locked -p filmcraft-export --lib external_hevc::tests
+
+      - name: Build Windows release
+        shell: pwsh
+        run: cargo build --release --locked -p filmcraft
+
+      - name: Prepare portable EXE artifact
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path dist | Out-Null
+          Copy-Item -LiteralPath target/release/filmcraft.exe -Destination dist/filmcraft.exe
+          Copy-Item -LiteralPath docs/HEVC_FFMPEG_WINDOWS_PL.md -Destination dist/HEVC_INSTRUKCJA_PL.md
+          @'
+          FilmCraft HEVC - Windows x64 test build.
+          Place ffmpeg.exe (with hevc_qsv and/or libx265) beside filmcraft.exe,
+          or add FFmpeg to PATH. Intel QSV requires an Intel GPU/driver.
+          The CI runner has no Intel Iris Xe; hardware encoding needs a local test.
+          This test EXE is not signed and may require appropriate MSVC runtimes.
+          '@ | Set-Content -LiteralPath dist/README.txt -Encoding UTF8
+
+      - name: Upload executable and instructions
+        uses: actions/upload-artifact@v4
+        with:
+          name: FilmCraft-HEVC-Windows-x64
+          path: dist/
+          retention-days: 14
+          if-no-files-found: error

@@ -257,6 +257,10 @@ pub fn hdr_available(format: Format) -> bool {
 /// Whether a format can currently be exported: it has a built-in encoder, or a registered probe
 /// says its encoder works here.
 pub fn available(format: Format) -> bool {
+    #[cfg(not(target_arch = "wasm32"))]
+    if format == Format::Hevc && crate::external_hevc::available() {
+        return true;
+    }
     if !Format::ALL.contains(&format) {
         return false;
     }

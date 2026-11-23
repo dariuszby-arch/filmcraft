@@ -46,6 +46,8 @@ use serde::{Deserialize, Serialize};
 
 mod convert;
 mod encoders;
+#[cfg(not(target_arch = "wasm32"))]
+mod external_hevc;
 mod format;
 mod output;
 mod registry;

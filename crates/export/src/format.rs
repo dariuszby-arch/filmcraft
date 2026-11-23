@@ -2,7 +2,7 @@ use super::output::OutputSink;
 use super::run::validate_range;
 use super::{
     Arc, AudioCodec, AudioSettings, BitrateMode, Deserialize, ExportEffects, ExportError, ExportMetadata, ExrCompression, FieldOrder, FrameRate, GpuRendering,
-    H264Profile, HardwareEncoding, Multiplexer, MxfVideoCodec, Result, SampleEntry, Scaling, Serialize, Tick, TimeRange,
+    H264Profile, HardwareEncoding, HevcEncoder, Multiplexer, MxfVideoCodec, Result, SampleEntry, Scaling, Serialize, Tick, TimeRange,
 };
 
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Hash, Serialize, Deserialize)]
@@ -340,6 +340,14 @@ pub struct ExportSettings {
     /// byte-reproducible like the built-in encoder's (`determinism_tests`).
     #[serde(default)]
     pub hardware_encoding: HardwareEncoding,
+    /// External FFmpeg HEVC backend; Auto chooses Intel Quick Sync if a working
+    /// Main 10 session can be opened, otherwise the software libx265 encoder.
+    #[serde(default)]
+    pub hevc_encoder: HevcEncoder,
+    /// HEVC Main (8) or Main 10 (10) for SDR BT.709. Kept separate from the
+    /// H.264 profile and from HDR source selection.
+    #[serde(default = "default_hevc_bit_depth")]
+    pub hevc_bit_depth: u8,
     /// Composite the exported frames on the GPU instead of the CPU reference renderer (Export ▸
     /// GPU rendering: Auto / Off, Off by default). Off = the CPU reference renderer exactly.
     #[serde(default)]
@@ -460,6 +468,8 @@ impl Default for ExportSettings {
             bitrate_mode: BitrateMode::default(),
             crf: DEFAULT_CRF,
             hardware_encoding: HardwareEncoding::default(),
+            hevc_encoder: HevcEncoder::default(),
+            hevc_bit_depth: default_hevc_bit_depth(),
             gpu_rendering: GpuRendering::Off,
             max_bitrate_kbps: None,
             adaptive_bitrate: None,
@@ -484,6 +494,10 @@ pub const DEFAULT_CRF: f32 = 23.0;
 
 fn default_crf() -> f32 {
     DEFAULT_CRF
+}
+
+fn default_hevc_bit_depth() -> u8 {
+    8 // retain compatibility with the pre-existing 8-bit hardware HEVC export
 }
 
 impl ExportSettings {
@@ -513,8 +527,8 @@ impl ExportSettings {
             return Err(ExportError::Unsupported("AV1 export has no two-pass mode: choose CBR or VBR, 1 pass".into()));
         }
         if self.bitrate_mode == BitrateMode::Crf {
-            if self.format == Format::Hevc {
-                return Err(ExportError::Unsupported("H.265 export has no CRF mode: choose CBR or VBR, 1 pass".into()));
+            if self.format == Format::Hevc && self.hevc_encoder == HevcEncoder::Platform {
+                return Err(ExportError::Unsupported("the native H.265 encoder does not support CRF; choose FFmpeg libx265 or Intel QSV".into()));
             }
             if self.format == Format::Av1 {
                 return Err(ExportError::Unsupported("AV1 export has no CRF mode: choose CBR or VBR, 1 pass".into()));
@@ -548,6 +562,9 @@ impl ExportSettings {
             return Err(ExportError::Unsupported("output frame rate must be positive and at most 1000 fps".into()));
         }
         self.validate_audio_settings()?;
+        if self.format == Format::Hevc && !matches!(self.hevc_bit_depth, 8 | 10) {
+            return Err(ExportError::Unsupported("HEVC bit depth must be 8 or 10".into()));
+        }
         if self.field_order != FieldOrder::Progressive && self.has_video() {
             return Err(ExportError::Unsupported(format!("{} field order: FilmCraft's encoders write progressive frames", self.field_order.label())));
         }

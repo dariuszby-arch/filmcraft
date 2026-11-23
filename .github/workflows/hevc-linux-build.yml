@@ -1,0 +1,79 @@
+name: FilmCraft HEVC - Linux x86_64 AppImage (MX Linux)
+
+on:
+  push:
+    branches:
+      - hevc-main10-intel-qsv
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hevc-linux-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-linux-x64:
+    name: Build FilmCraft Linux x64 / AppImage
+    runs-on: ubuntu-22.04
+    timeout-minutes: 180
+    steps:
+      - name: Checkout FilmCraft
+        uses: actions/checkout@v4
+
+      - name: Install native Linux build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            build-essential pkg-config cmake clang libclang-dev curl git \
+            libasound2-dev libxkbcommon-dev libwayland-dev libx11-dev \
+            libxcb1-dev libxcursor-dev libxrandr-dev libxi-dev \
+            libfontconfig1-dev libfreetype6-dev libvulkan-dev \
+            libudev-dev libssl-dev
+          # FFmpeg is a runtime dependency of the new HEVC backend.
+          sudo apt-get install -y --no-install-recommends ffmpeg
+
+      - name: Install Rust 1.95
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: '1.95.0'
+
+      - name: Rust build cache
+        uses: Swatinem/rust-cache@v2
+
+      - name: Test HEVC arguments on Linux
+        run: cargo test --locked -p filmcraft-export --lib external_hevc::tests
+
+      - name: Build native Linux release binaries
+        run: cargo build --release --locked -p filmcraft -p filmcraft-cli
+
+      - name: Package Linux AppImage (Ubuntu 22.04 glibc baseline)
+        env:
+          APPIMAGE_EXTRACT_AND_RUN: '1'
+        run: |
+          bash packaging/linux/package.sh --skip-build --formats "appimage"
+          test -s dist/release/filmcraft-0.20.1-linux-x86_64.AppImage
+          chmod +x dist/release/*.AppImage
+
+      - name: Build portable Linux archive with instructions
+        run: |
+          mkdir -p dist/FilmCraft-HEVC-Linux-x86_64
+          cp target/release/filmcraft target/release/filmcraft-cli dist/FilmCraft-HEVC-Linux-x86_64/
+          cp docs/HEVC_FFMPEG_LINUX_PL.md dist/FilmCraft-HEVC-Linux-x86_64/INSTRUKCJA_PL.md
+          tar -C dist -czf dist/FilmCraft-HEVC-Linux-x86_64.tar.gz FilmCraft-HEVC-Linux-x86_64
+          cp docs/HEVC_FFMPEG_LINUX_PL.md dist/release/INSTRUKCJA_LINUX_PL.md
+          cd dist/release
+          sha256sum *.AppImage > SHA256SUMS.txt
+
+      - name: Upload Linux AppImage / portable tarball
+        uses: actions/upload-artifact@v4
+        with:
+          name: FilmCraft-HEVC-Linux-x86_64
+          path: |
+            dist/release/*.AppImage
+            dist/release/SHA256SUMS.txt
+            dist/release/INSTRUKCJA_LINUX_PL.md
+            dist/FilmCraft-HEVC-Linux-x86_64.tar.gz
+          if-no-files-found: error
+          retention-days: 14
