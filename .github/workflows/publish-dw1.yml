@@ -1,0 +1,85 @@
+name: Publish FilmCraft 0.20.1-DW1
+
+on:
+  push:
+    branches: [publish-dw1]
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: write
+
+concurrency:
+  group: filmcraft-dw1-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Release verified Windows and Linux builds
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      DW1_COMMIT: fbc5d6365776e514dd33a1feaf556b5cfb358736
+      DW1_TAG: v0.20.1-DW1
+    steps:
+      - name: Checkout DW1 release notes
+        uses: actions/checkout@v4
+
+      - name: Download successful Windows workflow artifact
+        run: |
+          gh run view 45121341335 --json conclusion,headSha --jq '.conclusion + " " + .headSha'
+          test "$(gh run view 45121341335 --json conclusion --jq .conclusion)" = success
+          test "$(gh run view 45121341335 --json headSha --jq .headSha)" = "$DW1_COMMIT"
+          gh run download 45121341335 -n FilmCraft-HEVC-Windows-x64 -D output/windows
+
+      - name: Download successful Linux workflow artifact
+        run: |
+          gh run view 45121341474 --json conclusion,headSha --jq '.conclusion + " " + .headSha'
+          test "$(gh run view 45121341474 --json conclusion --jq .conclusion)" = success
+          test "$(gh run view 45121341474 --json headSha --jq .headSha)" = "$DW1_COMMIT"
+          gh run download 45121341474 -n FilmCraft-HEVC-Linux-x86_64 -D output/linux
+
+      - name: Assemble and verify release files
+        run: |
+          set -euo pipefail
+          mkdir -p release
+          test -s output/windows/filmcraft.exe
+          (cd output/windows && zip -q -r "../../release/FilmCraft-0.20.1-DW1-Windows-x64.zip" .)
+          appimage="$(find output/linux -type f -name '*.AppImage' -print -quit)"
+          test -n "$appimage"
+          test -s "$appimage"
+          cp -- "$appimage" release/FilmCraft-0.20.1-DW1-Linux-x86_64.AppImage
+          tarball="$(find output/linux -type f -name '*.tar.gz' -print -quit)"
+          test -n "$tarball"
+          test -s "$tarball"
+          cp -- "$tarball" release/FilmCraft-0.20.1-DW1-Linux-x86_64.tar.gz
+          cp docs/RELEASE_NOTES_0.20.1-DW1_PL.md release/OPIS_WYDANIA_PL.md
+          (cd release && sha256sum FilmCraft-0.20.1-DW1-* > SHA256SUMS.txt)
+          ls -lh release
+
+      - name: Publish GitHub Release at tested source commit
+        run: |
+          set -euo pipefail
+          if gh release view "$DW1_TAG" >/dev/null 2>&1; then
+            echo "Release already exists; leaving it unchanged."
+            exit 0
+          fi
+          gh release create "$DW1_TAG" \
+            release/FilmCraft-0.20.1-DW1-Windows-x64.zip \
+            release/FilmCraft-0.20.1-DW1-Linux-x86_64.AppImage \
+            release/FilmCraft-0.20.1-DW1-Linux-x86_64.tar.gz \
+            release/SHA256SUMS.txt \
+            release/OPIS_WYDANIA_PL.md \
+            --target "$DW1_COMMIT" \
+            --title "FilmCraft 0.20.1-DW1 – HEVC Main 10 Edition" \
+            --notes-file docs/RELEASE_NOTES_0.20.1-DW1_PL.md \
+            --latest=false
+
+      - name: Upload a copy of the release package
+        uses: actions/upload-artifact@v4
+        with:
+          name: FilmCraft-0.20.1-DW1-release-files
+          path: release/
+          retention-days: 14
