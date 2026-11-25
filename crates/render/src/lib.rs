@@ -81,11 +81,13 @@ pub struct RenderOptions {
     /// Return the image in the sequence's working space (HDR exports, scopes) instead of
     /// converting it for an SDR monitor. Only matters for HDR / wide-gamut sequences.
     pub working_output: bool,
+    /// Monitor-only A/B: omit exactly one effect instance on one timeline clip.
+    pub skip_effect: Option<(filmcraft_project::ClipId, usize)>,
 }
 
 impl Default for RenderOptions {
     fn default() -> Self {
-        Self { scale: 1.0, effects: true, depth: 0, captions: false, working_output: false }
+        Self { scale: 1.0, effects: true, depth: 0, captions: false, working_output: false, skip_effect: None }
     }
 }
 
@@ -360,7 +362,10 @@ fn adjustment_layer(project: &Project, seq: &Sequence, item: &TrackItem, t: Tick
         working: seq.settings.color.working,
     };
     let ss = &seq.settings;
-    for e in item.effects.iter().filter(|e| e.def().is_some_and(|d| !d.intrinsic)) {
+    for (index, e) in item.effects.iter().enumerate().filter(|(_, e)| e.def().is_some_and(|d| !d.intrinsic)) {
+        if opts.skip_effect == Some((item.id, index)) {
+            continue;
+        }
         // no `env` here: a burn-in's Feet + Frames / Frames format comes as the sequence time in
         // the `timecode` string
         match vfx::film_time_format(e) {
@@ -619,7 +624,10 @@ pub(crate) fn item_layer_ex(
             frame_rate: seq.settings.frame_rate.as_f64(),
             working: seq.settings.color.working,
         };
-        for e in item.effects.iter().filter(|e| e.def().is_some_and(|d| !d.intrinsic) && !filmcraft_project::graphic::is_layer(e)) {
+        for (index, e) in item.effects.iter().enumerate().filter(|(_, e)| e.def().is_some_and(|d| !d.intrinsic) && !filmcraft_project::graphic::is_layer(e)) {
+            if opts.skip_effect == Some((item.id, index)) {
+                continue;
+            }
             if filmcraft_media::cancel::cancelled() {
                 return None;
             }
@@ -727,7 +735,7 @@ pub(crate) fn base_layer(
             media_image(project, seq, item, t, MediaFrame { src: &src, frame: &frame, n }, want)
         }
         ItemKind::Sequence(nested) => {
-            let sub = RenderOptions { scale: want, effects: opts.effects, depth: opts.depth + 1, captions: false, working_output: true };
+            let sub = RenderOptions { scale: want, depth: opts.depth + 1, captions: false, working_output: true, ..opts };
             match item.multicam_angle(nested) {
                 // a multi-camera clip shows its angle's track only (nothing for an audio-only angle)
                 Some(angle) => match nested.angle_video_track_index(angle) {

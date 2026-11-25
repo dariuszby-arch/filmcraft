@@ -1,0 +1,25 @@
+['exec', 'file.newSequence'] 0 {"sequence":2}
+
+['exec', 'file.newColorMatte'] 0 {"item":3}
+
+['exec', 'timeline.place'] 0 {"clips":[4]}
+
+['exec', 'effects.apply'] 0 {"applied":[{"clip":4,"effect":"noise","index":3}]}
+
+['exec', 'effects.setParam'] 0 {"keyframes":0,"param":"amount","value":12.0}
+
+['exec', 'effects.apply'] 0 {"applied":[{"clip":4,"effect":"dw_video_denoise","index":4}]}
+
+['exec', 'timeline.select'] 0 {"selection":[4]}
+
+['exec', 'playhead.set'] 0 {"time":127008000000}
+
+['render', '--seconds'] 0 
+['export', '/workspace/scratch/f43b5782ff0b/qa/Denoise_HEVC10.mp4'] 0 {"job":1,"offlineMedia":[],"path":"/workspace/scratch/f43b5782ff0b/qa/Denoise_HEVC10.mp4","result":{"bytes":8075,"encoder":"libx265 (FFmpeg)","frames":24,"path":"/workspace/scratch/f43b5782ff0b/qa/Den
+['exec', 'effects.toggleEnabled'] 0 null
+
+['render', '--seconds'] 0 
+['exec', 'effects.toggleEnabled'] 0 null
+
+{'programs': [], 'stream_groups': [], 'streams': [{'codec_name': 'hevc', 'profile': 'Main 10', 'codec_tag_string': 'hvc1', 'pix_fmt': 'yuv420p10le'}]}
+CLI render/export passed, noise error ratio 0.17280821469294166

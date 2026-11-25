@@ -436,11 +436,7 @@ mod true10_tests {
 
     #[test]
     fn rgb48_keeps_distinct_levels_that_rgba8_cannot() {
-        let img = Image {
-            w: 2,
-            h: 1,
-            px: vec![0.4, 0.4, 0.4, 1.0, 0.40005, 0.4, 0.4, 1.0],
-        };
+        let img = Image { w: 2, h: 1, px: vec![0.4, 0.4, 0.4, 1.0, 0.40005, 0.4, 0.4, 1.0] };
         let rgba8 = img.over_black_rgba8();
         assert_eq!(rgba8[0], rgba8[4]);
         let rgb48 = image_to_rgb48(&img, None);

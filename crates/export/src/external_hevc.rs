@@ -16,10 +16,7 @@ use filmcraft_project::{ItemId, Project};
 use filmcraft_render::SourceProvider;
 
 use crate::pipeline::Pipeline;
-use crate::{
-    Arc, BitrateMode, ExportError, ExportSettings, Format, HevcEncoder, Progress, Report, Result,
-    export_range, frame_span,
-};
+use crate::{Arc, BitrateMode, ExportError, ExportSettings, Format, HevcEncoder, Progress, Report, Result, export_range, frame_span};
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub(crate) enum Backend {
@@ -32,7 +29,9 @@ pub(crate) enum Backend {
 /// for version checks, encoder probes, video encoding, and audio/video remuxing.
 /// It does not change pipe handling, logs, progress, or cancellation.
 fn ffmpeg_process(path: &Path) -> Command {
-    let mut command = Command::new(path);
+    let command = Command::new(path);
+    #[cfg(windows)]
+    let mut command = command;
     #[cfg(windows)]
     {
         use std::os::windows::process::CommandExt;
@@ -46,28 +45,29 @@ fn ffmpeg_process(path: &Path) -> Command {
 /// a sibling `ffmpeg.exe` also works when FFmpeg is not on the system PATH.
 fn ffmpeg_executable() -> Option<&'static Path> {
     static BINARY: OnceLock<Option<PathBuf>> = OnceLock::new();
-    BINARY.get_or_init(|| {
-        let mut candidates = Vec::new();
-        if let Some(explicit) = std::env::var_os("FILMCRAFT_FFMPEG") {
-            candidates.push(PathBuf::from(explicit));
-        }
-        if let Ok(exe) = std::env::current_exe()
-            && let Some(folder) = exe.parent()
-        {
-            candidates.push(folder.join(if cfg!(windows) { "ffmpeg.exe" } else { "ffmpeg" }));
-            candidates.push(folder.join(if cfg!(windows) { "ffmpeg/bin/ffmpeg.exe" } else { "ffmpeg/bin/ffmpeg" }));
-        }
-        candidates.push(PathBuf::from("ffmpeg"));
-        candidates.into_iter().find(|path| {
-            ffmpeg_process(path).arg("-version").stdout(Stdio::null()).stderr(Stdio::null()).status().is_ok_and(|s| s.success())
+    BINARY
+        .get_or_init(|| {
+            let mut candidates = Vec::new();
+            if let Some(explicit) = std::env::var_os("FILMCRAFT_FFMPEG") {
+                candidates.push(PathBuf::from(explicit));
+            }
+            if let Ok(exe) = std::env::current_exe()
+                && let Some(folder) = exe.parent()
+            {
+                candidates.push(folder.join(if cfg!(windows) { "ffmpeg.exe" } else { "ffmpeg" }));
+                candidates.push(folder.join(if cfg!(windows) { "ffmpeg/bin/ffmpeg.exe" } else { "ffmpeg/bin/ffmpeg" }));
+            }
+            candidates.push(PathBuf::from("ffmpeg"));
+            candidates
+                .into_iter()
+                .find(|path| ffmpeg_process(path).arg("-version").stdout(Stdio::null()).stderr(Stdio::null()).status().is_ok_and(|s| s.success()))
         })
-    }).as_deref()
+        .as_deref()
 }
 
 fn ffmpeg_command() -> Result<Command> {
-    let binary = ffmpeg_executable().ok_or_else(|| ExportError::Unsupported(
-        "FFmpeg not found. Install it on PATH, place ffmpeg.exe beside FilmCraft, or set FILMCRAFT_FFMPEG".into()
-    ))?;
+    let binary = ffmpeg_executable()
+        .ok_or_else(|| ExportError::Unsupported("FFmpeg not found. Install it on PATH, place ffmpeg.exe beside FilmCraft, or set FILMCRAFT_FFMPEG".into()))?;
     Ok(ffmpeg_process(binary))
 }
 
@@ -94,16 +94,34 @@ pub(crate) fn has_intel_qsv() -> bool {
         if !encoder_list().lines().any(|line| line.split_whitespace().nth(1) == Some("hevc_qsv")) {
             return false;
         }
-        ffmpeg_executable().is_some_and(|bin| ffmpeg_process(bin)
-            .args([
-                "-hide_banner", "-loglevel", "error", "-nostdin", "-f", "lavfi", "-i",
-                "testsrc2=size=640x360:rate=30", "-frames:v", "1", "-vf", "format=p010le",
-                "-c:v", "hevc_qsv", "-profile:v", "main10", "-f", "null", "-",
-            ])
-            .stdout(Stdio::null())
-            .stderr(Stdio::null())
-            .status()
-            .is_ok_and(|status| status.success()))
+        ffmpeg_executable().is_some_and(|bin| {
+            ffmpeg_process(bin)
+                .args([
+                    "-hide_banner",
+                    "-loglevel",
+                    "error",
+                    "-nostdin",
+                    "-f",
+                    "lavfi",
+                    "-i",
+                    "testsrc2=size=640x360:rate=30",
+                    "-frames:v",
+                    "1",
+                    "-vf",
+                    "format=p010le",
+                    "-c:v",
+                    "hevc_qsv",
+                    "-profile:v",
+                    "main10",
+                    "-f",
+                    "null",
+                    "-",
+                ])
+                .stdout(Stdio::null())
+                .stderr(Stdio::null())
+                .status()
+                .is_ok_and(|status| status.success())
+        })
     })
 }
 
@@ -151,9 +169,7 @@ impl TempDir {
     fn new() -> Result<Self> {
         static COUNTER: AtomicU64 = AtomicU64::new(0);
         let id = COUNTER.fetch_add(1, Ordering::Relaxed);
-        let stamp = std::time::SystemTime::now()
-            .duration_since(std::time::UNIX_EPOCH)
-            .map_or(0, |d| d.as_nanos());
+        let stamp = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).map_or(0, |d| d.as_nanos());
         let path = std::env::temp_dir().join(format!("filmcraft-hevc-{}-{stamp}-{id}", std::process::id()));
         fs::create_dir(&path).map_err(|e| ExportError::Io(format!("{}: {e}", path.display())))?;
         Ok(Self(path))
@@ -184,8 +200,16 @@ fn arg_string(v: impl ToString) -> String {
 
 fn encoding_args(settings: &ExportSettings, backend: Backend, width: u32, height: u32, fps: &str, bitrate: u32, max_bitrate: u32) -> Vec<String> {
     let mut args: Vec<String> = [
-        "-hide_banner", "-loglevel", "error", "-nostdin", "-y", "-f", "rawvideo",
-        "-pixel_format", if settings.hevc_bit_depth == 10 { "rgb48le" } else { "rgba" }, "-video_size",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-y",
+        "-f",
+        "rawvideo",
+        "-pixel_format",
+        if settings.hevc_bit_depth == 10 { "rgb48le" } else { "rgba" },
+        "-video_size",
     ]
     .into_iter()
     .map(str::to_string)
@@ -208,7 +232,14 @@ fn encoding_args(settings: &ExportSettings, backend: Backend, width: u32, height
     args.extend(["-profile:v".into(), if settings.hevc_bit_depth == 10 { "main10".into() } else { "main".into() }]);
     match settings.bitrate_mode {
         BitrateMode::Crf => {
-            args.extend([match backend { Backend::IntelQsv => "-global_quality", Backend::Libx265 => "-crf" }.into(), arg_string(settings.crf)]);
+            args.extend([
+                match backend {
+                    Backend::IntelQsv => "-global_quality",
+                    Backend::Libx265 => "-crf",
+                }
+                .into(),
+                arg_string(settings.crf),
+            ]);
         }
         BitrateMode::Cbr | BitrateMode::Vbr1Pass => {
             args.extend(["-b:v".into(), format!("{}k", bitrate)]);
@@ -221,17 +252,25 @@ fn encoding_args(settings: &ExportSettings, backend: Backend, width: u32, height
         BitrateMode::Vbr2Pass => {} // rejected before invoking FFmpeg
     }
     if backend == Backend::Libx265 {
-        args.extend([
-            "-preset".into(), "medium".into(), "-x265-params".into(),
-            "colorprim=bt709:transfer=bt709:colormatrix=bt709:range=limited".into(),
-        ]);
+        args.extend(["-preset".into(), "medium".into(), "-x265-params".into(), "colorprim=bt709:transfer=bt709:colormatrix=bt709:range=limited".into()]);
     }
     args.extend([
-        "-color_range".into(), "tv".into(), "-color_primaries".into(), "bt709".into(),
-        "-color_trc".into(), "bt709".into(), "-colorspace".into(), "bt709".into(),
+        "-color_range".into(),
+        "tv".into(),
+        "-color_primaries".into(),
+        "bt709".into(),
+        "-color_trc".into(),
+        "bt709".into(),
+        "-colorspace".into(),
+        "bt709".into(),
         // Also write the colour triplet into the coded stream's VUI (not only MP4 colr).
-        "-bsf:v".into(), "hevc_metadata=colour_primaries=1:transfer_characteristics=1:matrix_coefficients=1:video_full_range_flag=0".into(),
-        "-tag:v".into(), "hvc1".into(), "-an".into(), "-movflags".into(), "+faststart".into(),
+        "-bsf:v".into(),
+        "hevc_metadata=colour_primaries=1:transfer_characteristics=1:matrix_coefficients=1:video_full_range_flag=0".into(),
+        "-tag:v".into(),
+        "hvc1".into(),
+        "-an".into(),
+        "-movflags".into(),
+        "+faststart".into(),
     ]);
     args
 }
@@ -260,8 +299,12 @@ fn save_output(from: &Path, settings: &ExportSettings) -> Result<u64> {
 }
 
 pub(crate) fn export(
-    project: &Arc<Project>, seq: ItemId, settings: &ExportSettings, sources: &dyn SourceProvider,
-    progress: &Progress, backend: Backend,
+    project: &Arc<Project>,
+    seq: ItemId,
+    settings: &ExportSettings,
+    sources: &dyn SourceProvider,
+    progress: &Progress,
+    backend: Backend,
 ) -> Result<Report> {
     if settings.has_audio() && settings.audio_codec() != crate::AudioCodec::Aac {
         return Err(ExportError::Unsupported("FFmpeg HEVC export currently supports AAC audio only; choose AAC in Audio settings".into()));
@@ -309,11 +352,7 @@ pub(crate) fn export(
         if progress.cancel.load(Ordering::Relaxed) {
             return Err(ExportError::Cancelled);
         }
-        let rgba = if settings.hevc_bit_depth == 10 {
-            pipeline.frame_rgb48(f, sources)
-        } else {
-            pipeline.frame(f, sources).0
-        };
+        let rgba = if settings.hevc_bit_depth == 10 { pipeline.frame_rgb48(f, sources) } else { pipeline.frame(f, sources).0 };
         if filmcraft_media::pending::take() {
             return Err(ExportError::Io("source media is pending; external FFmpeg requires a local ready source".into()));
         }
@@ -345,7 +384,9 @@ pub(crate) fn export(
         let joined = dir.path(if settings.extension() == "mov" { "output.mov" } else { "output.mp4" });
         let mut mux = ffmpeg_command()?;
         mux.args(["-hide_banner", "-loglevel", "error", "-nostdin", "-y", "-i"])
-            .arg(&video).arg("-i").arg(&audio)
+            .arg(&video)
+            .arg("-i")
+            .arg(&audio)
             .args(["-map", "0:v:0", "-map", "1:a:0", "-c", "copy", "-movflags", "+faststart"])
             .arg(&joined);
         run_command(mux, "audio/video mux")?;
@@ -364,10 +405,19 @@ pub(crate) fn export(
         progress.set_status(format!("HEVC export completed in {seconds:.1}s"));
     }
     Ok(Report {
-        path: settings.path.clone(), frames, seconds, bytes,
+        path: settings.path.clone(),
+        frames,
+        seconds,
+        bytes,
         render_fps: frames as f64 / seconds.max(1e-6),
         extra_files: Vec::new(),
-        encoder: Some(match backend { Backend::IntelQsv => "Intel Quick Sync (FFmpeg)", Backend::Libx265 => "libx265 (FFmpeg)" }.into()),
+        encoder: Some(
+            match backend {
+                Backend::IntelQsv => "Intel Quick Sync (FFmpeg)",
+                Backend::Libx265 => "libx265 (FFmpeg)",
+            }
+            .into(),
+        ),
         warnings: Vec::new(),
     })
 }

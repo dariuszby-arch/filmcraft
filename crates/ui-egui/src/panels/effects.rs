@@ -41,7 +41,7 @@ pub fn show(app: &mut FilmcraftApp, ui: &mut egui::Ui, rect: Rect) {
     let mut set_default: Option<String> = None;
     let mut preset_action: Option<(String, String)> = None;
     egui::ScrollArea::vertical().id_salt("fx-scroll").auto_shrink([false, false]).show(&mut bui, |ui| {
-        for &top in tops {
+        for &top in std::iter::once(&"FilmCraft DW").chain(tops.iter()) {
             if top == "Presets" {
                 let was_open = !filter.is_empty() || app.ui.expanded_fx.iter().any(|k| k == top);
                 let any = app.session.presets.all().iter().any(|p| crate::i18n::matches_query(&p.name, filter));

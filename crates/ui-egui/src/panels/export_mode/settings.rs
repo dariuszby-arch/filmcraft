@@ -1,7 +1,7 @@
 use super::{
     AudioCodec, BitrateMode, ExportSettings, ExrCompression, FieldOrder, FileDialog, FilmcraftApp, Format, FrameRate, GpuRendering, H264Profile,
-    HardwareEncoding, HevcEncoder, Multiplexer, MxfVideoCodec, Placement, PresetManager, Rect, Reg, SampleFormat, Sense, TextOverlay, Tokens, apply_preset, is_export_busy,
-    pos2, vec2,
+    HardwareEncoding, HevcEncoder, Multiplexer, MxfVideoCodec, Placement, PresetManager, Rect, Reg, SampleFormat, Sense, TextOverlay, Tokens, apply_preset,
+    is_export_busy, pos2, vec2,
 };
 
 // ---------------------------------------------------------------------------------------------
@@ -79,9 +79,7 @@ fn unavailable_why(format: Format) -> Option<&'static str> {
         return None;
     }
     Some(match format {
-        Format::Hevc => tl!(
-            "H.265 (HEVC) requires a compatible hardware encoder or FFmpeg with libx265 / Intel QSV. Install FFmpeg or choose H.264."
-        ),
+        Format::Hevc => tl!("H.265 (HEVC) requires a compatible hardware encoder or FFmpeg with libx265 / Intel QSV. Install FFmpeg or choose H.264."),
         Format::Av1 => tl!("AV1 needs a hardware encoder; none was found on this machine, and FilmCraft has no software AV1 encoder yet."),
         _ => tl!("Not supported by FilmCraft's encoders yet"),
     })
@@ -517,10 +515,7 @@ fn video_section(ui: &mut egui::Ui, reg: &mut Reg, s: &mut ExportSettings, t: &T
                         let depths = [8u8, 10];
                         let native_hdr10 = seq_hdr && !s.sdr && filmcraft_engine::export::hdr_available(Format::Hevc);
                         let can_main10 = s.hevc_encoder != HevcEncoder::Platform || native_hdr10;
-                        let labels = vec![
-                            ("Main (8-bit SDR)".to_string(), true),
-                            ("Main 10 (10-bit SDR)".to_string(), can_main10),
-                        ];
+                        let labels = vec![("Main (8-bit SDR)".to_string(), true), ("Main 10 (10-bit SDR)".to_string(), can_main10)];
                         let selected = if s.hevc_bit_depth == 10 { 1 } else { 0 };
                         if let Some(i) = combo(ui, reg, "export.video.hevcDepth", &labels[selected].0, &labels, 195.0) {
                             s.hevc_bit_depth = depths[i];
@@ -565,8 +560,15 @@ fn video_section(ui: &mut egui::Ui, reg: &mut Reg, s: &mut ExportSettings, t: &T
             row(ui, t, tl!("Bitrate Encoding"), |ui| {
                 // a hardware encoder has one pass and no constant-quality mode: H.265 offers neither
                 let o = [BitrateMode::Cbr, BitrateMode::Vbr1Pass, BitrateMode::Vbr2Pass, BitrateMode::Crf];
-                let labels: Vec<(String, bool)> =
-                    o.iter().map(|m| (m.label().to_string(), !(hevc && (matches!(m, BitrateMode::Vbr2Pass) || (*m == BitrateMode::Crf && s.hevc_encoder == HevcEncoder::Platform))))).collect();
+                let labels: Vec<(String, bool)> = o
+                    .iter()
+                    .map(|m| {
+                        (
+                            m.label().to_string(),
+                            !(hevc && (matches!(m, BitrateMode::Vbr2Pass) || (*m == BitrateMode::Crf && s.hevc_encoder == HevcEncoder::Platform))),
+                        )
+                    })
+                    .collect();
                 if let Some(i) = combo(ui, reg, "export.video.bitrateMode", s.bitrate_mode.label(), &labels, 140.0) {
                     s.bitrate_mode = o[i];
                 }

@@ -1,0 +1,117 @@
+warning: patch `egui_demo_lib v0.37.0 (https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc7)` was not used in the crate graph
+warning: patch `egui_inspection v0.37.0 (https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc7)` was not used in the crate graph
+warning: patch `egui_system_font_provider v0.37.0 (https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc7)` was not used in the crate graph
+help: Check that the patched package version and available features are compatible
+      with the dependency requirements. If the patch has a different version from
+      what is locked in the Cargo.lock file, run `cargo update` to use the new
+      version. This may also occur with an optional dependency that is not enabled.
+    Blocking waiting for file lock on build directory
+    Checking smallvec v1.16.2
+    Checking bytemuck v1.25.2
+    Checking num-traits v0.2.19
+    Checking thiserror v2.0.21
+    Checking serde_core v1.0.229
+    Checking num-complex v0.4.6
+    Checking log v0.4.34
+    Checking symphonia-core v0.6.1
+    Checking serde v1.0.229
+    Checking zerofrom v0.1.8
+    Checking stable_deref_trait v1.2.1
+    Checking yoke v0.8.3
+    Checking once_cell v1.21.4
+    Checking zerovec v0.11.8
+    Checking symphonia-metadata v0.6.1
+    Checking either v1.18.0
+    Checking symphonia-common v0.6.1
+    Checking rayon v1.12.0
+    Checking tinystr v0.8.4
+    Checking craft-time v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+    Checking writeable v0.6.4
+    Checking litemap v0.8.3
+    Checking icu_locale_core v2.3.0
+    Checking zerotrie v0.2.5
+    Checking potential_utf v0.1.6
+    Checking font-types v0.12.5
+    Checking icu_collections v2.3.0
+    Checking icu_provider v2.3.1
+    Checking zerocopy v0.8.59
+    Checking symphonia-format-riff v0.6.1
+    Checking craft-xml v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+    Checking craft-timeline v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+    Checking symphonia-format-caf v0.6.1
+    Checking symphonia-codec-aac v0.6.1
+    Checking symphonia-format-mkv v0.6.1
+    Checking symphonia-format-ogg v0.6.1
+    Checking symphonia-codec-vorbis v0.6.1
+    Checking symphonia-codec-alac v0.6.1
+    Checking symphonia-bundle-flac v0.6.1
+    Checking half v2.7.1
+    Checking symphonia-format-isomp4 v0.6.1
+    Checking symphonia-codec-pcm v0.6.1
+    Checking symphonia-codec-adpcm v0.6.1
+    Checking symphonia-bundle-mp3 v0.6.1
+    Checking moxcms v0.8.1
+    Checking symphonia v0.6.1
+    Checking tiff v0.11.3
+    Checking icu_normalizer v2.3.0
+    Checking icu_properties v2.3.0
+    Checking craft-tiff v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+    Checking filmcraft-color v0.20.2-dw3-denoise (/workspace/scratch/f43b5782ff0b/filmcraft-denoise/crates/color)
+    Checking craft-color v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+    Checking craft-media v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+    Checking serde_json v1.0.154
+    Checking craft-frame v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+    Checking craft-raw v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+    Checking craft-audio v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+    Checking image v0.25.10
+    Checking idna_adapter v1.2.2
+    Checking filmcraft-time v0.20.2-dw3-denoise (/workspace/scratch/f43b5782ff0b/filmcraft-denoise/crates/time)
+    Checking percent-encoding v2.3.2
+    Checking filmcraft-frame v0.20.2-dw3-denoise (/workspace/scratch/f43b5782ff0b/filmcraft-denoise/crates/frame)
+    Checking form_urlencoded v1.2.2
+    Checking idna v1.1.0
+    Checking craft-media-source v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+    Checking filmcraft-dng v0.20.2-dw3-denoise (/workspace/scratch/f43b5782ff0b/filmcraft-denoise/crates/dng)
+    Checking craft-exr v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+    Checking craft-psd v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+    Checking craft-hdr v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+    Checking craft-dpx v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+    Checking craft-tga v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+    Checking arrayvec v0.7.8
+    Checking linux-raw-sys v0.12.1
+    Checking rustix v1.1.5
+    Checking polycool v0.4.0
+    Checking url v2.5.8
+    Checking read-fonts v0.43.3
+    Checking filmcraft-media v0.20.2-dw3-denoise (/workspace/scratch/f43b5782ff0b/filmcraft-denoise/crates/media)
+    Checking read-fonts v0.44.0
+    Checking read-fonts v0.41.0
+    Checking filmcraft-geom v0.20.2-dw3-denoise (/workspace/scratch/f43b5782ff0b/filmcraft-denoise/crates/geom)
+    Checking rand_core v0.10.1
+    Checking skrifa v0.47.0
+    Checking harfrust v0.13.3
+    Checking kurbo v0.13.1
+    Checking harfrust v0.12.0
+    Checking craft-font-catalog v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+    Checking skrifa v0.44.0
+    Checking filmcraft-project v0.20.2-dw3-denoise (/workspace/scratch/f43b5782ff0b/filmcraft-denoise/crates/project)
+    Checking filmcraft-text v0.20.2-dw3-denoise (/workspace/scratch/f43b5782ff0b/filmcraft-denoise/crates/text)
+    Checking getrandom v0.4.3
+    Checking craft-captions v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+    Checking tempfile v3.27.0
+    Checking wait-timeout v0.2.1
+    Checking cpufeatures v0.3.1
+    Checking quick-error v1.2.3
+    Checking fnv v1.0.7
+    Checking bit-vec v0.10.1
+    Checking bit-set v0.11.1
+    Checking rusty-fork v0.3.1
+    Checking chacha20 v0.10.2
+    Checking rand v0.10.3
+    Checking rand_xorshift v0.5.0
+    Checking unarray v0.1.4
+    Checking regex-syntax v0.8.11
+    Checking filmcraft-captions v0.20.2-dw3-denoise (/workspace/scratch/f43b5782ff0b/filmcraft-denoise/crates/captions)
+    Checking proptest v1.12.0
+    Checking filmcraft-render v0.20.2-dw3-denoise (/workspace/scratch/f43b5782ff0b/filmcraft-denoise/crates/render)
+    Finished `release` profile [optimized] target(s) in 2m 32s

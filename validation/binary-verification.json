@@ -1,0 +1,56 @@
+{
+  "windows": {
+    "format": "PE32+ x86-64 GUI",
+    "dll_imports": [
+      "ADVAPI32.dll",
+      "KERNEL32.dll",
+      "SHELL32.dll",
+      "USER32.dll",
+      "advapi32.dll",
+      "api-ms-win-core-path-l1-1-0.dll",
+      "api-ms-win-core-synch-l1-2-0.dll",
+      "api-ms-win-core-winrt-error-l1-1-0.dll",
+      "api-ms-win-core-winrt-l1-1-0.dll",
+      "bcrypt.dll",
+      "bcryptprimitives.dll",
+      "combase.dll",
+      "comdlg32.dll",
+      "crypt32.dll",
+      "d3d11.dll",
+      "dwmapi.dll",
+      "dxgi.dll",
+      "gdi32.dll",
+      "imm32.dll",
+      "kernel32.dll",
+      "ktmw32.dll",
+      "msvcrt.dll",
+      "ntdll.dll",
+      "ole32.dll",
+      "oleaut32.dll",
+      "opengl32.dll",
+      "propsys.dll",
+      "setupapi.dll",
+      "shell32.dll",
+      "shlwapi.dll",
+      "uiautomationcore.dll",
+      "user32.dll",
+      "userenv.dll",
+      "uxtheme.dll",
+      "version.dll",
+      "wintrust.dll",
+      "ws2_32.dll"
+    ]
+  },
+  "linux": {
+    "filmcraft": {
+      "max_glibc": "2.35",
+      "glibc_236_launch": true,
+      "version_output": "filmcraft 0.20.2-dw3-denoise"
+    },
+    "filmcraft-cli": {
+      "max_glibc": "2.35",
+      "glibc_236_launch": true,
+      "version_output": "filmcraft-cli 0.20.2-dw3-denoise"
+    }
+  }
+}

@@ -1,0 +1,524 @@
+warning: patch `egui_demo_lib v0.37.0 (https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc7)` was not used in the crate graph
+warning: patch `egui_inspection v0.37.0 (https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc7)` was not used in the crate graph
+warning: patch `egui_system_font_provider v0.37.0 (https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a#6d518fc7)` was not used in the crate graph
+help: Check that the patched package version and available features are compatible
+      with the dependency requirements. If the patch has a different version from
+      what is locked in the Cargo.lock file, run `cargo update` to use the new
+      version. This may also occur with an optional dependency that is not enabled.
+    Blocking waiting for file lock on artifact directory
+   Compiling smallvec v1.16.2
+   Compiling syn v3.0.6
+   Compiling num-traits v0.2.19
+   Compiling serde_core v1.0.229
+   Compiling bytemuck_derive v1.12.1
+   Compiling thiserror-impl v2.0.21
+   Compiling bytemuck v1.25.2
+   Compiling num-complex v0.4.6
+   Compiling serde v1.0.229
+   Compiling log v0.4.34
+   Compiling thiserror v2.0.21
+   Compiling symphonia-core v0.6.1
+   Compiling serde_derive v1.0.229
+   Compiling synstructure v0.14.0
+   Compiling symphonia-metadata v0.6.1
+   Compiling zerofrom-derive v0.1.8
+   Compiling zerofrom v0.1.8
+   Compiling yoke-derive v0.8.4
+   Compiling stable_deref_trait v1.2.1
+   Compiling yoke v0.8.3
+   Compiling symphonia-common v0.6.1
+   Compiling zerovec-derive v0.11.7
+   Compiling once_cell v1.21.4
+   Compiling displaydoc v0.2.7
+   Compiling zerovec v0.11.8
+   Compiling either v1.18.0
+   Compiling rayon v1.12.0
+   Compiling tinystr v0.8.4
+   Compiling craft-time v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+   Compiling font-types v0.12.5
+   Compiling syn v2.0.119
+   Compiling litemap v0.8.3
+   Compiling writeable v0.6.4
+   Compiling icu_locale_core v2.3.0
+   Compiling potential_utf v0.1.6
+   Compiling zerocopy-derive v0.8.59
+   Compiling zerotrie v0.2.5
+   Compiling icu_collections v2.3.0
+   Compiling icu_provider v2.3.1
+   Compiling zerocopy v0.8.59
+   Compiling symphonia-format-riff v0.6.1
+   Compiling craft-xml v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+   Compiling half v2.7.1
+   Compiling craft-timeline v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+   Compiling symphonia-bundle-flac v0.6.1
+   Compiling symphonia-format-mkv v0.6.1
+   Compiling symphonia-format-ogg v0.6.1
+   Compiling symphonia-format-caf v0.6.1
+   Compiling symphonia-codec-aac v0.6.1
+   Compiling symphonia-format-isomp4 v0.6.1
+   Compiling symphonia-codec-alac v0.6.1
+   Compiling symphonia-codec-vorbis v0.6.1
+   Compiling symphonia-bundle-mp3 v0.6.1
+   Compiling symphonia-codec-pcm v0.6.1
+   Compiling symphonia-codec-adpcm v0.6.1
+   Compiling rand_core v0.10.1
+   Compiling moxcms v0.8.1
+   Compiling serde_json v1.0.154
+   Compiling symphonia v0.6.1
+   Compiling tiff v0.11.3
+   Compiling icu_properties v2.3.0
+   Compiling icu_normalizer v2.3.0
+   Compiling craft-color v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+   Compiling craft-tiff v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+   Compiling filmcraft-color v0.20.2-dw3-denoise (/workspace/scratch/f43b5782ff0b/filmcraft-denoise/crates/color)
+   Compiling craft-media v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+   Compiling rustix v1.1.5
+   Compiling getrandom v0.4.3
+   Compiling craft-audio v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+   Compiling craft-raw v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+   Compiling craft-frame v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+   Compiling idna_adapter v1.2.2
+   Compiling image v0.25.10
+   Compiling filmcraft-time v0.20.2-dw3-denoise (/workspace/scratch/f43b5782ff0b/filmcraft-denoise/crates/time)
+   Compiling arrayvec v0.7.8
+   Compiling percent-encoding v2.3.2
+   Compiling linux-raw-sys v0.12.1
+   Compiling form_urlencoded v1.2.2
+   Compiling polycool v0.4.0
+   Compiling filmcraft-frame v0.20.2-dw3-denoise (/workspace/scratch/f43b5782ff0b/filmcraft-denoise/crates/frame)
+   Compiling filmcraft-dng v0.20.2-dw3-denoise (/workspace/scratch/f43b5782ff0b/filmcraft-denoise/crates/dng)
+   Compiling idna v1.1.0
+   Compiling craft-media-source v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+   Compiling craft-exr v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+   Compiling craft-psd v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+   Compiling read-fonts v0.43.3
+   Compiling read-fonts v0.41.0
+   Compiling read-fonts v0.44.0
+   Compiling craft-hdr v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+   Compiling craft-dpx v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+   Compiling craft-tga v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+   Compiling filmcraft-media v0.20.2-dw3-denoise (/workspace/scratch/f43b5782ff0b/filmcraft-denoise/crates/media)
+   Compiling skrifa v0.47.0
+   Compiling harfrust v0.13.3
+   Compiling url v2.5.8
+   Compiling kurbo v0.13.1
+   Compiling filmcraft-geom v0.20.2-dw3-denoise (/workspace/scratch/f43b5782ff0b/filmcraft-denoise/crates/geom)
+   Compiling craft-font-catalog v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+   Compiling tempfile v3.27.0
+   Compiling skrifa v0.44.0
+   Compiling harfrust v0.12.0
+   Compiling wait-timeout v0.2.1
+   Compiling bit-vec v0.10.1
+   Compiling fnv v1.0.7
+   Compiling cpufeatures v0.3.1
+   Compiling quick-error v1.2.3
+   Compiling rusty-fork v0.3.1
+   Compiling filmcraft-text v0.20.2-dw3-denoise (/workspace/scratch/f43b5782ff0b/filmcraft-denoise/crates/text)
+   Compiling chacha20 v0.10.2
+   Compiling bit-set v0.11.1
+   Compiling filmcraft-project v0.20.2-dw3-denoise (/workspace/scratch/f43b5782ff0b/filmcraft-denoise/crates/project)
+   Compiling rand v0.10.3
+   Compiling rand_xorshift v0.5.0
+   Compiling craft-captions v0.1.0 (https://github.com/storytold/craft-libs?rev=33be35625e252cc4f06aa375b3b428521faea37d#33be3562)
+   Compiling unarray v0.1.4
+   Compiling regex-syntax v0.8.11
+   Compiling proptest v1.12.0
+   Compiling filmcraft-captions v0.20.2-dw3-denoise (/workspace/scratch/f43b5782ff0b/filmcraft-denoise/crates/captions)
+   Compiling filmcraft-render v0.20.2-dw3-denoise (/workspace/scratch/f43b5782ff0b/filmcraft-denoise/crates/render)
+    Finished `release` profile [optimized] target(s) in 13m 34s
+     Running unittests src/lib.rs (/workspace/scratch/f43b5782ff0b/target-linux/x86_64-unknown-linux-gnu/release/deps/filmcraft_project-786dbf63d9832f8f)
+
+running 90 tests
+test caption::tests::caption_at ... ok
+test caption::tests::corrupt_caption_times_do_not_overflow_the_overlap_check ... ok
+test caption::tests::plain ... ok
+test caption::tests::styles_saved_without_a_font_style_load_semibold ... ok
+test caption::tests::malformed_caption_markup_is_preserved_without_repeated_suffix_scans ... ok
+test effect::audio::tests::parametric_eq_keeps_the_three_band_ids ... ok
+test effect::tests::interchange_names_keep_exports_stable_across_the_rename ... ok
+test effect::audio::tests::premiere_audio_set_is_complete_and_foldered ... ok
+test effect::vfx::tests::auto_points_resolve_to_frame_fractions ... ok
+test effect::vfx::tests::four_color_gradient_points_resolve_to_the_quarter_positions ... ok
+test effect::tests::unique_ids_and_defaults ... ok
+test essential::tests::apply_inserts_updates_and_removes_effects_in_order ... ok
+test essential::tests::gain_volume_and_pan_are_deltas ... ok
+test effect::tests::descriptive_names_preserve_legacy_lookup_and_project_ids ... ok
+test essential::tests::presets_are_valid_and_unique ... ok
+test effect::vfx::tests::premiere_26_video_effects_catalogue ... ok
+test find::tests::operators_columns_and_match_modes ... ok
+test essential::tests::set_get_and_validation ... ok
+test graphic::tests::defaults_centre_and_shadow_direction ... ok
+test graphic::tests::assigning_a_new_layer_uid_never_reuses_an_existing_layers_uid ... ok
+test graphic::tests::hostile_shadow_values_are_held_to_the_parameter_range ... ok
+test graphic::tests::layer_uids_are_unique_and_repair_legacy_or_duplicate_entries ... ok
+test graphic::tests::source_text_keyframes_hold ... ok
+test graphic::tests::layers_round_trip_and_evaluate ... ok
+test graphic_design::tests::char_style_at_reads_the_overrides_covering_a_character ... ok
+test graphic_design::tests::char_styles_merge_split_and_follow_edits ... ok
+test graphic_design::tests::pins_follow_targets_and_resize_shapes ... ok
+test graphic_design::tests::range_styles_lists_each_selected_character ... ok
+test graphic_design::tests::range_styles_matches_the_expanded_text_for_every_range ... ok
+test graphic_design::tests::responsive_time_protects_intro_and_outro ... ok
+test graphic_design::tests::roll_and_crawl_offsets ... ok
+test graphic_design::tests::roll_progress_is_exact ... ok
+test graphic_design::tests::layers_within_the_chain_limit_follow_the_frame_whatever_is_resolved_first ... ok
+test gtemplate::tests::base64_round_trip ... ok
+test gtemplate::tests::instantiates_animated_width_with_timing_and_interpolation_preserved ... ok
+test gtemplate::tests::instantiates_nonuniform_layers_with_both_axes_fitted ... ok
+test keyframe::tests::linear_and_hold ... ok
+test gtemplate::tests::instantiates_on_other_frame_sizes ... ok
+test keyframe::tests::bezier_eases ... ok
+test keyframe::tests::set_at_before_first_keyframe_uses_default_interp ... ok
+test keyframe::tests::toggle_off_keeps_value ... ok
+test gtemplate::tests::template_slugs_preserve_non_ascii_names ... ok
+test marker_color::tests::legacy_marker_keeps_preset_and_has_no_invented_author ... ok
+test marker_url::tests::web_addresses_are_parsed_and_other_handlers_are_rejected ... ok
+test mask::tests::ellipse_flattens_onto_the_ellipse ... ok
+test mask::tests::mask_serde_round_trip ... ok
+test mask::tests::modes_combine ... ok
+test keyframe::tests::text_ref_at_borrows_without_cloning_and_holds_non_interpolating_values ... ok
+test mask::tests::polygon_flattens_to_its_corners ... ok
+test gtemplate::tests::instantiates_imported_layers_with_omitted_scale_defaults ... ok
+test gtemplate::tests::refuses_foreign_and_newer_files ... ok
+test marker_color::tests::hex_round_trip_and_hostile_input ... ok
+test mask::tests::path_keyframes_interpolate_vertexwise ... ok
+test mask::tests::rounded_rect_corners_are_quarter_circles ... ok
+test mixer::tests::lanes_read_static_and_keyframes ... ok
+test mixer::tests::mode_names_roundtrip ... ok
+test mixer::tests::pan51_lanes_have_defaults_and_store_statics_in_lanes ... ok
+test mask::tests::rounding_clamps_to_half_an_edge_and_ignores_curves_and_hostile_input ... ok
+test mixer::tests::serde_defaults ... ok
+test mixer::tests::send_removal_shifts_lanes ... ok
+test mixer::tests::thinning_keeps_shape_within_tolerance ... ok
+test narration::tests::check_rejects_hostile_values ... ok
+test narration::tests::pitch_ids_round_trip ... ok
+test mixer::tests::write_lane_preserves_outside ... ok
+test narration::tests::round_trips_through_json ... ok
+test tests::a_bin_moves_into_another_bin_with_its_contents ... ok
+test tests::bins ... ok
+test tests::corrupt_timeline_times_are_rejected_before_end_arithmetic ... ok
+test tests::caption_tracks_roundtrip ... ok
+test tests::hostile_frame_rates_are_rejected_before_frame_arithmetic ... ok
+test tests::item_at_and_source_time ... ok
+test tests::media_resolution_bounds_depth_and_preserves_the_outer_range ... ok
+test tests::json_roundtrip ... ok
+test tests::nest_cycle_finds_sequences_that_contain_themselves ... ok
+test tests::nest_overhang_is_the_part_past_the_contents ... ok
+test tests::pixel_aspect_ratios_are_reduced_and_hostile_ones_are_square ... ok
+test gtemplate::tests::builtins_are_valid_and_round_trip ... ok
+test tests::point_params_keep_auto_through_json_and_no_other_point_reads_null ... ok
+test tests::project_clone_shares_sequences_until_mutated ... ok
+test tests::sequence_display_format_round_trips_and_old_files_load_as_timecode ... ok
+test tests::placed_auto_points_resolve_once_the_source_size_is_final ... ok
+test tests::projects_without_caption_tracks_load ... ok
+test tests::source_par_follows_interpret_footage_subclips_and_sequences ... ok
+test transcript::tests::a_huge_speaker_name_is_cut_at_a_character_boundary ... ok
+test transcript::tests::normalize_sorts_clamps_and_labels ... ok
+test transcript::tests::hostile_speaker_index_does_not_size_the_label_table ... ok
+test transcript::tests::words_in_range_and_normalized ... ok
+test vtransition::tests::premiere_26_transition_tree ... ok
+test vtransition::tests::transition_lookup_by_kind ... ok
+test graphic_design::tests::a_long_pin_chain_resolves_without_deep_recursion ... ok
+
+test result: ok. 90 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.28s
+
+     Running unittests src/lib.rs (/workspace/scratch/f43b5782ff0b/target-linux/x86_64-unknown-linux-gnu/release/deps/filmcraft_render-0ee569e81a3a1441)
+
+running 285 tests
+test adjustment_tests::a_transform_replaces_the_picture_below ... ok
+test adjustment_tests::a_transition_with_an_adjustment_layer_is_not_planned_as_layers ... ok
+test adjustment_tests::a_nested_adjustment_layer_does_not_adjust_the_outer_tracks ... ok
+test adjustment_tests::a_dissolve_fades_the_adjustment_layers_effects_in_and_out ... ok
+test adjustment_tests::applies_to_everything_below_but_not_above ... ok
+test adjustment_tests::media_time_counts_frames_at_the_source_rate ... ok
+test adjustment_tests::basic_3d_keeps_its_perspective_at_every_render_scale ... ok
+test adjustment_tests::a_burn_in_on_an_adjustment_layer_honours_its_time_format ... ok
+test adjustment_tests::opacity_and_blend_mode_mix_over_the_original ... ok
+test adjustment_tests::an_adjustment_layer_that_does_nothing_is_not_a_step ... ok
+test audio::tests::blocks_of_a_clip_above_the_speed_cap_stay_contiguous ... ok
+test audio::tests::transition_handles_of_a_clip_above_the_speed_cap_line_up_with_its_audio ... ok
+test audio_fx::tests::direct_mappings_match_dsp_parameters ... ok
+test audio_fx::tests::editor_curves_follow_project_parameters ... ok
+test adjustment_tests::a_dissolve_on_an_adjustment_layer_keeps_its_opacity_and_blend_mode ... ok
+test audio_fx::tests::parametric_eq_applies_every_control ... ok
+test adjustment_tests::nested_adjustment_layers_stay_in_their_sequence ... ok
+test blend::tests::all_modes_stay_in_range ... ok
+test blend::tests::normal_over ... ok
+test blend::tests::multiply_white_is_identity ... ok
+test color_match::tests::oklab_reference_values ... ok
+test audio_fx::tests::every_audio_effect_has_dsp ... ok
+test color_match::tests::matching_a_frame_to_itself_changes_nothing ... ok
+test adjustment_tests::motion_and_masks_restrict_the_region ... ok
+test colorman::tests::plain_media_keeps_the_fast_path ... ok
+test colorman::tests::pq_frame_is_tone_mapped_into_rec709 ... ok
+test effects::curve_tests::hue_curve_has_no_seam_at_red ... ok
+test effects::curve_tests::identity_and_monotone ... ok
+test effects::curve_tests::vs_sat_curves_do_not_wrap ... ok
+test colorman::tests::mastering_metadata_sets_the_tone_mapping_peak ... ok
+basic: max sample diff vs fn lumetri: 0.00e0
+creative: max sample diff vs fn lumetri: 0.00e0
+vignette: max sample diff vs fn lumetri: 0.00e0
+all_three: max sample diff vs fn lumetri: 0.00e0
+extreme_pos: max sample diff vs fn lumetri: 0.00e0
+test effects::lumetri_cpu_parity_tests::lumetri_vignette_roundness_shapes_the_vignette ... ok
+extreme_neg: max sample diff vs fn lumetri: 0.00e0
+test effects::lumetri_cpu_parity_tests::lumetri_gpu_op_matches_original_fn_lumetri_cpu ... ok
+test effects::tests::flip_and_crop ... ok
+test effects::tests::gaussian_preserves_mean_and_blurs ... ok
+test effects::tests::identity_lumetri_is_identity ... ok
+test effects::tests::luma_key_can_key_out_brights ... ok
+test effects::tests::luma_key_inverted_thresholds_are_measured_from_white ... ok
+test effects::tests::luma_vs_sat_highlight_point_leaves_shadows_saturated ... ok
+test effects::tests::lumetri_shadow_lift_does_not_amplify_near_black_chroma ... ok
+test effects::tests::lumetri_shadow_lift_is_unchanged_at_and_above_the_luma_floor ... ok
+test effects::tests::median_radius_stays_in_the_parameter_range ... ok
+test effects::tests::three_way_color_corrector_works_per_tonal_range ... ok
+test effects::tests::three_way_keeps_hdr_and_normalises_overlapping_ranges ... ok
+test adjustment_tests::transform_shutter_on_an_adjustment_layer_spans_one_sequence_frame ... ok
+test adjustment_tests::the_device_caps_decide_whether_an_adjustment_layer_is_a_step ... ok
+test adjustment_tests::an_adjustment_layer_the_gpu_cant_run_plans_the_frame_on_the_cpu ... ok
+known grade: Match { shadows: [-0.26617658, -0.18952616], midtones: [-0.02860958, 0.08651185], highlights: [0.35366642, 0.15435295], lightness: [10.347857, 0.6950421, -5.202089], saturation: 119.195465, before: 0.08020347, after: 0.011391682 }
+test color_match::tests::recovers_a_known_grade ... ok
+test adjustment_tests::a_gpu_adjustment_layer_plans_as_an_adjust_step ... ok
+test flow::tests::hostile_inputs_do_not_panic ... ok
+test effects::tests::every_effect_runs_and_stays_finite ... ok
+test gpufx::tests::extract_zero_softness_has_no_fractional_edge ... ok
+test gpufx::tests::transform_with_its_own_shutter_angle_stays_on_the_cpu ... ok
+test graphic_clip::tests::character_stroke_kind_colour_and_width_match_their_individual_references ... ok
+test graphic_clip::tests::inner_and_centre_strokes ... ok
+test graphic_clip::tests::linear_gradient_blends_in_linear_light_and_turns_with_the_layer ... ok
+test flow::tests::identical_frames_are_returned_unchanged ... ok
+test graphic_clip::tests::linear_gradient_keeps_a_per_character_fill_solid ... ok
+test graphic_clip::tests::linear_gradient_runs_left_to_right_on_a_shape_and_on_text ... ok
+test graphic_clip::tests::outer_stroke_without_fill_leaves_the_inside_empty ... ok
+test graphic_clip::tests::per_character_fill_and_size ... ok
+test flow::tests::flicker_on_static_content_is_not_dragged_around ... ok
+test graphic_clip::tests::pinned_box_follows_text_growth ... ok
+test graphic_clip::tests::responsive_time_remaps_layer_keyframes_not_the_clips_own_effects ... ok
+test graphic_clip::tests::roll_moves_the_whole_graphic ... ok
+test graphic_clip::tests::rotation_scale_and_opacity ... ok
+test graphic_clip::tests::shape_appearance_layers ... ok
+test flow::tests::a_moving_square_appears_once_at_its_interpolated_place ... ok
+test graphic_clip::tests::text_layer_renders_white_text_at_position ... ok
+test graphic_clip::tests::tight_image_matches_full_render ... ok
+test graphic_clip::tests::style_runs_that_own_no_glyph_cost_no_colour_group ... ok
+test graphics::tests::burn_in_raster_budget_rejects_huge_and_non_finite_bounds ... ok
+test lumetri_cube::tests::disabled_effects_are_skipped_and_hostile_sizes_are_refused ... ok
+test lumetri_cube::tests::an_ungraded_lumetri_is_the_identity_table ... ok
+test lumetri_cube::tests::what_a_table_cannot_hold_is_left_out_and_named ... ok
+test lumetri_hdr_tests::curves_span_the_hdr_range ... ok
+test lumetri_hdr_tests::exposure_is_stops_of_light_in_hdr ... ok
+test lumetri_hdr_tests::hdr_specular_sets_highlights_above_hdr_white ... ok
+test lumetri_cube::tests::the_table_applied_to_a_frame_gives_the_render ... ok
+test flow::tests::large_frames_estimate_flow_at_the_working_size ... ok
+test lumetri_hdr_tests::identity_keeps_hdr_highlights_in_pq_and_hlg ... ok
+test lumetri_hdr_tests::whites_and_contrast_scale_with_hdr_white ... ok
+test lumetri_hdr_tests::hsl_refine_denoise_removes_speckles ... ok
+test lumetri_presets::tests::preview_picture_has_ramp_chips_and_sky ... ok
+test lumetri_hdr_tests::hsl_refine_blur_softens_the_key ... ok
+test luts::tests::library_cache_uses_retained_text_identity_without_rehashing_source ... ok
+test luts::tests::library_luts_resolve_by_content ... ok
+test lumetri_presets::tests::presets_are_valid_and_change_the_picture ... ok
+test mask::tests::effect_masks_use_the_uncapped_scale ... ok
+test mask::tests::ellipse_area_matches_analytic ... ok
+test mask::tests::expansion_inverted_opacity_modes ... ok
+test mask::tests::feather_is_a_symmetric_distance_falloff ... ok
+test mask::tests::hard_rect_is_exact_box_coverage ... ok
+test mask::tests::row_algorithm_matches_brute_force ... ok
+test mixer_tests::a_51_source_on_a_stereo_track_folds_down_instead_of_dropping_centre_and_surrounds ... ok
+test mixer_tests::a_51_track_passes_through_a_51_mix_and_folds_into_stereo ... ok
+test luts::tests::oversized_embedded_lut_is_not_parsed ... ok
+test mixer_tests::a_nest_at_another_sample_rate_keeps_its_pitch_and_timing ... ok
+test mixer_tests::a_nest_plays_its_sequence_as_it_sounds_there ... ok
+test mixer_tests::a_nest_trimmed_in_starts_later_in_its_sequence ... ok
+test luts::tests::builtins_generate_and_resolve ... ok
+test mixer_tests::a_sequence_nested_in_itself_mixes_to_an_end ... ok
+test mixer_tests::a_stretch_too_long_for_one_read_falls_back_to_varispeed ... ok
+test graphic_clip::tests::per_character_stroke_colours_render_independently ... ok
+test mixer_tests::a_refused_51_graph_returns_six_channels_of_silence ... ok
+test graphic_clip::tests::per_character_stroke_width_and_enablement_render_independently ... ok
+test mixer_tests::a_stretched_clip_aligns_on_the_channels_it_plays ... ok
+test mixer_tests::audio_clips_from_one_container_mix_distinct_streams ... ok
+test mixer_tests::audio_transition_curves ... ok
+test mixer_tests::audio_transition_on_a_cut_crossfades_through_the_handles ... ok
+test mixer_tests::clip_volume_and_track_automation_both_apply ... ok
+test mixer_tests::a_graph_with_absurd_latency_is_refused_not_allocated ... ok
+test flow::tests::uniform_motion_lands_half_way ... ok
+test mixer_tests::fader_gain_is_sample_exact ... ok
+test mixer_tests::effect_and_pan_automation_on_the_block_grid ... ok
+test mixer_tests::live_override_holds_and_ramps_back ... ok
+test flow::tests::quarter_way_follows_the_time ... ok
+test mixer_tests::latency_compensation_aligns_paths ... ok
+test mixer_tests::pan_laws ... ok
+test mixer_tests::pan51_automation_is_block_invariant ... ok
+test mixer_tests::sends_route_to_submixes ... ok
+test mixer_tests::solo_and_mute_logic ... ok
+test mixer_tests::speed_and_reverse_on_a_nest_change_its_sound_like_a_clips ... ok
+test mixer_tests::stereo_and_mono_tracks_into_a_51_mix_use_the_51_panner ... ok
+test mixer_tests::stereo_track_through_a_51_submix_into_a_stereo_mix ... ok
+test mixer_tests::maintain_audio_pitch_keeps_a_faster_or_slower_clip_at_its_pitch ... ok
+test mixer_tests::constant_insert_refresh_matches_grid_refresh_and_live_edits ... ok
+test multicam::tests::auto_adjust_lowers_playback_cell_scale ... ok
+test mixer_tests::volume_automation_is_sample_accurate_and_block_invariant ... ok
+test multicam::tests::paging_beyond_sixteen_angles ... ok
+test mixer_tests::a_time_stretched_clip_sounds_the_same_however_playback_cuts_its_reads ... ok
+test mixer_tests::two_interleaved_readers_of_a_stretched_clip_each_read_as_if_alone ... ok
+test mixer_tests::a_stretched_noise_clip_reads_the_same_whole_or_in_blocks ... ok
+test mixer_tests::render_and_playback_paths_are_identical ... ok
+test nest_tests::a_larger_nest_is_cropped_by_the_frame ... ok
+test nest_tests::a_wrong_stored_media_width_does_not_blow_up_effect_sizes ... ok
+test nest_tests::captions_inside_a_nest_are_part_of_its_picture ... ok
+test nest_tests::a_nest_at_another_frame_rate_shows_its_sequence_at_the_same_moment ... ok
+test mixer_tests::a_stretched_clip_plays_none_of_its_handles ... ok
+test nest_tests::opacity_and_effects_on_a_nest_apply_to_its_whole_picture ... ok
+test par_tests::a_sequence_with_the_clips_pixel_aspect_shows_it_pixel_for_pixel ... ok
+test par_tests::an_anamorphic_clip_fills_a_square_pixel_frame_at_100_percent ... ok
+skin hue shift: free 51.1°, protected 6.8°
+test color_match::tests::skin_protection_limits_the_skin_hue_shift ... ok
+test par_tests::interpret_footage_overrides_the_files_pixel_aspect ... ok
+test par_tests::rotation_happens_at_the_display_aspect ... ok
+test par_tests::scale_to_frame_size_fits_the_display_size ... ok
+test par_tests::square_pixel_clips_are_narrowed_in_a_non_square_sequence ... ok
+test par_tests::the_gpu_plan_places_an_anamorphic_clip_like_the_cpu ... ok
+test plan::tests::flattening_an_operation_preserves_its_picture ... ok
+test plan::tests::layer_plan_has_a_global_budget ... ok
+test plan::tests::quarter_turns_place_a_frame_as_rotated_turns_it ... ok
+test adjustment_tests::a_push_under_an_adjustment_layer_plans_the_push_then_the_adjustment ... ok
+test preview_tests::a_nests_audio_previews_follow_the_sound_of_its_sequence ... ok
+test preview_tests::a_subclip_that_is_its_own_parent_does_not_recurse_forever ... ok
+test preview_tests::effect_costs ... ignored
+test preview_tests::effect_tiers_are_ordered ... ok
+test preview_tests::editing_one_clip_invalidates_only_its_segments ... ok
+test preview_tests::hashes_are_stable_across_save_and_load ... ok
+test preview_tests::renaming_relabelling_and_moving_keep_hashes ... ok
+test preview_tests::need_classification_none_yellow_red ... ok
+test preview_tests::transitions_are_their_own_segments ... ok
+test nest_tests::a_smaller_nest_is_shown_at_its_own_size_in_the_middle ... ok
+test region_tests::a_region_layer_expands_to_the_whole_layer ... ok
+test preview_tests::segments_split_at_every_edit_point_and_skip_gaps ... ok
+test region_tests::hdr_media_is_planned_for_the_gpu_with_its_colour_management ... ok
+test region_tests::which_layers_take_a_shortcut ... ok
+test remix::tests::a_stored_plan_longer_than_the_sample_limit_round_trips ... ok
+test remix::tests::not_remixed_reads_nothing ... ok
+test remix::tests::plays_the_pieces_and_ignores_request_cuts ... ok
+test remix::tests::state_roundtrips_through_the_hidden_effect ... ok
+test scene::tests::degenerate_inputs ... ok
+test region_tests::a_rectangle_mixes_like_the_padded_layer_in_every_blend_mode ... ok
+test scene::tests::min_shot_length_merges_flashes ... ok
+test scene::tests::sensitivity_controls_subtle_cuts ... ok
+test stretch::tests::a_full_cache_drops_only_the_clip_read_longest_ago ... ok
+test stretch::tests::a_read_continues_only_its_own_chain ... ok
+test tests::a_multicam_clip_showing_itself_plans_and_renders_to_an_end ... ok
+test scene::tests::finds_hard_cuts_and_ignores_motion ... ok
+test tests::a_still_image_needs_no_in_between_frame ... ok
+test tests::audio_fx_chain_is_continuous_and_random_access_matches ... ok
+test tests::audio_fx_limiter_holds_ceiling ... ok
+test tests::audio_mix_bars_tone ... ok
+test par_tests::hostile_pixel_aspect_ratios_render_square_without_panicking ... ok
+test tests::composites_tracks_and_opacity ... ok
+test tests::a_reversed_clip_shows_exactly_its_source_range ... ok
+test tests::cross_dissolve_midpoint ... ok
+test tests::half_resolution_matches_full_downsampled ... ok
+test tests::in_between_frames_stay_inside_the_source_range ... ok
+test tests::denoise_before_after_omits_only_the_requested_instance ... ok
+test tests::motion_scale_and_position ... ok
+test tests::draft_reduced_resolution_plans_carry_decimated_yuv ... ok
+test tests::over_black_rows_match_the_per_value_conversion ... ok
+test tests::over_black_with_alpha_keeps_the_color_and_the_alpha ... ok
+test tests::offline_slate_is_deterministic_and_marked ... ok
+test nest_tests::speed_reverse_and_frame_hold_on_a_nest_pick_the_frame_of_its_sequence ... ok
+test track::tests::ransac_rejects_outliers ... ok
+test tests::plan_matches_reference_renderer ... ok
+test nest_tests::a_transformed_nest_keeps_captions_at_its_held_source_time ... ok
+test nest_tests::a_plain_nest_is_planned_as_its_own_layers_and_looks_the_same ... ok
+test transitions::motion::unit::easings_hit_their_ends ... ok
+test transitions::motion::unit::flat_card_maps_pixels_to_themselves ... ok
+test transitions::tests::contact_sheets ... ignored
+test track::tests::tracks_rotation ... ok
+test track::tests::tracks_similarity ... ok
+test nest_tests::a_nest_that_is_not_plain_is_still_drawn_right ... ok
+test transitions::tests::disc_blur_with_shared_offsets_is_bit_identical ... ok
+test transitions::tests::endpoints_are_exact_outgoing_and_incoming ... ok
+test track::tests::tracks_translation ... ok
+test nest_tests::transformed_plain_nests_preserve_the_group_picture ... ok
+test transitions::tests::lens_blur_frame_time ... ignored
+test transitions::tests::linear_wipe_reveals_from_the_trailing_side ... ok
+test tests::morph_cut_frames_render_on_the_cpu_with_the_morph ... ok
+test transitions::tests::directions_differ ... ok
+test transitions::tests::modern_and_legacy_ids_are_distinct_renders ... ok
+test transitions::tests::morph_cut_moves_the_subject_instead_of_double_exposing ... ok
+test tests::push_plan_preserves_reference_track_order_and_reverse ... ok
+test transitions::tests::push_moves_frames_by_the_eased_distance ... ok
+test transitions::tests::typewriter_cursor_stays_on_the_text_block ... ok
+test transitions::tests::wipe_border_and_centre ... ok
+test vfx::denoise::tests::cancellation_leaves_the_input_unchanged ... ok
+test transitions::tests::every_parameter_changes_the_picture ... ok
+test vfx::denoise::tests::maximum_uses_four_neighbours_and_reduces_noise ... ok
+test vfx::denoise::tests::motion_estimation_finds_translation ... ok
+test vfx::denoise::tests::scene_cuts_and_clip_boundaries_are_rejected ... ok
+test vfx::denoise::tests::spatial_preserves_a_sharp_edge ... ok
+test vfx::denoise::tests::spatial_reduces_noise_without_clipping_or_changing_alpha ... ok
+test vfx::denoise::tests::zero_strength_is_bit_exact_and_preserves_hdr_alpha ... ok
+test vfx::tests::asc_cdl_known_values ... ok
+test vfx::tests::auto_reframe_follows_the_subject ... ok
+test transitions::tests::continuous_near_both_ends ... ok
+test vfx::tests::bokeh_and_focus_blur ... ok
+test vfx::tests::channel_mix_swaps_channels ... ok
+test vfx::tests::clone_auto_align_and_rounded_crop ... ok
+test vfx::tests::colour_replace_and_cineon ... ok
+test vfx::tests::corner_pin_maps_corners ... ok
+test vfx::tests::echo_combines_operators ... ok
+test transitions::tests::deterministic ... ok
+test vfx::tests::bokeh_kernel_matches_the_bilinear_taps ... ok
+test vfx::tests::every_new_effect_is_defined_as_video ... ok
+test vfx::tests::extreme_long_shadow_and_glint_lengths_finish ... ok
+test vfx::tests::four_color_gradient_points_default_to_the_old_positions_and_move ... ok
+test vfx::tests::generators_known_values ... ok
+test vfx::tests::every_choice_value_runs ... ok
+test transitions::tests::morph_cut_tracks_textured_subjects_and_follows_the_progress ... ok
+test vfx::tests::hostile_work::simple_text_at_a_huge_position_is_skipped_not_overflowed ... ok
+test vfx::tests::hostile_work::stabilizer_smoothing_radius_is_bounded ... ok
+test vfx::tests::hostile_work::stabilizer_with_a_nan_smoothness_stays_finite ... ok
+test vfx::tests::hostile_work::simple_text_with_an_enormous_size_is_skipped_not_allocated ... ok
+test vfx::tests::hostile_work::write_on_with_a_stationary_brush_and_a_long_history ... ok
+test vfx::tests::keyers_known_values ... ok
+test vfx::tests::lengths_past_the_picture_keep_their_fade_and_weighting ... ok
+test vfx::tests::hostile_work::write_on_with_a_long_off_canvas_path_is_bounded ... ok
+test vfx::tests::long_shadow_and_stroke_geometry ... ok
+test vfx::tests::magnify_and_spherize_enlarge_the_centre ... ok
+test vfx::tests::neutral_parameters_are_identity ... ok
+test vfx::tests::paint_bucket_fills_the_connected_region ... ok
+test vfx::tests::lights_add_light_around_highlights ... ok
+test vfx::tests::posterize_time_and_echo_read_other_frames ... ok
+test vfx::tests::rotate_3d_z_matches_a_2d_rotation ... ok
+test vfx::tests::stabilizer_analysis::a_clip_with_no_readable_frame_has_no_analysis ... ok
+test vfx::tests::stabilizer_analysis::cancelling_stops_the_analysis ... ok
+test vfx::tests::pipeline::temporal_and_track_effects_render_through_the_sequence ... ok
+test transitions::tests::golden_fingerprints ... ok
+test vfx::tests::stabilizer_analysis::only_a_block_of_frames_is_alive_at_once ... ok
+test vfx::tests::stabilizer_analysis::the_steps_do_not_depend_on_the_block_size ... ok
+test vfx::tests::stabilizer_analysis::unreadable_and_resized_frames_give_identity_steps_and_the_first_size_is_used ... ok
+test vfx::tests::stabilizer_corrections_cache::other_settings_or_another_path_get_their_own_corrections ... ok
+test vfx::tests::stabilizer_corrections_cache::the_worst_border_matches_a_direct_scan_for_each_zoom_limit ... ok
+test vfx::tests::track_matte_uses_the_other_tracks_alpha_and_luma ... ok
+test vfx::tests::stabilizer_corrections_cache::the_same_path_and_settings_are_worked_out_once_and_match_the_direct_result ... ok
+test vfx::tests::stabilizer_corrections_cache::an_animated_smoothness_does_not_grow_the_cache_without_bound ... ok
+test vfx::tests::transform_presets_animate_over_the_clip ... ok
+test vfx::tests::turbulent_displace_moves_pixels_and_pins_edges ... ok
+test vfx::tests::transform_shutter_override_blurs_moving_position ... ok
+test vfx::tests::vignette_darkens_corners_only ... ok
+test vfx::tests::video_limiter_clips_super_whites ... ok
+test vfx::tests::transform_shutter_uses_the_sequence_frame_rate_without_env ... ok
+test vfx::tests::write_on_follows_the_animated_brush ... ok
+test vfx::tests::vr_rotate_sphere_pans_exactly ... ok
+test vfx::tests::hostile_work::lightning_with_huge_width_and_branching ... ok
+test vfx::tests::warp_stabilizer_removes_camera_jitter ... ok
+test vfx::tests::every_effect_is_finite_in_range_and_deterministic ... ok
+test transitions::tests::midpoint_is_a_real_transition_and_sane ... ok
+4K Maximum: 2.89s, noise MSE ratio 0.162
+test vfx::denoise::tests::maximum_processes_five_4k_frames_with_default_settings ... ok
+test transitions::tests::no_nan_on_degenerate_inputs ... ok
+test region_tests::shortcuts_give_the_general_paths_bits ... ok
+
+test result: ok. 282 passed; 0 failed; 3 ignored; 0 measured; 0 filtered out; finished in 7.48s
+

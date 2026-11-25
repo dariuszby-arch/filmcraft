@@ -389,6 +389,7 @@ fn hash_source(h: &mut Fnv128, project: &Project, id: ItemId, kind: TrackKind, d
 /// light < 10 ms. Unknown ids count as medium.
 pub fn effect_cost_ms(id: &str) -> f64 {
     match id {
+        "dw_video_denoise" => 1000.0,
         "sharpen"
         | "unsharp_mask"
         | "posterize"

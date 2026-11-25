@@ -15,6 +15,7 @@ mod blur;
 pub(crate) use blur::bokeh;
 pub use blur::{KERNEL_REACH, bokeh_kernel};
 mod color;
+mod denoise;
 pub(crate) use color::cdl;
 mod distort;
 mod immersive;
@@ -98,12 +99,20 @@ fn resize(img: Image, w: usize, h: usize) -> Image {
 
 /// Effects that read other frames (skipped when rendering another frame for one of them).
 pub fn is_temporal(id: &str) -> bool {
-    matches!(id, "posterize_time" | "echo" | "warp_stabilizer" | "auto_reframe")
+    matches!(id, "posterize_time" | "echo" | "warp_stabilizer" | "auto_reframe" | "dw_video_denoise")
 }
 
 impl FxEnv for ItemEnv<'_> {
     fn frame(&self, dt: f64, upto: &EffectInstance) -> Option<Image> {
         let t2 = self.t + Tick::from_seconds_f64(dt);
+        if upto.effect == "dw_video_denoise"
+            && (t2 < self.item.start
+                || t2 >= self.item.end()
+                || self.item.frame_hold.is_some()
+                || self.item.source_time_at(t2) == self.item.source_time_at(self.t))
+        {
+            return None;
+        }
         let base = crate::base_layer(self.project, self.seq, self.item, t2, self.opts, self.sources, self.want)?;
         let mut img = resize(base, self.layer_size.0, self.layer_size.1);
         let src = crate::source_size(self.project, self.item.item).unwrap_or((1, 1));
@@ -119,9 +128,12 @@ impl FxEnv for ItemEnv<'_> {
             frame_rate: self.seq.settings.frame_rate.as_f64(),
             working: self.seq.settings.color.working,
         };
-        for e in &self.item.effects {
+        for (index, e) in self.item.effects.iter().enumerate() {
             if std::ptr::eq(e, upto) {
                 break;
+            }
+            if self.opts.skip_effect == Some((self.item.id, index)) {
+                continue;
             }
             if e.def().is_some_and(|d| !d.intrinsic) && !filmcraft_project::graphic::is_layer(e) && !is_temporal(&e.effect) {
                 crate::mask::apply_effect(&mut img, e, &cx);
@@ -483,6 +495,7 @@ pub fn apply(img: &mut Image, e: &EffectInstance, cx: &FxCtx) -> bool {
         crate::effects::apply(img, &a, cx);
     };
     match e.effect.as_str() {
+        "dw_video_denoise" => denoise::apply(img, e, cx),
         // Adjust / Color / Image Control / Keying / Utility colour
         "lighting_effects" => color::lighting(img, e, cx),
         "logo_cutout" => color::logo_cutout(img, e, cx),

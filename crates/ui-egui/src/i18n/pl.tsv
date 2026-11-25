@@ -3638,3 +3638,15 @@
 	Toggle Color Grading Section	Przełącz sekcję korekcji kolorów
 	Color Grading Section	Sekcja korekcji kolorów
 	Read Video Scopes	Odczytaj wskaźniki wideo
+	Video Denoise DW	Odszumianie obrazu DW
+	Spatial Denoising	Odszumianie przestrzenne
+	Temporal Denoising	Odszumianie czasowe
+	Detail Protection	Ochrona szczegółów
+	Denoising Quality	Jakość odszumiania
+	Before / After	Przed / Po
+	Wipe	Przesłona
+	Wipe Position	Położenie przesłony
+	Same frame; the comparison does not change export.	Ta sama klatka; porównanie nie zmienia eksportu.
+	Processing denoising comparison…	Przetwarzanie porównania odszumiania…
+	Before	Przed
+	After	Po

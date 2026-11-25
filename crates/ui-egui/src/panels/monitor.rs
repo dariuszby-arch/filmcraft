@@ -62,6 +62,9 @@ fn draw_picture(app: &mut FilmcraftApp, ui: &mut egui::Ui, which: Which, mv: &cr
     let screen_scale = (pic.width() * ppp / frame_size.0.max(1) as f32).max(pic.height() * ppp / frame_size.1.max(1) as f32).min(1.0);
     let scale = quantize_scale(res.scale().min(screen_scale.max(1.0 / 32.0)));
     let frame = rate.frame_at(time);
+    if which == Which::Program && crate::panels::denoise::draw(app, ui, crate::panels::denoise::Picture { target, time, rate, rect: pic, scale }) {
+        return;
+    }
     let rev = match target {
         Target::Item(i) => app.item_revision(i),
         _ => app.session.revision,
@@ -168,13 +171,7 @@ fn draw_picture(app: &mut FilmcraftApp, ui: &mut egui::Ui, which: Which, mv: &cr
         monitor_view::compare_bar(app, ui, bar, rate, drop_frame, time_display);
     }
     if mv.safe_margins {
-        for (f, c) in [(0.9, Color32::from_white_alpha(120)), (0.8, Color32::from_white_alpha(90))] {
-            let r = Rect::from_center_size(pic.center(), pic.size() * f);
-            ui.painter().rect_stroke(r, 0.0, Stroke::new(1.0, c), StrokeKind::Middle);
-        }
-        let c = pic.center();
-        ui.painter().line_segment([c - vec2(8.0, 0.0), c + vec2(8.0, 0.0)], Stroke::new(1.0, Color32::from_white_alpha(120)));
-        ui.painter().line_segment([c - vec2(0.0, 8.0), c + vec2(0.0, 8.0)], Stroke::new(1.0, Color32::from_white_alpha(120)));
+        draw_safe_margins(ui, pic);
     }
     if display != DisplayMode::Composite && !compare {
         let label = match display {
@@ -189,6 +186,16 @@ fn draw_picture(app: &mut FilmcraftApp, ui: &mut egui::Ui, which: Which, mv: &cr
         };
         ui.painter().text(pos2(video_area.max.x - 8.0, video_area.min.y + 6.0), Align2::RIGHT_TOP, label, Tokens::ui(10.0), t.text_dim);
     }
+}
+
+fn draw_safe_margins(ui: &egui::Ui, pic: Rect) {
+    for (f, c) in [(0.9, Color32::from_white_alpha(120)), (0.8, Color32::from_white_alpha(90))] {
+        let r = Rect::from_center_size(pic.center(), pic.size() * f);
+        ui.painter().rect_stroke(r, 0.0, Stroke::new(1.0, c), StrokeKind::Middle);
+    }
+    let c = pic.center();
+    ui.painter().line_segment([c - vec2(8.0, 0.0), c + vec2(8.0, 0.0)], Stroke::new(1.0, Color32::from_white_alpha(120)));
+    ui.painter().line_segment([c - vec2(0.0, 8.0), c + vec2(0.0, 8.0)], Stroke::new(1.0, Color32::from_white_alpha(120)));
 }
 
 fn drop_indicator(app: &FilmcraftApp, ui: &mut egui::Ui, video_area: Rect, which: Which, t: &Tokens) {

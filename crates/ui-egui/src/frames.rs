@@ -39,6 +39,8 @@ pub enum Target {
     /// flattened over black, and the monitors' Transparency Grid and Alpha display mode need the
     /// frame's alpha.
     SequenceLive(ItemId),
+    /// Same-time denoising comparison; never read a flattened render preview.
+    SequenceBefore(ItemId, filmcraft_project::ClipId, usize),
 }
 
 /// Item jobs at this priority or a larger number are background work: thumbnails of the Project
@@ -1177,6 +1179,11 @@ fn render_job(job: &Job, pool: &Arc<MediaPool>, services: &Arc<dyn Services>, pr
     let provider = provider(job, pool, services);
     let opts = filmcraft_render::RenderOptions { scale: job.scale, captions: true, ..Default::default() };
     let img = match job.key.target {
+        Target::SequenceBefore(seq, clip, index) => {
+            let opts = filmcraft_render::RenderOptions { skip_effect: Some((clip, index)), ..opts };
+            let (w, h, px) = filmcraft_render::render_sequence_rgba8(&job.project, seq, job.time, opts, &provider);
+            return (Rgba { w, h, px }, false);
+        }
         Target::Sequence(seq) | Target::SequencePlan(seq, _) | Target::SequenceLive(seq) => {
             let (w, h, px) = filmcraft_render::render_sequence_rgba8(&job.project, seq, job.time, opts, &provider);
             return (Rgba { w, h, px }, false);

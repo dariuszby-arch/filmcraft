@@ -880,6 +880,19 @@ fn build_effects() -> Vec<EffectDef> {
         }
     }
     vfx::apply_badges(&mut v);
+    let mut denoise = video(
+        "dw_video_denoise",
+        "Video Denoise DW",
+        &["FilmCraft DW"],
+        vec![
+            f("spatial", "Spatial Denoising", 20.0, 0.0, 100.0, "%"),
+            f("temporal", "Temporal Denoising", 45.0, 0.0, 100.0, "%"),
+            f("detail_protection", "Detail Protection", 85.0, 0.0, 100.0, "%"),
+            ch("quality", "Denoising Quality", &["Fast", "High", "Maximum"], 2),
+        ],
+    );
+    denoise.accelerated = false;
+    v.push(denoise);
     v
 }
 

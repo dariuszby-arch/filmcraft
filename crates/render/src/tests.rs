@@ -66,6 +66,27 @@ fn composites_tracks_and_opacity() {
 }
 
 #[test]
+fn denoise_before_after_omits_only_the_requested_instance() {
+    let (mut p, red, _, seq, map) = setup();
+    let clip = place(&mut p, seq, 0, red, 0, 48);
+    let mut noise = filmcraft_project::find_effect("noise").unwrap().instance();
+    noise.params.get_mut("amount").unwrap().value = filmcraft_project::ParamValue::Float(12.0);
+    let mut denoise = filmcraft_project::find_effect("dw_video_denoise").unwrap().instance();
+    denoise.params.get_mut("temporal").unwrap().value = filmcraft_project::ParamValue::Float(0.0);
+    let it = &mut p.sequence_mut(seq).unwrap().video_tracks[0].items[0];
+    it.effects.push(noise);
+    it.effects.push(denoise);
+    let index = it.effects.len() - 1;
+    let before = render_sequence(&p, seq, Tick::ZERO, RenderOptions { skip_effect: Some((clip, index)), ..Default::default() }, &map);
+    let after = render_sequence(&p, seq, Tick::ZERO, RenderOptions::default(), &map);
+    assert_ne!(before, after);
+    let mut without = p.clone();
+    without.sequence_mut(seq).unwrap().video_tracks[0].items[0].effects.remove(index);
+    assert_eq!(before, render_sequence(&without, seq, Tick::ZERO, RenderOptions::default(), &map));
+    assert_eq!(p.sequence(seq).unwrap().video_tracks[0].items[0].effects.len(), index + 1);
+}
+
+#[test]
 fn half_resolution_matches_full_downsampled() {
     let (mut p, _red, ocean, seq, map) = setup();
     place(&mut p, seq, 0, ocean, 0, 48);

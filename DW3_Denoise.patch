@@ -1,0 +1,1804 @@
+diff --git a/Cargo.lock b/Cargo.lock
+index 9957a0c..2521cf4 100644
+--- a/Cargo.lock
++++ b/Cargo.lock
+@@ -2257,7 +2257,7 @@ dependencies = [
+ 
+ [[package]]
+ name = "filmcraft"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "arboard",
+  "chrono",
+@@ -2293,14 +2293,14 @@ dependencies = [
+ 
+ [[package]]
+ name = "filmcraft-audio-dsp"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "filmcraft-testkit",
+ ]
+ 
+ [[package]]
+ name = "filmcraft-automation"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "base64",
+  "craft-control-protocol",
+@@ -2319,14 +2319,14 @@ dependencies = [
+ 
+ [[package]]
+ name = "filmcraft-bitstream"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "craft-media",
+ ]
+ 
+ [[package]]
+ name = "filmcraft-captions"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "craft-captions",
+  "filmcraft-color",
+@@ -2337,14 +2337,14 @@ dependencies = [
+ 
+ [[package]]
+ name = "filmcraft-cfb"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "craft-cfb",
+ ]
+ 
+ [[package]]
+ name = "filmcraft-cli"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "craft-media",
+  "filmcraft-automation",
+@@ -2365,7 +2365,7 @@ dependencies = [
+ 
+ [[package]]
+ name = "filmcraft-codecs"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "craft-audio",
+  "craft-jpeg",
+@@ -2391,7 +2391,7 @@ dependencies = [
+ 
+ [[package]]
+ name = "filmcraft-color"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "proptest",
+  "serde",
+@@ -2399,7 +2399,7 @@ dependencies = [
+ 
+ [[package]]
+ name = "filmcraft-dng"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "craft-raw",
+  "craft-tiff",
+@@ -2413,7 +2413,7 @@ dependencies = [
+ 
+ [[package]]
+ name = "filmcraft-edit"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "filmcraft-geom",
+  "filmcraft-media",
+@@ -2426,7 +2426,7 @@ dependencies = [
+ 
+ [[package]]
+ name = "filmcraft-engine"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "chrono",
+  "craft-docpath",
+@@ -2464,7 +2464,7 @@ dependencies = [
+ 
+ [[package]]
+ name = "filmcraft-export"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "craft-audio",
+  "craft-dpx",
+@@ -2498,7 +2498,7 @@ dependencies = [
+ 
+ [[package]]
+ name = "filmcraft-format"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "chrono",
+  "craft-fcproj-format",
+@@ -2512,7 +2512,7 @@ dependencies = [
+ 
+ [[package]]
+ name = "filmcraft-frame"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "filmcraft-color",
+  "filmcraft-time",
+@@ -2522,7 +2522,7 @@ dependencies = [
+ 
+ [[package]]
+ name = "filmcraft-geom"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "proptest",
+  "serde",
+@@ -2530,7 +2530,7 @@ dependencies = [
+ 
+ [[package]]
+ name = "filmcraft-golden"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "filmcraft-color",
+  "filmcraft-frame",
+@@ -2547,7 +2547,7 @@ dependencies = [
+ 
+ [[package]]
+ name = "filmcraft-gpu"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "filmcraft-color",
+  "filmcraft-export",
+@@ -2567,7 +2567,7 @@ dependencies = [
+ 
+ [[package]]
+ name = "filmcraft-interchange"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "craft-aaf",
+  "craft-audio",
+@@ -2587,7 +2587,7 @@ dependencies = [
+ 
+ [[package]]
+ name = "filmcraft-isobmff"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "craft-media",
+  "filmcraft-testkit",
+@@ -2597,7 +2597,7 @@ dependencies = [
+ 
+ [[package]]
+ name = "filmcraft-matroska"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "craft-media",
+  "filmcraft-testkit",
+@@ -2606,7 +2606,7 @@ dependencies = [
+ 
+ [[package]]
+ name = "filmcraft-media"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "craft-audio",
+  "craft-dpx",
+@@ -2632,7 +2632,7 @@ dependencies = [
+ 
+ [[package]]
+ name = "filmcraft-platform"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "craft-video",
+  "filmcraft-bitstream",
+@@ -2658,7 +2658,7 @@ dependencies = [
+ 
+ [[package]]
+ name = "filmcraft-project"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "filmcraft-color",
+  "filmcraft-geom",
+@@ -2673,7 +2673,7 @@ dependencies = [
+ 
+ [[package]]
+ name = "filmcraft-render"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "filmcraft-audio-dsp",
+  "filmcraft-captions",
+@@ -2693,7 +2693,7 @@ dependencies = [
+ 
+ [[package]]
+ name = "filmcraft-scopes"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "filmcraft-color",
+  "serde",
+@@ -2702,7 +2702,7 @@ dependencies = [
+ 
+ [[package]]
+ name = "filmcraft-speech"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "candle-core",
+  "candle-nn",
+@@ -2721,7 +2721,7 @@ dependencies = [
+ 
+ [[package]]
+ name = "filmcraft-testkit"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "chrono",
+  "png",
+@@ -2730,7 +2730,7 @@ dependencies = [
+ 
+ [[package]]
+ name = "filmcraft-text"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "craft-font-catalog",
+  "filmcraft-color",
+@@ -2744,14 +2744,14 @@ dependencies = [
+ 
+ [[package]]
+ name = "filmcraft-time"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "craft-timeline",
+ ]
+ 
+ [[package]]
+ name = "filmcraft-tts"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "candle-core",
+  "candle-nn",
+@@ -2766,7 +2766,7 @@ dependencies = [
+ 
+ [[package]]
+ name = "filmcraft-tts-text"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "serde",
+  "thiserror 2.0.21",
+@@ -2774,7 +2774,7 @@ dependencies = [
+ 
+ [[package]]
+ name = "filmcraft-ui-egui"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "cpu-time",
+  "craft-ui",
+@@ -2817,7 +2817,7 @@ dependencies = [
+ 
+ [[package]]
+ name = "filmcraft-web"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "craft-web-api",
+  "craft-web-host",
+@@ -8720,7 +8720,7 @@ checksum = "e450f9b2ed1dff33c94c12589a87338689467b9c4f5d8a5710bd09a847d2c8a7"
+ 
+ [[package]]
+ name = "xtask"
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ dependencies = [
+  "filmcraft-testkit",
+  "serde_json",
+diff --git a/Cargo.toml b/Cargo.toml
+index bbf050f..0ec8918 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -4,7 +4,7 @@ members = ["crates/*", "apps/*", "xtask"]
+ default-members = ["crates/*", "apps/*", "xtask"]
+ 
+ [workspace.package]
+-version = "0.20.1"
++version = "0.20.2-dw3-denoise"
+ edition = "2024"
+ license = "MIT OR Apache-2.0"
+ rust-version = "1.95"
+diff --git a/apps/filmcraft/src/main.rs b/apps/filmcraft/src/main.rs
+index f6e64ea..fb80159 100644
+--- a/apps/filmcraft/src/main.rs
++++ b/apps/filmcraft/src/main.rs
+@@ -285,7 +285,7 @@ fn panic_text(panic: &(dyn std::any::Any + Send)) -> &str {
+ fn native_options(agent: bool) -> eframe::NativeOptions {
+     eframe::NativeOptions {
+         viewport: egui::ViewportBuilder::default()
+-            .with_title("FilmCraft")
++            .with_title("FilmCraft 0.20.2 DW3 Denoise")
+             .with_inner_size([1600.0, 980.0])
+             .with_min_inner_size([900.0, 560.0])
+             .with_drag_and_drop(true)
+diff --git a/crates/export/src/external_hevc.rs b/crates/export/src/external_hevc.rs
+index 3c6d89c..9b819d2 100644
+--- a/crates/export/src/external_hevc.rs
++++ b/crates/export/src/external_hevc.rs
+@@ -16,10 +16,7 @@ use filmcraft_project::{ItemId, Project};
+ use filmcraft_render::SourceProvider;
+ 
+ use crate::pipeline::Pipeline;
+-use crate::{
+-    Arc, BitrateMode, ExportError, ExportSettings, Format, HevcEncoder, Progress, Report, Result,
+-    export_range, frame_span,
+-};
++use crate::{Arc, BitrateMode, ExportError, ExportSettings, Format, HevcEncoder, Progress, Report, Result, export_range, frame_span};
+ 
+ #[derive(Clone, Copy, Debug, Eq, PartialEq)]
+ pub(crate) enum Backend {
+@@ -32,7 +29,9 @@ pub(crate) enum Backend {
+ /// for version checks, encoder probes, video encoding, and audio/video remuxing.
+ /// It does not change pipe handling, logs, progress, or cancellation.
+ fn ffmpeg_process(path: &Path) -> Command {
+-    let mut command = Command::new(path);
++    let command = Command::new(path);
++    #[cfg(windows)]
++    let mut command = command;
+     #[cfg(windows)]
+     {
+         use std::os::windows::process::CommandExt;
+@@ -46,28 +45,29 @@ fn ffmpeg_process(path: &Path) -> Command {
+ /// a sibling `ffmpeg.exe` also works when FFmpeg is not on the system PATH.
+ fn ffmpeg_executable() -> Option<&'static Path> {
+     static BINARY: OnceLock<Option<PathBuf>> = OnceLock::new();
+-    BINARY.get_or_init(|| {
+-        let mut candidates = Vec::new();
+-        if let Some(explicit) = std::env::var_os("FILMCRAFT_FFMPEG") {
+-            candidates.push(PathBuf::from(explicit));
+-        }
+-        if let Ok(exe) = std::env::current_exe()
+-            && let Some(folder) = exe.parent()
+-        {
+-            candidates.push(folder.join(if cfg!(windows) { "ffmpeg.exe" } else { "ffmpeg" }));
+-            candidates.push(folder.join(if cfg!(windows) { "ffmpeg/bin/ffmpeg.exe" } else { "ffmpeg/bin/ffmpeg" }));
+-        }
+-        candidates.push(PathBuf::from("ffmpeg"));
+-        candidates.into_iter().find(|path| {
+-            ffmpeg_process(path).arg("-version").stdout(Stdio::null()).stderr(Stdio::null()).status().is_ok_and(|s| s.success())
++    BINARY
++        .get_or_init(|| {
++            let mut candidates = Vec::new();
++            if let Some(explicit) = std::env::var_os("FILMCRAFT_FFMPEG") {
++                candidates.push(PathBuf::from(explicit));
++            }
++            if let Ok(exe) = std::env::current_exe()
++                && let Some(folder) = exe.parent()
++            {
++                candidates.push(folder.join(if cfg!(windows) { "ffmpeg.exe" } else { "ffmpeg" }));
++                candidates.push(folder.join(if cfg!(windows) { "ffmpeg/bin/ffmpeg.exe" } else { "ffmpeg/bin/ffmpeg" }));
++            }
++            candidates.push(PathBuf::from("ffmpeg"));
++            candidates
++                .into_iter()
++                .find(|path| ffmpeg_process(path).arg("-version").stdout(Stdio::null()).stderr(Stdio::null()).status().is_ok_and(|s| s.success()))
+         })
+-    }).as_deref()
++        .as_deref()
+ }
+ 
+ fn ffmpeg_command() -> Result<Command> {
+-    let binary = ffmpeg_executable().ok_or_else(|| ExportError::Unsupported(
+-        "FFmpeg not found. Install it on PATH, place ffmpeg.exe beside FilmCraft, or set FILMCRAFT_FFMPEG".into()
+-    ))?;
++    let binary = ffmpeg_executable()
++        .ok_or_else(|| ExportError::Unsupported("FFmpeg not found. Install it on PATH, place ffmpeg.exe beside FilmCraft, or set FILMCRAFT_FFMPEG".into()))?;
+     Ok(ffmpeg_process(binary))
+ }
+ 
+@@ -94,16 +94,34 @@ pub(crate) fn has_intel_qsv() -> bool {
+         if !encoder_list().lines().any(|line| line.split_whitespace().nth(1) == Some("hevc_qsv")) {
+             return false;
+         }
+-        ffmpeg_executable().is_some_and(|bin| ffmpeg_process(bin)
+-            .args([
+-                "-hide_banner", "-loglevel", "error", "-nostdin", "-f", "lavfi", "-i",
+-                "testsrc2=size=640x360:rate=30", "-frames:v", "1", "-vf", "format=p010le",
+-                "-c:v", "hevc_qsv", "-profile:v", "main10", "-f", "null", "-",
+-            ])
+-            .stdout(Stdio::null())
+-            .stderr(Stdio::null())
+-            .status()
+-            .is_ok_and(|status| status.success()))
++        ffmpeg_executable().is_some_and(|bin| {
++            ffmpeg_process(bin)
++                .args([
++                    "-hide_banner",
++                    "-loglevel",
++                    "error",
++                    "-nostdin",
++                    "-f",
++                    "lavfi",
++                    "-i",
++                    "testsrc2=size=640x360:rate=30",
++                    "-frames:v",
++                    "1",
++                    "-vf",
++                    "format=p010le",
++                    "-c:v",
++                    "hevc_qsv",
++                    "-profile:v",
++                    "main10",
++                    "-f",
++                    "null",
++                    "-",
++                ])
++                .stdout(Stdio::null())
++                .stderr(Stdio::null())
++                .status()
++                .is_ok_and(|status| status.success())
++        })
+     })
+ }
+ 
+@@ -151,9 +169,7 @@ impl TempDir {
+     fn new() -> Result<Self> {
+         static COUNTER: AtomicU64 = AtomicU64::new(0);
+         let id = COUNTER.fetch_add(1, Ordering::Relaxed);
+-        let stamp = std::time::SystemTime::now()
+-            .duration_since(std::time::UNIX_EPOCH)
+-            .map_or(0, |d| d.as_nanos());
++        let stamp = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).map_or(0, |d| d.as_nanos());
+         let path = std::env::temp_dir().join(format!("filmcraft-hevc-{}-{stamp}-{id}", std::process::id()));
+         fs::create_dir(&path).map_err(|e| ExportError::Io(format!("{}: {e}", path.display())))?;
+         Ok(Self(path))
+@@ -184,8 +200,16 @@ fn arg_string(v: impl ToString) -> String {
+ 
+ fn encoding_args(settings: &ExportSettings, backend: Backend, width: u32, height: u32, fps: &str, bitrate: u32, max_bitrate: u32) -> Vec<String> {
+     let mut args: Vec<String> = [
+-        "-hide_banner", "-loglevel", "error", "-nostdin", "-y", "-f", "rawvideo",
+-        "-pixel_format", if settings.hevc_bit_depth == 10 { "rgb48le" } else { "rgba" }, "-video_size",
++        "-hide_banner",
++        "-loglevel",
++        "error",
++        "-nostdin",
++        "-y",
++        "-f",
++        "rawvideo",
++        "-pixel_format",
++        if settings.hevc_bit_depth == 10 { "rgb48le" } else { "rgba" },
++        "-video_size",
+     ]
+     .into_iter()
+     .map(str::to_string)
+@@ -208,7 +232,14 @@ fn encoding_args(settings: &ExportSettings, backend: Backend, width: u32, height
+     args.extend(["-profile:v".into(), if settings.hevc_bit_depth == 10 { "main10".into() } else { "main".into() }]);
+     match settings.bitrate_mode {
+         BitrateMode::Crf => {
+-            args.extend([match backend { Backend::IntelQsv => "-global_quality", Backend::Libx265 => "-crf" }.into(), arg_string(settings.crf)]);
++            args.extend([
++                match backend {
++                    Backend::IntelQsv => "-global_quality",
++                    Backend::Libx265 => "-crf",
++                }
++                .into(),
++                arg_string(settings.crf),
++            ]);
+         }
+         BitrateMode::Cbr | BitrateMode::Vbr1Pass => {
+             args.extend(["-b:v".into(), format!("{}k", bitrate)]);
+@@ -221,17 +252,25 @@ fn encoding_args(settings: &ExportSettings, backend: Backend, width: u32, height
+         BitrateMode::Vbr2Pass => {} // rejected before invoking FFmpeg
+     }
+     if backend == Backend::Libx265 {
+-        args.extend([
+-            "-preset".into(), "medium".into(), "-x265-params".into(),
+-            "colorprim=bt709:transfer=bt709:colormatrix=bt709:range=limited".into(),
+-        ]);
++        args.extend(["-preset".into(), "medium".into(), "-x265-params".into(), "colorprim=bt709:transfer=bt709:colormatrix=bt709:range=limited".into()]);
+     }
+     args.extend([
+-        "-color_range".into(), "tv".into(), "-color_primaries".into(), "bt709".into(),
+-        "-color_trc".into(), "bt709".into(), "-colorspace".into(), "bt709".into(),
++        "-color_range".into(),
++        "tv".into(),
++        "-color_primaries".into(),
++        "bt709".into(),
++        "-color_trc".into(),
++        "bt709".into(),
++        "-colorspace".into(),
++        "bt709".into(),
+         // Also write the colour triplet into the coded stream's VUI (not only MP4 colr).
+-        "-bsf:v".into(), "hevc_metadata=colour_primaries=1:transfer_characteristics=1:matrix_coefficients=1:video_full_range_flag=0".into(),
+-        "-tag:v".into(), "hvc1".into(), "-an".into(), "-movflags".into(), "+faststart".into(),
++        "-bsf:v".into(),
++        "hevc_metadata=colour_primaries=1:transfer_characteristics=1:matrix_coefficients=1:video_full_range_flag=0".into(),
++        "-tag:v".into(),
++        "hvc1".into(),
++        "-an".into(),
++        "-movflags".into(),
++        "+faststart".into(),
+     ]);
+     args
+ }
+@@ -260,8 +299,12 @@ fn save_output(from: &Path, settings: &ExportSettings) -> Result<u64> {
+ }
+ 
+ pub(crate) fn export(
+-    project: &Arc<Project>, seq: ItemId, settings: &ExportSettings, sources: &dyn SourceProvider,
+-    progress: &Progress, backend: Backend,
++    project: &Arc<Project>,
++    seq: ItemId,
++    settings: &ExportSettings,
++    sources: &dyn SourceProvider,
++    progress: &Progress,
++    backend: Backend,
+ ) -> Result<Report> {
+     if settings.has_audio() && settings.audio_codec() != crate::AudioCodec::Aac {
+         return Err(ExportError::Unsupported("FFmpeg HEVC export currently supports AAC audio only; choose AAC in Audio settings".into()));
+@@ -309,11 +352,7 @@ pub(crate) fn export(
+         if progress.cancel.load(Ordering::Relaxed) {
+             return Err(ExportError::Cancelled);
+         }
+-        let rgba = if settings.hevc_bit_depth == 10 {
+-            pipeline.frame_rgb48(f, sources)
+-        } else {
+-            pipeline.frame(f, sources).0
+-        };
++        let rgba = if settings.hevc_bit_depth == 10 { pipeline.frame_rgb48(f, sources) } else { pipeline.frame(f, sources).0 };
+         if filmcraft_media::pending::take() {
+             return Err(ExportError::Io("source media is pending; external FFmpeg requires a local ready source".into()));
+         }
+@@ -345,7 +384,9 @@ pub(crate) fn export(
+         let joined = dir.path(if settings.extension() == "mov" { "output.mov" } else { "output.mp4" });
+         let mut mux = ffmpeg_command()?;
+         mux.args(["-hide_banner", "-loglevel", "error", "-nostdin", "-y", "-i"])
+-            .arg(&video).arg("-i").arg(&audio)
++            .arg(&video)
++            .arg("-i")
++            .arg(&audio)
+             .args(["-map", "0:v:0", "-map", "1:a:0", "-c", "copy", "-movflags", "+faststart"])
+             .arg(&joined);
+         run_command(mux, "audio/video mux")?;
+@@ -364,10 +405,19 @@ pub(crate) fn export(
+         progress.set_status(format!("HEVC export completed in {seconds:.1}s"));
+     }
+     Ok(Report {
+-        path: settings.path.clone(), frames, seconds, bytes,
++        path: settings.path.clone(),
++        frames,
++        seconds,
++        bytes,
+         render_fps: frames as f64 / seconds.max(1e-6),
+         extra_files: Vec::new(),
+-        encoder: Some(match backend { Backend::IntelQsv => "Intel Quick Sync (FFmpeg)", Backend::Libx265 => "libx265 (FFmpeg)" }.into()),
++        encoder: Some(
++            match backend {
++                Backend::IntelQsv => "Intel Quick Sync (FFmpeg)",
++                Backend::Libx265 => "libx265 (FFmpeg)",
++            }
++            .into(),
++        ),
+         warnings: Vec::new(),
+     })
+ }
+diff --git a/crates/export/src/pipeline.rs b/crates/export/src/pipeline.rs
+index 8b9d089..6cd1e03 100644
+--- a/crates/export/src/pipeline.rs
++++ b/crates/export/src/pipeline.rs
+@@ -436,11 +436,7 @@ mod true10_tests {
+ 
+     #[test]
+     fn rgb48_keeps_distinct_levels_that_rgba8_cannot() {
+-        let img = Image {
+-            w: 2,
+-            h: 1,
+-            px: vec![0.4, 0.4, 0.4, 1.0, 0.40005, 0.4, 0.4, 1.0],
+-        };
++        let img = Image { w: 2, h: 1, px: vec![0.4, 0.4, 0.4, 1.0, 0.40005, 0.4, 0.4, 1.0] };
+         let rgba8 = img.over_black_rgba8();
+         assert_eq!(rgba8[0], rgba8[4]);
+         let rgb48 = image_to_rgb48(&img, None);
+diff --git a/crates/project/src/effect.rs b/crates/project/src/effect.rs
+index 732c38b..7a98068 100644
+--- a/crates/project/src/effect.rs
++++ b/crates/project/src/effect.rs
+@@ -880,6 +880,19 @@ fn build_effects() -> Vec<EffectDef> {
+         }
+     }
+     vfx::apply_badges(&mut v);
++    let mut denoise = video(
++        "dw_video_denoise",
++        "Video Denoise DW",
++        &["FilmCraft DW"],
++        vec![
++            f("spatial", "Spatial Denoising", 20.0, 0.0, 100.0, "%"),
++            f("temporal", "Temporal Denoising", 45.0, 0.0, 100.0, "%"),
++            f("detail_protection", "Detail Protection", 85.0, 0.0, 100.0, "%"),
++            ch("quality", "Denoising Quality", &["Fast", "High", "Maximum"], 2),
++        ],
++    );
++    denoise.accelerated = false;
++    v.push(denoise);
+     v
+ }
+ 
+diff --git a/crates/render/src/lib.rs b/crates/render/src/lib.rs
+index fe136e0..31a70b1 100644
+--- a/crates/render/src/lib.rs
++++ b/crates/render/src/lib.rs
+@@ -81,11 +81,13 @@ pub struct RenderOptions {
+     /// Return the image in the sequence's working space (HDR exports, scopes) instead of
+     /// converting it for an SDR monitor. Only matters for HDR / wide-gamut sequences.
+     pub working_output: bool,
++    /// Monitor-only A/B: omit exactly one effect instance on one timeline clip.
++    pub skip_effect: Option<(filmcraft_project::ClipId, usize)>,
+ }
+ 
+ impl Default for RenderOptions {
+     fn default() -> Self {
+-        Self { scale: 1.0, effects: true, depth: 0, captions: false, working_output: false }
++        Self { scale: 1.0, effects: true, depth: 0, captions: false, working_output: false, skip_effect: None }
+     }
+ }
+ 
+@@ -360,7 +362,10 @@ fn adjustment_layer(project: &Project, seq: &Sequence, item: &TrackItem, t: Tick
+         working: seq.settings.color.working,
+     };
+     let ss = &seq.settings;
+-    for e in item.effects.iter().filter(|e| e.def().is_some_and(|d| !d.intrinsic)) {
++    for (index, e) in item.effects.iter().enumerate().filter(|(_, e)| e.def().is_some_and(|d| !d.intrinsic)) {
++        if opts.skip_effect == Some((item.id, index)) {
++            continue;
++        }
+         // no `env` here: a burn-in's Feet + Frames / Frames format comes as the sequence time in
+         // the `timecode` string
+         match vfx::film_time_format(e) {
+@@ -619,7 +624,10 @@ pub(crate) fn item_layer_ex(
+             frame_rate: seq.settings.frame_rate.as_f64(),
+             working: seq.settings.color.working,
+         };
+-        for e in item.effects.iter().filter(|e| e.def().is_some_and(|d| !d.intrinsic) && !filmcraft_project::graphic::is_layer(e)) {
++        for (index, e) in item.effects.iter().enumerate().filter(|(_, e)| e.def().is_some_and(|d| !d.intrinsic) && !filmcraft_project::graphic::is_layer(e)) {
++            if opts.skip_effect == Some((item.id, index)) {
++                continue;
++            }
+             if filmcraft_media::cancel::cancelled() {
+                 return None;
+             }
+@@ -727,7 +735,7 @@ pub(crate) fn base_layer(
+             media_image(project, seq, item, t, MediaFrame { src: &src, frame: &frame, n }, want)
+         }
+         ItemKind::Sequence(nested) => {
+-            let sub = RenderOptions { scale: want, effects: opts.effects, depth: opts.depth + 1, captions: false, working_output: true };
++            let sub = RenderOptions { scale: want, depth: opts.depth + 1, captions: false, working_output: true, ..opts };
+             match item.multicam_angle(nested) {
+                 // a multi-camera clip shows its angle's track only (nothing for an audio-only angle)
+                 Some(angle) => match nested.angle_video_track_index(angle) {
+diff --git a/crates/render/src/preview.rs b/crates/render/src/preview.rs
+index f392466..5414af2 100644
+--- a/crates/render/src/preview.rs
++++ b/crates/render/src/preview.rs
+@@ -389,6 +389,7 @@ fn hash_source(h: &mut Fnv128, project: &Project, id: ItemId, kind: TrackKind, d
+ /// light < 10 ms. Unknown ids count as medium.
+ pub fn effect_cost_ms(id: &str) -> f64 {
+     match id {
++        "dw_video_denoise" => 1000.0,
+         "sharpen"
+         | "unsharp_mask"
+         | "posterize"
+diff --git a/crates/render/src/tests.rs b/crates/render/src/tests.rs
+index 3730018..f893506 100644
+--- a/crates/render/src/tests.rs
++++ b/crates/render/src/tests.rs
+@@ -65,6 +65,27 @@ fn composites_tracks_and_opacity() {
+     assert!(c[0] > 0.5 && c[0] < 1.0 && c[2] > 0.0, "{c:?}");
+ }
+ 
++#[test]
++fn denoise_before_after_omits_only_the_requested_instance() {
++    let (mut p, red, _, seq, map) = setup();
++    let clip = place(&mut p, seq, 0, red, 0, 48);
++    let mut noise = filmcraft_project::find_effect("noise").unwrap().instance();
++    noise.params.get_mut("amount").unwrap().value = filmcraft_project::ParamValue::Float(12.0);
++    let mut denoise = filmcraft_project::find_effect("dw_video_denoise").unwrap().instance();
++    denoise.params.get_mut("temporal").unwrap().value = filmcraft_project::ParamValue::Float(0.0);
++    let it = &mut p.sequence_mut(seq).unwrap().video_tracks[0].items[0];
++    it.effects.push(noise);
++    it.effects.push(denoise);
++    let index = it.effects.len() - 1;
++    let before = render_sequence(&p, seq, Tick::ZERO, RenderOptions { skip_effect: Some((clip, index)), ..Default::default() }, &map);
++    let after = render_sequence(&p, seq, Tick::ZERO, RenderOptions::default(), &map);
++    assert_ne!(before, after);
++    let mut without = p.clone();
++    without.sequence_mut(seq).unwrap().video_tracks[0].items[0].effects.remove(index);
++    assert_eq!(before, render_sequence(&without, seq, Tick::ZERO, RenderOptions::default(), &map));
++    assert_eq!(p.sequence(seq).unwrap().video_tracks[0].items[0].effects.len(), index + 1);
++}
++
+ #[test]
+ fn half_resolution_matches_full_downsampled() {
+     let (mut p, _red, ocean, seq, map) = setup();
+diff --git a/crates/render/src/vfx.rs b/crates/render/src/vfx.rs
+index d9d40c7..881e690 100644
+--- a/crates/render/src/vfx.rs
++++ b/crates/render/src/vfx.rs
+@@ -15,6 +15,7 @@ mod blur;
+ pub(crate) use blur::bokeh;
+ pub use blur::{KERNEL_REACH, bokeh_kernel};
+ mod color;
++mod denoise;
+ pub(crate) use color::cdl;
+ mod distort;
+ mod immersive;
+@@ -98,12 +99,20 @@ fn resize(img: Image, w: usize, h: usize) -> Image {
+ 
+ /// Effects that read other frames (skipped when rendering another frame for one of them).
+ pub fn is_temporal(id: &str) -> bool {
+-    matches!(id, "posterize_time" | "echo" | "warp_stabilizer" | "auto_reframe")
++    matches!(id, "posterize_time" | "echo" | "warp_stabilizer" | "auto_reframe" | "dw_video_denoise")
+ }
+ 
+ impl FxEnv for ItemEnv<'_> {
+     fn frame(&self, dt: f64, upto: &EffectInstance) -> Option<Image> {
+         let t2 = self.t + Tick::from_seconds_f64(dt);
++        if upto.effect == "dw_video_denoise"
++            && (t2 < self.item.start
++                || t2 >= self.item.end()
++                || self.item.frame_hold.is_some()
++                || self.item.source_time_at(t2) == self.item.source_time_at(self.t))
++        {
++            return None;
++        }
+         let base = crate::base_layer(self.project, self.seq, self.item, t2, self.opts, self.sources, self.want)?;
+         let mut img = resize(base, self.layer_size.0, self.layer_size.1);
+         let src = crate::source_size(self.project, self.item.item).unwrap_or((1, 1));
+@@ -119,10 +128,13 @@ impl FxEnv for ItemEnv<'_> {
+             frame_rate: self.seq.settings.frame_rate.as_f64(),
+             working: self.seq.settings.color.working,
+         };
+-        for e in &self.item.effects {
++        for (index, e) in self.item.effects.iter().enumerate() {
+             if std::ptr::eq(e, upto) {
+                 break;
+             }
++            if self.opts.skip_effect == Some((self.item.id, index)) {
++                continue;
++            }
+             if e.def().is_some_and(|d| !d.intrinsic) && !filmcraft_project::graphic::is_layer(e) && !is_temporal(&e.effect) {
+                 crate::mask::apply_effect(&mut img, e, &cx);
+             }
+@@ -483,6 +495,7 @@ pub fn apply(img: &mut Image, e: &EffectInstance, cx: &FxCtx) -> bool {
+         crate::effects::apply(img, &a, cx);
+     };
+     match e.effect.as_str() {
++        "dw_video_denoise" => denoise::apply(img, e, cx),
+         // Adjust / Color / Image Control / Keying / Utility colour
+         "lighting_effects" => color::lighting(img, e, cx),
+         "logo_cutout" => color::logo_cutout(img, e, cx),
+diff --git a/crates/render/src/vfx/denoise.rs b/crates/render/src/vfx/denoise.rs
+new file mode 100644
+index 0000000..3b9137c
+--- /dev/null
++++ b/crates/render/src/vfx/denoise.rs
+@@ -0,0 +1,543 @@
++//! Native spatial/temporal denoising, restored from the interrupted DW2 work.
++//! Neighbours are decoded one at a time. Filtering uses straight linear f32,
++//! preserves original alpha and never clamps HDR to display white.
++use super::{chv, fv};
++use crate::{Image, effects::FxCtx};
++use filmcraft_project::EffectInstance;
++use rayon::prelude::*;
++
++#[derive(Clone, Copy)]
++struct Settings {
++    spatial: f32,
++    temporal: f32,
++    detail: f32,
++    quality: u32,
++    scale: f32,
++}
++
++fn amount(e: &EffectInstance, name: &str, cx: &FxCtx) -> f32 {
++    let n = fv(e, name, cx);
++    if n.is_finite() { n.clamp(0.0, 100.0) / 100.0 } else { 0.0 }
++}
++fn straight(p: [f32; 4]) -> [f32; 3] {
++    if p[3] > 1e-6 && p.iter().all(|v| v.is_finite()) { [p[0] / p[3], p[1] / p[3], p[2] / p[3]] } else { [0.0; 3] }
++}
++fn luma(c: [f32; 3]) -> f32 {
++    c[0] * 0.2126 + c[1] * 0.7152 + c[2] * 0.0722
++}
++fn components(c: [f32; 3]) -> [f32; 3] {
++    let y = luma(c);
++    [y, c[0] - y, c[2] - y]
++}
++fn rgb(c: [f32; 3]) -> [f32; 3] {
++    [c[0] + c[1], c[0] - (0.2126 * c[1] + 0.0722 * c[2]) / 0.7152, c[0] + c[2]]
++}
++/// Robust high-pass MAD; texture outliers do not raise the threshold everywhere.
++fn noise_sigma(img: &Image) -> f32 {
++    let stride = ((img.w * img.h / 16_384) as f64).sqrt().ceil().max(1.0) as usize;
++    let mut residuals = Vec::new();
++    for y in (1..img.h.saturating_sub(1)).step_by(stride) {
++        for x in (1..img.w.saturating_sub(1)).step_by(stride) {
++            let p = img.get(x, y);
++            if p[3] < 0.99 {
++                continue;
++            }
++            let c = luma(straight(p));
++            let n = [(x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)].map(|(xx, yy)| luma(straight(img.get(xx, yy))));
++            let v = (4.0 * c - n.iter().sum::<f32>()).abs() / 4.472_136;
++            if v.is_finite() {
++                residuals.push(v);
++            }
++        }
++    }
++    if residuals.is_empty() {
++        return 0.004;
++    }
++    let middle = residuals.len() / 2;
++    let (_, value, _) = residuals.select_nth_unstable_by(middle, f32::total_cmp);
++    (*value / 0.6745).clamp(0.001, 0.15)
++}
++fn texture(img: &Image, x: usize, y: usize, sigma: f32, detail: f32) -> f32 {
++    let c = luma(straight(img.get(x, y)));
++    let dx = (luma(straight(img.get_clamped(x as isize + 1, y as isize))) - luma(straight(img.get_clamped(x as isize - 1, y as isize)))).abs();
++    let dy = (luma(straight(img.get_clamped(x as isize, y as isize + 1))) - luma(straight(img.get_clamped(x as isize, y as isize - 1)))).abs();
++    let edge = (dx.max(dy) - sigma * 2.0).max(0.0);
++    1.0 / (1.0 + detail * edge / (sigma * 2.0 + c.abs() * 0.01 + 0.001))
++}
++#[derive(Clone)]
++struct Plane {
++    w: usize,
++    h: usize,
++    values: Vec<f32>,
++    scale: f32,
++}
++impl Plane {
++    fn from_image(img: &Image) -> Self {
++        let step = img.w.max(img.h).div_ceil(768).max(1);
++        let (w, h) = (img.w.div_ceil(step), img.h.div_ceil(step));
++        let mut values = vec![0.0; w * h];
++        values.par_chunks_mut(w).enumerate().for_each(|(y, row)| {
++            for (x, out) in row.iter_mut().enumerate() {
++                let mut sum = 0.0;
++                let mut count = 0.0;
++                for yy in y * step..((y + 1) * step).min(img.h) {
++                    for xx in x * step..((x + 1) * step).min(img.w) {
++                        sum += luma(straight(img.get(xx, yy)));
++                        count += 1.0;
++                    }
++                }
++                let v = sum / count;
++                *out = v.signum() * v.abs().sqrt();
++            }
++        });
++        Self { w, h, values, scale: step as f32 }
++    }
++    fn half(&self) -> Self {
++        let (w, h) = (self.w.div_ceil(2), self.h.div_ceil(2));
++        let mut values = vec![0.0; w * h];
++        for y in 0..h {
++            for x in 0..w {
++                values[y * w + x] = (self.at((x * 2) as f32, (y * 2) as f32)
++                    + self.at((x * 2 + 1) as f32, (y * 2) as f32)
++                    + self.at((x * 2) as f32, (y * 2 + 1) as f32)
++                    + self.at((x * 2 + 1) as f32, (y * 2 + 1) as f32))
++                    * 0.25;
++            }
++        }
++        Self { w, h, values, scale: self.scale * 2.0 }
++    }
++    fn at(&self, x: f32, y: f32) -> f32 {
++        let (x, y) = (x.clamp(0.0, (self.w - 1) as f32), y.clamp(0.0, (self.h - 1) as f32));
++        let (xx, yy) = (x as usize, y as usize);
++        let (nx, ny) = ((xx + 1).min(self.w - 1), (yy + 1).min(self.h - 1));
++        let (fx, fy) = (x - xx as f32, y - yy as f32);
++        let a = self.values[yy * self.w + xx] * (1.0 - fx) + self.values[yy * self.w + nx] * fx;
++        let b = self.values[ny * self.w + xx] * (1.0 - fx) + self.values[ny * self.w + nx] * fx;
++        a * (1.0 - fy) + b * fy
++    }
++}
++#[derive(Clone, Copy, Default)]
++struct Motion {
++    dx: f32,
++    dy: f32,
++    confidence: f32,
++}
++fn patch_error(a: &Plane, b: &Plane, centre: [f32; 2], offset: [f32; 2]) -> f32 {
++    let mut sum = 0.0;
++    for y in -2..=2 {
++        for x in -2..=2 {
++            let (px, py) = (centre[0] + x as f32, centre[1] + y as f32);
++            sum += (a.at(px, py) - b.at(px + offset[0], py + offset[1])).abs().min(0.3);
++        }
++    }
++    sum / 25.0
++}
++fn search(a: &Plane, b: &Plane, centre: [f32; 2], initial: [f32; 2], radius: i32, step: f32) -> ([f32; 2], f32) {
++    let mut best = initial;
++    let mut error = patch_error(a, b, centre, initial) + 0.0001 * (initial[0].abs() + initial[1].abs());
++    for y in -radius..=radius {
++        for x in -radius..=radius {
++            let d = [initial[0] + x as f32 * step, initial[1] + y as f32 * step];
++            let e = patch_error(a, b, centre, d) + 0.0001 * (d[0].abs() + d[1].abs());
++            if e < error {
++                error = e;
++                best = d;
++            }
++        }
++    }
++    (best, error)
++}
++struct MotionField {
++    w: usize,
++    h: usize,
++    block: f32,
++    motions: Vec<Motion>,
++}
++impl MotionField {
++    fn estimate(a: &Plane, b: &Plane, maximum: bool) -> Option<Self> {
++        let (ac, bc) = (a.half(), b.half());
++        let block = 8usize;
++        let (w, h) = (a.w.div_ceil(block), a.h.div_ceil(block));
++        let mut motions = vec![Motion::default(); w * h];
++        let cancel = filmcraft_media::cancel::Context::current();
++        motions.par_chunks_mut(w).enumerate().for_each(|(y, row)| {
++            cancel.clone().run(|| {
++                for (x, out) in row.iter_mut().enumerate() {
++                    if filmcraft_media::cancel::cancelled() {
++                        break;
++                    }
++                    let c = [(x * block + block / 2).min(a.w - 1) as f32, (y * block + block / 2).min(a.h - 1) as f32];
++                    let (coarse, _) = search(&ac, &bc, [c[0] * 0.5, c[1] * 0.5], [0.0; 2], if maximum { 6 } else { 3 }, 1.0);
++                    let (fine, _) = search(a, b, c, [coarse[0] * 2.0, coarse[1] * 2.0], 2, 1.0);
++                    let (fine, error) = search(a, b, c, fine, 1, 0.5);
++                    let (back, _) = search(b, a, [c[0] + fine[0], c[1] + fine[1]], [-fine[0], -fine[1]], 2, 1.0);
++                    let consistency = (fine[0] + back[0]).hypot(fine[1] + back[1]);
++                    let confidence = (1.0 - error / 0.11).clamp(0.0, 1.0) * (1.0 - consistency / 2.0).clamp(0.0, 1.0);
++                    *out = Motion { dx: fine[0] * a.scale, dy: fine[1] * a.scale, confidence };
++                }
++            })
++        });
++        let valid = motions.iter().filter(|m| m.confidence > 0.2).count();
++        if valid * 3 < motions.len() || filmcraft_media::cancel::cancelled() {
++            return None;
++        }
++        Some(Self { w, h, block: block as f32 * a.scale, motions })
++    }
++    fn at(&self, x: usize, y: usize) -> Motion {
++        let fx = (x as f32 / self.block - 0.5).clamp(0.0, (self.w - 1) as f32);
++        let fy = (y as f32 / self.block - 0.5).clamp(0.0, (self.h - 1) as f32);
++        let (x0, y0) = (fx as usize, fy as usize);
++        let (x1, y1) = ((x0 + 1).min(self.w - 1), (y0 + 1).min(self.h - 1));
++        let (sx, sy) = (fx - x0 as f32, fy - y0 as f32);
++        let mut out = Motion::default();
++        for (xx, yy, w) in [(x0, y0, (1.0 - sx) * (1.0 - sy)), (x1, y0, sx * (1.0 - sy)), (x0, y1, (1.0 - sx) * sy), (x1, y1, sx * sy)] {
++            let m = self.motions[yy * self.w + xx];
++            out.dx += m.dx * w;
++            out.dy += m.dy * w;
++            out.confidence += m.confidence * w;
++        }
++        out
++    }
++}
++struct TemporalSample<'a> {
++    input: &'a Image,
++    other: &'a Image,
++    motion: &'a MotionField,
++    sigma: f32,
++    strength: f32,
++    settings: Settings,
++}
++fn accumulate(sum: &mut Image, weights: &mut [f32], sample: TemporalSample<'_>) {
++    let TemporalSample { input, other, motion, sigma, strength, settings } = sample;
++    let cancel = filmcraft_media::cancel::Context::current();
++    sum.px.par_chunks_mut(input.w * 4).zip(weights.par_chunks_mut(input.w)).enumerate().for_each(|(y, (row, ws))| {
++        cancel.clone().run(|| {
++            if filmcraft_media::cancel::cancelled() {
++                return;
++            }
++            for (x, (p, weight)) in row.chunks_exact_mut(4).zip(ws).enumerate() {
++                let orig = input.get(x, y);
++                let m = motion.at(x, y);
++                let (xx, yy) = (x as f32 + m.dx, y as f32 + m.dy);
++                if orig[3] < 1e-6 || xx < 0.0 || yy < 0.0 || xx > (other.w - 1) as f32 || yy > (other.h - 1) as f32 {
++                    continue;
++                }
++                let next = other.sample_bilinear_clamped(xx + 0.5, yy + 0.5);
++                if (next[3] - orig[3]).abs() > 0.02 {
++                    continue;
++                }
++                let (a, b) = (components(straight(orig)), components(straight(next)));
++                let dy = (a[0] - b[0]).abs();
++                let dc = (a[1] - b[1]).abs().max((a[2] - b[2]).abs());
++                let threshold = sigma * 4.0 + 0.006;
++                let agreement = (1.0 - (dy / threshold).powi(2)).max(0.0) * (1.0 - (dc / (threshold * 2.0)).powi(2)).max(0.0);
++                let w = strength * m.confidence * agreement * texture(input, x, y, sigma, settings.detail);
++                let c = straight(next);
++                for k in 0..3 {
++                    p[k] += c[k] * orig[3] * w;
++                }
++                *weight += w;
++            }
++        })
++    });
++}
++fn temporal(img: &mut Image, input: &Image, e: &EffectInstance, cx: &FxCtx, settings: Settings, sigma: f32) {
++    let Some(env) = cx.env else { return };
++    let fps = env.frame_rate();
++    if !fps.is_finite() || fps <= 0.0 {
++        return;
++    }
++    let analysis = Plane::from_image(input);
++    let mut weights = vec![1.0; input.w * input.h];
++    let radius = if settings.quality == 2 { 2 } else { 1 };
++    for direction in [-1, 1] {
++        for distance in 1..=radius {
++            if filmcraft_media::cancel::cancelled() {
++                return;
++            }
++            let dt = (direction * distance) as f64 / fps;
++            if env.clip_offset() + dt < -1e-9 || env.clip_offset() + dt >= env.clip_seconds() {
++                break;
++            }
++            let Some(other) = env.frame(dt, e) else { break };
++            if (other.w, other.h) != (input.w, input.h) {
++                break;
++            }
++            let other_analysis = Plane::from_image(&other);
++            let Some(motion) = MotionField::estimate(&analysis, &other_analysis, settings.quality == 2) else { break };
++            accumulate(
++                img,
++                &mut weights,
++                TemporalSample { input, other: &other, motion: &motion, sigma, strength: settings.temporal * 1.8 / distance as f32, settings },
++            );
++        }
++    }
++    img.px.par_chunks_exact_mut(4).zip(weights).for_each(|(p, w)| {
++        for c in &mut p[..3] {
++            *c /= w;
++        }
++    });
++}
++fn filtered_pixel(input: &Image, x: usize, y: usize, settings: Settings, sigma: f32) -> [f32; 4] {
++    let original = input.get(x, y);
++    if original[3] <= 1e-6 || original.iter().any(|v| !v.is_finite()) {
++        return original;
++    }
++    let centre = components(straight(original));
++    let range = sigma * (1.5 + settings.spatial * 3.0) + 0.002;
++    let radius = ((if settings.quality == 0 { 1.0 } else { 2.0 }) * settings.scale).ceil().clamp(1.0, 2.0) as isize;
++    let mut sum = centre;
++    let mut weights = [1.0; 3];
++    for dy in -radius..=radius {
++        for dx in -radius..=radius {
++            let p = input.get_clamped(x as isize + dx, y as isize + dy);
++            if (dx == 0 && dy == 0) || (p[3] - original[3]).abs() > 0.02 {
++                continue;
++            }
++            let c = components(straight(p));
++            let spatial = 1.0 / (1.0 + (dx * dx + dy * dy) as f32);
++            let edge = 1.0 / (1.0 + ((c[0] - centre[0]) / range).powi(4));
++            for k in 0..3 {
++                let limit = range * if k == 0 { 1.0 } else { 2.5 };
++                let w = spatial * edge / (1.0 + ((c[k] - centre[k]) / limit).powi(2));
++                sum[k] += c[k] * w;
++                weights[k] += w;
++            }
++        }
++    }
++    let protect = texture(input, x, y, sigma, settings.detail);
++    for k in 0..3 {
++        let blend = (settings.spatial * if k == 0 { 1.5 } else { 2.5 }).min(1.0) * protect;
++        sum[k] = centre[k] + (sum[k] / weights[k] - centre[k]) * blend;
++    }
++    let c = rgb(sum);
++    [c[0] * original[3], c[1] * original[3], c[2] * original[3], original[3]]
++}
++pub(super) fn apply(img: &mut Image, e: &EffectInstance, cx: &FxCtx) {
++    let settings = Settings {
++        spatial: amount(e, "spatial", cx),
++        temporal: amount(e, "temporal", cx),
++        detail: amount(e, "detail_protection", cx),
++        quality: chv(e, "quality").min(2),
++        scale: if cx.px_scale.is_finite() { cx.px_scale.clamp(1.0 / 64.0, 1.0) } else { 1.0 },
++    };
++    if (settings.spatial == 0.0 && settings.temporal == 0.0) || img.w == 0 || img.h == 0 || filmcraft_media::cancel::cancelled() {
++        return;
++    }
++    let sigma = noise_sigma(img);
++    if settings.temporal > 0.0 && cx.env.is_some() {
++        let input = img.clone();
++        temporal(img, &input, e, cx, settings, sigma);
++        if filmcraft_media::cancel::cancelled() {
++            *img = input;
++            return;
++        }
++    }
++    if settings.spatial > 0.0 {
++        let input = img.clone();
++        let cancel = filmcraft_media::cancel::Context::current();
++        img.px.par_chunks_mut(input.w * 4).enumerate().for_each(|(y, row)| {
++            cancel.clone().run(|| {
++                if filmcraft_media::cancel::cancelled() {
++                    return;
++                }
++                for (x, p) in row.chunks_exact_mut(4).enumerate() {
++                    p.copy_from_slice(&filtered_pixel(&input, x, y, settings, sigma));
++                }
++            })
++        });
++    }
++}
++
++#[cfg(test)]
++mod tests {
++    use super::*;
++    use crate::vfx::FxEnv;
++    use filmcraft_geom::Affine;
++    use filmcraft_project::{ParamValue, find_effect};
++    use filmcraft_time::Tick;
++    use std::sync::Mutex;
++    fn context() -> FxCtx<'static> {
++        FxCtx {
++            t: Tick::ZERO,
++            px_scale: 1.0,
++            mask_scale: 1.0,
++            seconds: 0.0,
++            timecode: "",
++            clip_name: "",
++            project: None,
++            env: None,
++            frame_rate: 24.0,
++            working: filmcraft_color::WorkingSpace::Rec709,
++        }
++    }
++    fn effect() -> EffectInstance {
++        find_effect("dw_video_denoise").expect("registered effect").instance()
++    }
++    fn set(e: &mut EffectInstance, key: &str, value: f64) {
++        e.params.get_mut(key).expect("parameter").value = ParamValue::Float(value);
++    }
++    fn noisy(w: usize, h: usize, seed: u32) -> Image {
++        let mut img = Image::filled(w, h, [0.25, 0.25, 0.25, 1.0]);
++        for (i, p) in img.px.chunks_exact_mut(4).enumerate() {
++            for (k, v) in p[..3].iter_mut().enumerate() {
++                let mut n = (i as u32).wrapping_mul(0x9e37_79b9) ^ seed.wrapping_mul(0x85eb_ca6b) ^ (k as u32).wrapping_mul(0xc2b2_ae35);
++                n ^= n >> 16;
++                n = n.wrapping_mul(0x7feb_352d);
++                n ^= n >> 15;
++                *v += ((n & 65535) as f32 / 65535.0 - 0.5) * 0.08;
++            }
++        }
++        img
++    }
++    fn error(img: &Image) -> f32 {
++        img.px.chunks_exact(4).flat_map(|p| p[..3].iter()).map(|v| (v - 0.25).powi(2)).sum::<f32>() / (img.w * img.h * 3) as f32
++    }
++    #[test]
++    fn zero_strength_is_bit_exact_and_preserves_hdr_alpha() {
++        let mut e = effect();
++        set(&mut e, "spatial", 0.0);
++        set(&mut e, "temporal", 0.0);
++        let original = Image::filled(8, 7, [1.8, -0.1, 0.6, 0.4]);
++        let mut output = original.clone();
++        apply(&mut output, &e, &context());
++        assert_eq!(output, original);
++    }
++    #[test]
++    fn spatial_reduces_noise_without_clipping_or_changing_alpha() {
++        let mut e = effect();
++        set(&mut e, "temporal", 0.0);
++        let input = noisy(64, 48, 1);
++        let mut output = input.clone();
++        apply(&mut output, &e, &context());
++        assert!(error(&output) < error(&input) * 0.9);
++        let mut hdr = Image::filled(12, 10, [1.8, -0.05, 0.6, 0.5]);
++        apply(&mut hdr, &e, &context());
++        for p in hdr.px.chunks_exact(4) {
++            assert_eq!(p[3], 0.5);
++            assert!(p[0] > 1.0 && p[1] < 0.0);
++        }
++    }
++    #[test]
++    fn spatial_preserves_a_sharp_edge() {
++        let mut e = effect();
++        set(&mut e, "temporal", 0.0);
++        let mut input = Image::filled(40, 20, [0.05, 0.05, 0.05, 1.0]);
++        for y in 0..20 {
++            for x in 20..40 {
++                input.px[(y * 40 + x) * 4..(y * 40 + x) * 4 + 3].fill(0.9);
++            }
++        }
++        apply(&mut input, &e, &context());
++        assert!(input.get(19, 10)[0] < 0.06 && input.get(20, 10)[0] > 0.89);
++    }
++    struct Env {
++        seen: Mutex<Vec<f64>>,
++        offset: f64,
++        cut: bool,
++        size: (usize, usize),
++    }
++    impl FxEnv for Env {
++        fn frame(&self, dt: f64, _: &EffectInstance) -> Option<Image> {
++            self.seen.lock().expect("lock").push(dt);
++            Some(if self.cut {
++                Image::filled(self.size.0, self.size.1, [0.95, 0.95, 0.95, 1.0])
++            } else {
++                noisy(self.size.0, self.size.1, ((dt * 24.0) as i32 + 8) as u32)
++            })
++        }
++        fn source_frame(&self, _: f64, _: f32) -> Option<Image> {
++            None
++        }
++        fn track(&self, _: usize) -> Option<Image> {
++            None
++        }
++        fn layer_to_output(&self) -> Affine {
++            Affine::default()
++        }
++        fn clip_seconds(&self) -> f64 {
++            2.0
++        }
++        fn clip_offset(&self) -> f64 {
++            self.offset
++        }
++        fn frame_rate(&self) -> f64 {
++            24.0
++        }
++        fn media_timecode(&self) -> String {
++            String::new()
++        }
++        fn file_name(&self) -> String {
++            String::new()
++        }
++        fn sequence_name(&self) -> String {
++            String::new()
++        }
++        fn sequence_size(&self) -> (u32, u32) {
++            (self.size.0 as u32, self.size.1 as u32)
++        }
++        fn source_size(&self) -> (u32, u32) {
++            (self.size.0 as u32, self.size.1 as u32)
++        }
++        fn clip_key(&self) -> u64 {
++            1
++        }
++    }
++    #[test]
++    fn maximum_uses_four_neighbours_and_reduces_noise() {
++        let env = Env { seen: Mutex::new(Vec::new()), offset: 1.0, cut: false, size: (64, 48) };
++        let mut e = effect();
++        set(&mut e, "spatial", 0.0);
++        let input = noisy(64, 48, 1);
++        let mut output = input.clone();
++        apply(&mut output, &e, &FxCtx { env: Some(&env), ..context() });
++        assert_eq!(env.seen.lock().expect("lock").len(), 4);
++        assert!(error(&output) < error(&input) * 0.85);
++    }
++    #[test]
++    fn scene_cuts_and_clip_boundaries_are_rejected() {
++        let env = Env { seen: Mutex::new(Vec::new()), offset: 0.0, cut: true, size: (64, 48) };
++        let mut e = effect();
++        set(&mut e, "spatial", 0.0);
++        let input = noisy(64, 48, 1);
++        let mut output = input.clone();
++        apply(&mut output, &e, &FxCtx { env: Some(&env), ..context() });
++        assert_eq!(output, input);
++        let seen = env.seen.lock().expect("lock");
++        assert_eq!(seen.len(), 1);
++        assert!(seen.iter().all(|dt| *dt >= 0.0));
++    }
++    #[test]
++    fn motion_estimation_finds_translation() {
++        let a = noisy(96, 64, 1);
++        let mut b = Image::filled(96, 64, [0.0, 0.0, 0.0, 1.0]);
++        for y in 0..64 {
++            for x in 4..96 {
++                b.px[(y * 96 + x) * 4..(y * 96 + x) * 4 + 4].copy_from_slice(&a.get(x - 4, y));
++            }
++        }
++        let field = MotionField::estimate(&Plane::from_image(&a), &Plane::from_image(&b), true).expect("motion");
++        let m = field.at(48, 32);
++        assert!((m.dx - 4.0).abs() < 1.0 && m.dy.abs() < 1.0, "translation {}, {}", m.dx, m.dy);
++    }
++    #[test]
++    fn maximum_processes_five_4k_frames_with_default_settings() {
++        let env = Env { seen: Mutex::new(Vec::new()), offset: 1.0, cut: false, size: (3840, 2160) };
++        let mut output = noisy(3840, 2160, 1);
++        let before = error(&output);
++        let started = std::time::Instant::now();
++        apply(&mut output, &effect(), &FxCtx { env: Some(&env), ..context() });
++        eprintln!("4K Maximum: {:.2}s, noise MSE ratio {:.3}", started.elapsed().as_secs_f64(), error(&output) / before);
++        assert!(error(&output) < before * 0.9);
++        assert_eq!(env.seen.lock().expect("lock").len(), 4);
++        assert!(output.px.chunks_exact(4).all(|p| p[3] == 1.0 && p.iter().all(|v| v.is_finite())));
++    }
++    #[test]
++    fn cancellation_leaves_the_input_unchanged() {
++        let flag = std::sync::Arc::new(std::sync::atomic::AtomicBool::new(true));
++        let input = noisy(64, 48, 2);
++        let mut output = input.clone();
++        filmcraft_media::cancel::with_cancel(&flag, || apply(&mut output, &effect(), &context()));
++        assert_eq!(input, output);
++    }
++}
+diff --git a/crates/ui-egui/src/app/window.rs b/crates/ui-egui/src/app/window.rs
+index 9417cbc..3efd822 100644
+--- a/crates/ui-egui/src/app/window.rs
++++ b/crates/ui-egui/src/app/window.rs
+@@ -30,7 +30,7 @@ impl FilmcraftApp {
+     /// Drop the layout remembered for `workspace` (Reset to Saved Layout): the saved layout is the
+     /// one to reopen with until the app closes again.
+     pub fn forget_remembered_layout(&mut self, workspace: &str) -> Result<(), String> {
+-        if !self.workspaces.last.as_ref().is_some_and(|l| l.name == workspace) {
++        if self.workspaces.last.as_ref().is_none_or(|l| l.name != workspace) {
+             return Ok(());
+         }
+         let mut next = self.workspaces.clone();
+diff --git a/crates/ui-egui/src/frames.rs b/crates/ui-egui/src/frames.rs
+index cb3aedb..a5e7b80 100644
+--- a/crates/ui-egui/src/frames.rs
++++ b/crates/ui-egui/src/frames.rs
+@@ -39,6 +39,8 @@ pub enum Target {
+     /// flattened over black, and the monitors' Transparency Grid and Alpha display mode need the
+     /// frame's alpha.
+     SequenceLive(ItemId),
++    /// Same-time denoising comparison; never read a flattened render preview.
++    SequenceBefore(ItemId, filmcraft_project::ClipId, usize),
+ }
+ 
+ /// Item jobs at this priority or a larger number are background work: thumbnails of the Project
+@@ -1177,6 +1179,11 @@ fn render_job(job: &Job, pool: &Arc<MediaPool>, services: &Arc<dyn Services>, pr
+     let provider = provider(job, pool, services);
+     let opts = filmcraft_render::RenderOptions { scale: job.scale, captions: true, ..Default::default() };
+     let img = match job.key.target {
++        Target::SequenceBefore(seq, clip, index) => {
++            let opts = filmcraft_render::RenderOptions { skip_effect: Some((clip, index)), ..opts };
++            let (w, h, px) = filmcraft_render::render_sequence_rgba8(&job.project, seq, job.time, opts, &provider);
++            return (Rgba { w, h, px }, false);
++        }
+         Target::Sequence(seq) | Target::SequencePlan(seq, _) | Target::SequenceLive(seq) => {
+             let (w, h, px) = filmcraft_render::render_sequence_rgba8(&job.project, seq, job.time, opts, &provider);
+             return (Rgba { w, h, px }, false);
+diff --git a/crates/ui-egui/src/i18n/pl.tsv b/crates/ui-egui/src/i18n/pl.tsv
+index f7c6f1a..44d73ba 100644
+--- a/crates/ui-egui/src/i18n/pl.tsv
++++ b/crates/ui-egui/src/i18n/pl.tsv
+@@ -3638,3 +3638,15 @@
+ 	Toggle Color Grading Section	Przełącz sekcję korekcji kolorów
+ 	Color Grading Section	Sekcja korekcji kolorów
+ 	Read Video Scopes	Odczytaj wskaźniki wideo
++	Video Denoise DW	Odszumianie obrazu DW
++	Spatial Denoising	Odszumianie przestrzenne
++	Temporal Denoising	Odszumianie czasowe
++	Detail Protection	Ochrona szczegółów
++	Denoising Quality	Jakość odszumiania
++	Before / After	Przed / Po
++	Wipe	Przesłona
++	Wipe Position	Położenie przesłony
++	Same frame; the comparison does not change export.	Ta sama klatka; porównanie nie zmienia eksportu.
++	Processing denoising comparison…	Przetwarzanie porównania odszumiania…
++	Before	Przed
++	After	Po
+diff --git a/crates/ui-egui/src/panels.rs b/crates/ui-egui/src/panels.rs
+index ed3542a..e7d564e 100644
+--- a/crates/ui-egui/src/panels.rs
++++ b/crates/ui-egui/src/panels.rs
+@@ -6,6 +6,7 @@ pub mod caption_export;
+ pub mod clip_dialogs;
+ pub mod clip_mismatch;
+ pub mod color_dialogs;
++pub mod denoise;
+ pub mod dialogs;
+ pub mod effect_controls;
+ pub mod effects;
+diff --git a/crates/ui-egui/src/panels/denoise.rs b/crates/ui-egui/src/panels/denoise.rs
+new file mode 100644
+index 0000000..2881565
+--- /dev/null
++++ b/crates/ui-egui/src/panels/denoise.rs
+@@ -0,0 +1,164 @@
++//! Temporary same-frame A/B state restored from the interrupted DW2 work.
++use crate::{
++    FilmcraftApp,
++    frames::{FrameKey, Target},
++    theme::Tokens,
++};
++use egui::{Align2, Color32, Id, Rect, Stroke, pos2};
++use filmcraft_project::ClipId;
++use filmcraft_time::{FrameRate, Tick};
++#[derive(Clone, Copy, PartialEq, Eq, Default)]
++enum Mode {
++    #[default]
++    Wipe,
++    Before,
++    After,
++}
++#[derive(Clone, Copy)]
++struct Comparison {
++    clip: ClipId,
++    index: usize,
++    mode: Mode,
++    split: f32,
++}
++fn id() -> Id {
++    Id::unique("dw-denoise-before-after")
++}
++pub(super) fn controls(app: &mut FilmcraftApp, ui: &mut egui::Ui, clip: ClipId, index: usize) {
++    let mut state = ui.ctx().data_mut(|d| d.get_temp::<Comparison>(id()));
++    let selected = state.is_some_and(|c| c.clip == clip && c.index == index);
++    let mut on = selected;
++    let response = ui.checkbox(&mut on, tl!("Before / After"));
++    app.auto.add_response("denoise.compare", &response, tl!("Before / After"));
++    if response.changed() {
++        app.stop();
++        if on {
++            app.ui.program.display = crate::state::DisplayMode::Composite;
++            app.ui.program.multicam = false;
++            app.ui.program.zoom = Some(2.0);
++            app.ui.program.pan = [0.0, 0.0];
++        }
++        state = on.then_some(Comparison { clip, index, mode: Mode::Wipe, split: 0.5 });
++    }
++    if let Some(c) = state.as_mut().filter(|c| c.clip == clip && c.index == index) {
++        ui.horizontal_wrapped(|ui| {
++            for (mode, text, key) in [(Mode::Wipe, tl!("Wipe"), "wipe"), (Mode::Before, tl!("Before"), "before"), (Mode::After, tl!("After"), "after")] {
++                let response = ui.selectable_value(&mut c.mode, mode, text);
++                app.auto.add_response(&format!("denoise.compare.{key}"), &response, text);
++            }
++        });
++        if c.mode == Mode::Wipe {
++            let response = ui.add(egui::Slider::new(&mut c.split, 0.0..=1.0).text(tl!("Wipe Position")));
++            app.auto.add_response("denoise.compare.position", &response, tl!("Wipe Position"));
++        }
++        ui.small(tl!("Same frame; the comparison does not change export."));
++    }
++    ui.ctx().data_mut(|d| {
++        if let Some(c) = state {
++            d.insert_temp(id(), c);
++        } else {
++            d.remove::<Comparison>(id());
++        }
++    });
++}
++pub(super) struct Picture {
++    pub target: Target,
++    pub time: Tick,
++    pub rate: FrameRate,
++    pub rect: Rect,
++    pub scale: f32,
++}
++pub(super) fn draw(app: &mut FilmcraftApp, ui: &mut egui::Ui, picture: Picture) -> bool {
++    let Some(c) = ui.ctx().data_mut(|d| d.get_temp::<Comparison>(id())) else { return false };
++    let Picture { target, time, rate, rect, scale } = picture;
++    let Target::Sequence(sequence) = target else { return false };
++    let valid = app
++        .session
++        .project
++        .sequence(sequence)
++        .and_then(|s| s.find_item(c.clip))
++        .and_then(|(_, item)| item.effects.get(c.index))
++        .is_some_and(|e| e.effect == "dw_video_denoise");
++    if !valid {
++        ui.ctx().data_mut(|d| d.remove::<Comparison>(id()));
++        return false;
++    }
++    let frame = rate.frame_at(time);
++    let after = FrameKey { target: Target::SequenceLive(sequence), frame, size: (scale * 1000.0) as u32, revision: app.session.revision, draft: false };
++    let before = FrameKey { target: Target::SequenceBefore(sequence, c.clip, c.index), ..after };
++    let project = app.session.project.clone();
++    app.frames.request_in_view(before, rate.tick_of(frame), scale, &project, 103);
++    app.frames.request_in_view(after, rate.tick_of(frame), scale, &project, 104);
++    let (a, b) = (app.frames.get(&before), app.frames.get(&after));
++    let (Some(a), Some(b)) = (a, b) else {
++        ui.painter().rect_filled(rect, 0.0, app.tokens.monitor_bg);
++        ui.painter().text(rect.center(), Align2::CENTER_CENTER, tl!("Processing denoising comparison…"), Tokens::ui(13.0), app.tokens.text);
++        app.monitor_inexact = true;
++        return true;
++    };
++    let ctx = ui.ctx().clone();
++    let (a, b) = (app.texture_for(&ctx, "denoise-before", before, &a), app.texture_for(&ctx, "denoise-after", after, &b));
++    let uv = Rect::from_min_max(pos2(0.0, 0.0), pos2(1.0, 1.0));
++    match c.mode {
++        Mode::Before => {
++            ui.painter().image(a, rect, uv, Color32::WHITE);
++        }
++        Mode::After => {
++            ui.painter().image(b, rect, uv, Color32::WHITE);
++        }
++        Mode::Wipe => {
++            let split = rect.min.x + rect.width() * c.split;
++            let (left, right) = (Rect::from_min_max(rect.min, pos2(split, rect.max.y)), Rect::from_min_max(pos2(split, rect.min.y), rect.max));
++            ui.painter().with_clip_rect(ui.clip_rect().intersect(left)).image(a, rect, uv, Color32::WHITE);
++            ui.painter().with_clip_rect(ui.clip_rect().intersect(right)).image(b, rect, uv, Color32::WHITE);
++            ui.painter().line_segment([pos2(split, rect.min.y), pos2(split, rect.max.y)], Stroke::new(2.0, app.tokens.accent));
++        }
++    }
++    let label = match c.mode {
++        Mode::Before => tl!("Before"),
++        Mode::After => tl!("After"),
++        Mode::Wipe => tl!("Before / After"),
++    };
++    let badge = Rect::from_min_size(rect.min, egui::vec2(160.0, 25.0));
++    ui.painter().rect_filled(badge, 0.0, app.tokens.monitor_bg);
++    ui.painter().text(badge.center(), Align2::CENTER_CENTER, label, Tokens::ui(12.0), app.tokens.text);
++    app.program_shown = Some(after);
++    app.auto.add("denoise.compare.picture", rect, label);
++    true
++}
++
++#[cfg(test)]
++mod tests {
++    use super::*;
++    #[test]
++    fn comparison_is_keyboard_accessible_and_does_not_edit_the_project() {
++        let mut app = FilmcraftApp::new(filmcraft_engine::Session::default());
++        let ctx = egui::Context::default();
++        ctx.enable_accesskit();
++        let revision = app.session.revision;
++        let mut now = 0.0;
++        let mut frame = |app: &mut FilmcraftApp, events| {
++            now += 0.1;
++            app.auto.begin_frame();
++            ctx.run_ui(egui::RawInput { time: Some(now), events, ..Default::default() }, |ui| {
++                controls(app, ui, ClipId(1), 3);
++            })
++        };
++        let out = frame(&mut app, vec![]);
++        let tree = out.platform_output.accesskit_update.expect("accessible controls");
++        assert!(tree.nodes.iter().any(|(_, n)| n.role() == egui::accesskit::Role::CheckBox && n.label() == Some("Before / After")));
++        let focus = app.auto.find("denoise.compare").unwrap().response_id.unwrap();
++        ctx.memory_mut(|m| m.request_focus(focus));
++        let press = |pressed| egui::Event::Key { key: egui::Key::Space, physical_key: None, pressed, repeat: false, modifiers: Default::default() };
++        frame(&mut app, vec![press(true)]);
++        frame(&mut app, vec![press(false)]);
++        assert!(ctx.data_mut(|d| d.get_temp::<Comparison>(id())).is_some());
++        let before = app.auto.find("denoise.compare.before").unwrap().response_id.unwrap();
++        ctx.memory_mut(|m| m.request_focus(before));
++        frame(&mut app, vec![press(true)]);
++        frame(&mut app, vec![press(false)]);
++        assert!(ctx.data_mut(|d| d.get_temp::<Comparison>(id())).is_some_and(|c| c.mode == Mode::Before));
++        assert_eq!(ctx.memory(|m| m.focused()), Some(before));
++        assert_eq!(app.session.revision, revision);
++    }
++}
+diff --git a/crates/ui-egui/src/panels/effect_controls.rs b/crates/ui-egui/src/panels/effect_controls.rs
+index 7cbe7e3..ef61224 100644
+--- a/crates/ui-egui/src/panels/effect_controls.rs
++++ b/crates/ui-egui/src/panels/effect_controls.rs
+@@ -352,6 +352,9 @@ pub fn show(app: &mut FilmcraftApp, ui: &mut egui::Ui, rect: Rect) {
+                 if !open {
+                     continue;
+                 }
++                if e.effect == "dw_video_denoise" {
++                    crate::panels::denoise::controls(app, bui, clip, idx);
++                }
+                 if crate::panels::audio_fx_editor::has_editor(&e.effect) {
+                     custom_setup_row(app, bui, body, &lane, clip, idx, &e.effect);
+                 }
+diff --git a/crates/ui-egui/src/panels/effects.rs b/crates/ui-egui/src/panels/effects.rs
+index 8d533a4..5041430 100644
+--- a/crates/ui-egui/src/panels/effects.rs
++++ b/crates/ui-egui/src/panels/effects.rs
+@@ -41,7 +41,7 @@ pub fn show(app: &mut FilmcraftApp, ui: &mut egui::Ui, rect: Rect) {
+     let mut set_default: Option<String> = None;
+     let mut preset_action: Option<(String, String)> = None;
+     egui::ScrollArea::vertical().id_salt("fx-scroll").auto_shrink([false, false]).show(&mut bui, |ui| {
+-        for &top in tops {
++        for &top in std::iter::once(&"FilmCraft DW").chain(tops.iter()) {
+             if top == "Presets" {
+                 let was_open = !filter.is_empty() || app.ui.expanded_fx.iter().any(|k| k == top);
+                 let any = app.session.presets.all().iter().any(|p| crate::i18n::matches_query(&p.name, filter));
+diff --git a/crates/ui-egui/src/panels/export_mode.rs b/crates/ui-egui/src/panels/export_mode.rs
+index 47f81e7..5c0994f 100644
+--- a/crates/ui-egui/src/panels/export_mode.rs
++++ b/crates/ui-egui/src/panels/export_mode.rs
+@@ -23,8 +23,8 @@
+ use egui::{Align2, Color32, Rect, Sense, pos2, vec2};
+ use filmcraft_engine::export::presets::{DEFAULT_PRESET, preset_key};
+ use filmcraft_engine::export::{
+-    AudioCodec, BitrateMode, ExportSettings, ExrCompression, FieldOrder, Format, GpuRendering, H264Profile, HardwareEncoding, HevcEncoder, Multiplexer, MxfVideoCodec,
+-    Placement, SampleFormat, Scaling, TextOverlay, builtin_presets, format_bytes,
++    AudioCodec, BitrateMode, ExportSettings, ExrCompression, FieldOrder, Format, GpuRendering, H264Profile, HardwareEncoding, HevcEncoder, Multiplexer,
++    MxfVideoCodec, Placement, SampleFormat, Scaling, TextOverlay, builtin_presets, format_bytes,
+ };
+ use filmcraft_engine::time::{FrameRate, Tick};
+ use serde::{Deserialize, Serialize};
+diff --git a/crates/ui-egui/src/panels/export_mode/settings.rs b/crates/ui-egui/src/panels/export_mode/settings.rs
+index 50a488a..831303c 100644
+--- a/crates/ui-egui/src/panels/export_mode/settings.rs
++++ b/crates/ui-egui/src/panels/export_mode/settings.rs
+@@ -1,7 +1,7 @@
+ use super::{
+     AudioCodec, BitrateMode, ExportSettings, ExrCompression, FieldOrder, FileDialog, FilmcraftApp, Format, FrameRate, GpuRendering, H264Profile,
+-    HardwareEncoding, HevcEncoder, Multiplexer, MxfVideoCodec, Placement, PresetManager, Rect, Reg, SampleFormat, Sense, TextOverlay, Tokens, apply_preset, is_export_busy,
+-    pos2, vec2,
++    HardwareEncoding, HevcEncoder, Multiplexer, MxfVideoCodec, Placement, PresetManager, Rect, Reg, SampleFormat, Sense, TextOverlay, Tokens, apply_preset,
++    is_export_busy, pos2, vec2,
+ };
+ 
+ // ---------------------------------------------------------------------------------------------
+@@ -79,9 +79,7 @@ fn unavailable_why(format: Format) -> Option<&'static str> {
+         return None;
+     }
+     Some(match format {
+-        Format::Hevc => tl!(
+-            "H.265 (HEVC) requires a compatible hardware encoder or FFmpeg with libx265 / Intel QSV. Install FFmpeg or choose H.264."
+-        ),
++        Format::Hevc => tl!("H.265 (HEVC) requires a compatible hardware encoder or FFmpeg with libx265 / Intel QSV. Install FFmpeg or choose H.264."),
+         Format::Av1 => tl!("AV1 needs a hardware encoder; none was found on this machine, and FilmCraft has no software AV1 encoder yet."),
+         _ => tl!("Not supported by FilmCraft's encoders yet"),
+     })
+@@ -517,10 +515,7 @@ fn video_section(ui: &mut egui::Ui, reg: &mut Reg, s: &mut ExportSettings, t: &T
+                         let depths = [8u8, 10];
+                         let native_hdr10 = seq_hdr && !s.sdr && filmcraft_engine::export::hdr_available(Format::Hevc);
+                         let can_main10 = s.hevc_encoder != HevcEncoder::Platform || native_hdr10;
+-                        let labels = vec![
+-                            ("Main (8-bit SDR)".to_string(), true),
+-                            ("Main 10 (10-bit SDR)".to_string(), can_main10),
+-                        ];
++                        let labels = vec![("Main (8-bit SDR)".to_string(), true), ("Main 10 (10-bit SDR)".to_string(), can_main10)];
+                         let selected = if s.hevc_bit_depth == 10 { 1 } else { 0 };
+                         if let Some(i) = combo(ui, reg, "export.video.hevcDepth", &labels[selected].0, &labels, 195.0) {
+                             s.hevc_bit_depth = depths[i];
+@@ -565,8 +560,15 @@ fn video_section(ui: &mut egui::Ui, reg: &mut Reg, s: &mut ExportSettings, t: &T
+             row(ui, t, tl!("Bitrate Encoding"), |ui| {
+                 // a hardware encoder has one pass and no constant-quality mode: H.265 offers neither
+                 let o = [BitrateMode::Cbr, BitrateMode::Vbr1Pass, BitrateMode::Vbr2Pass, BitrateMode::Crf];
+-                let labels: Vec<(String, bool)> =
+-                    o.iter().map(|m| (m.label().to_string(), !(hevc && (matches!(m, BitrateMode::Vbr2Pass) || (*m == BitrateMode::Crf && s.hevc_encoder == HevcEncoder::Platform))))).collect();
++                let labels: Vec<(String, bool)> = o
++                    .iter()
++                    .map(|m| {
++                        (
++                            m.label().to_string(),
++                            !(hevc && (matches!(m, BitrateMode::Vbr2Pass) || (*m == BitrateMode::Crf && s.hevc_encoder == HevcEncoder::Platform))),
++                        )
++                    })
++                    .collect();
+                 if let Some(i) = combo(ui, reg, "export.video.bitrateMode", s.bitrate_mode.label(), &labels, 140.0) {
+                     s.bitrate_mode = o[i];
+                 }
+diff --git a/crates/ui-egui/src/panels/monitor.rs b/crates/ui-egui/src/panels/monitor.rs
+index a8de6e0..71e2eed 100644
+--- a/crates/ui-egui/src/panels/monitor.rs
++++ b/crates/ui-egui/src/panels/monitor.rs
+@@ -62,6 +62,9 @@ fn draw_picture(app: &mut FilmcraftApp, ui: &mut egui::Ui, which: Which, mv: &cr
+     let screen_scale = (pic.width() * ppp / frame_size.0.max(1) as f32).max(pic.height() * ppp / frame_size.1.max(1) as f32).min(1.0);
+     let scale = quantize_scale(res.scale().min(screen_scale.max(1.0 / 32.0)));
+     let frame = rate.frame_at(time);
++    if which == Which::Program && crate::panels::denoise::draw(app, ui, crate::panels::denoise::Picture { target, time, rate, rect: pic, scale }) {
++        return;
++    }
+     let rev = match target {
+         Target::Item(i) => app.item_revision(i),
+         _ => app.session.revision,
+@@ -168,13 +171,7 @@ fn draw_picture(app: &mut FilmcraftApp, ui: &mut egui::Ui, which: Which, mv: &cr
+         monitor_view::compare_bar(app, ui, bar, rate, drop_frame, time_display);
+     }
+     if mv.safe_margins {
+-        for (f, c) in [(0.9, Color32::from_white_alpha(120)), (0.8, Color32::from_white_alpha(90))] {
+-            let r = Rect::from_center_size(pic.center(), pic.size() * f);
+-            ui.painter().rect_stroke(r, 0.0, Stroke::new(1.0, c), StrokeKind::Middle);
+-        }
+-        let c = pic.center();
+-        ui.painter().line_segment([c - vec2(8.0, 0.0), c + vec2(8.0, 0.0)], Stroke::new(1.0, Color32::from_white_alpha(120)));
+-        ui.painter().line_segment([c - vec2(0.0, 8.0), c + vec2(0.0, 8.0)], Stroke::new(1.0, Color32::from_white_alpha(120)));
++        draw_safe_margins(ui, pic);
+     }
+     if display != DisplayMode::Composite && !compare {
+         let label = match display {
+@@ -191,6 +188,16 @@ fn draw_picture(app: &mut FilmcraftApp, ui: &mut egui::Ui, which: Which, mv: &cr
+     }
+ }
+ 
++fn draw_safe_margins(ui: &egui::Ui, pic: Rect) {
++    for (f, c) in [(0.9, Color32::from_white_alpha(120)), (0.8, Color32::from_white_alpha(90))] {
++        let r = Rect::from_center_size(pic.center(), pic.size() * f);
++        ui.painter().rect_stroke(r, 0.0, Stroke::new(1.0, c), StrokeKind::Middle);
++    }
++    let c = pic.center();
++    ui.painter().line_segment([c - vec2(8.0, 0.0), c + vec2(8.0, 0.0)], Stroke::new(1.0, Color32::from_white_alpha(120)));
++    ui.painter().line_segment([c - vec2(0.0, 8.0), c + vec2(0.0, 8.0)], Stroke::new(1.0, Color32::from_white_alpha(120)));
++}
++
+ fn drop_indicator(app: &FilmcraftApp, ui: &mut egui::Ui, video_area: Rect, which: Which, t: &Tokens) {
+     if which == Which::Program && app.playback.playing && !app.ui.fullscreen_program {
+         let c = if app.playback.meter.counts().1 > 0 { t.render_yellow } else { t.render_green };
+diff --git a/docs/DW3_DENOISE_PL.md b/docs/DW3_DENOISE_PL.md
+new file mode 100644
+index 0000000..de0ee09
+--- /dev/null
++++ b/docs/DW3_DENOISE_PL.md
+@@ -0,0 +1,70 @@
++# FilmCraft 0.20.2 DW3 Denoise
++
++Wydanie testowe z przywróconą implementacją Advanced Denoise z prac DW2.
++Baza: `v0.20.2-DW2`, commit `1baed957bd934fb999526a7ffadc2fe14d94b6d8`.
++Wersja pakietów Rust: `0.20.2-dw3-denoise`.
++
++## Gdzie jest odszumianie
++
++1. Umieść film na osi czasu i zaznacz klip wideo.
++2. W panelu **Efekty / Effects** rozwiń **FilmCraft DW**.
++3. Kliknij dwukrotnie **Odszumianie obrazu DW / Video Denoise DW** albo przeciągnij efekt na klip.
++4. W panelu **Elementy sterujące efektu / Effect Controls** rozwiń dodany filtr.
++   Jeżeli jest poniżej widocznego obszaru, przewiń panel albo zwiń Ruch, Krycie i Remapowanie czasu.
++
++Ustawienia początkowe: przestrzenne **20%**, czasowe **45%**, ochrona szczegółów **85%**, jakość **Maximum / Maksimum**.
++
++Włącz **Przed / Po**, aby porównać tę samą klatkę. Odtwarzanie zatrzyma się,
++powiększenie ustawi się na 200%. Suwak przesłony przesuwa podział; przyciski
++Przed i Po pokazują wariant na całym monitorze. Zwykłe sterowanie powiększeniem
++i przesuwaniem monitora pozostaje dostępne. „Przed” pomija tylko tę instancję
++odszumiania na tym klipie; zachowuje inne efekty i LUT-y. Porównanie nie zmienia
++projektu ani eksportu. Obraz jest pokazywany po zakończeniu obliczeń obu wariantów.
++
++## Algorytm
++
++Filtr CPU pracuje na liniowych wartościach RGBA float32. Zachowuje alfę,
++nie obcina z założenia HDR do zakresu SDR i nie dodaje domyślnego wyostrzania.
++Oddzielnie filtruje luminancję i chrominancję, chroniąc krawędzie i tekstury.
++Oba suwaki siły ustawione na zero dają obraz bitowo identyczny z wejściem.
++
++Fast i High używają maksymalnie 3 klatek, Maximum — 5. Ruch jest szacowany
++na dwóch poziomach pomniejszonego obrazu, z dopasowaniem subpikselowym i kontrolą
++w obu kierunkach. Niezgodne próbki są odrzucane, a po wykryciu zmiany sceny
++dalsze klatki z tej strony są pomijane. Na końcach klipu jest mniej próbek.
++Zamrożone klatki nie pobierają kolejnych próbek czasowych. Sąsiednie obrazy są
++przetwarzane pojedynczo, aby ograniczyć wykorzystanie pamięci.
++
++## Uruchomienie
++
++**Windows x64:** rozpakuj ZIP do nowego katalogu i uruchom `filmcraft.exe`.
++Do eksportu HEVC skopiuj swój działający `ffmpeg.exe` obok programu albo użyj
++PATH / `FILMCRAFT_FFMPEG`. FFmpeg nie jest dołączony do paczki.
++
++**MX Linux 23 x86_64:** nadaj AppImage prawo wykonywania i uruchom.
++Jeżeli FUSE jest niedostępne, użyj `APPIMAGE_EXTRACT_AND_RUN=1` przed nazwą pliku.
++Do eksportu potrzebny jest systemowy FFmpeg. Program zbudowano z bibliotekami
++bazy Debian 12 / glibc 2.36. Nie jest to wersja uruchamiana przez Wine.
++
++Dołączony `Przyklad_odszumiania.fcproj` zawiera własny syntetyczny wzorzec:
++szarą planszę z szumem i włączonym odszumianiem. Nie wymaga zewnętrznego filmu.
++W AppImage plik znajduje się w katalogu głównym po rozpakowaniu przez
++`--appimage-extract`; kopia jest też w ZIP źródeł.
++
++## Zakres wersji testowej
++
++Odszumianie pracuje na CPU. QSV przyspiesza kodowanie, a nie ten filtr.
++Maximum w 4K może wymagać renderowania podglądu; płynne odtwarzanie nie jest
++gwarantowane. Procenty oznaczają siłę nastaw, nie gwarantowany procent usuniętego
++szumu. Jakość na szybkim ruchu i silnym szumie trzeba ocenić na własnym materiale.
++Zachowana jest ścieżka eksportu HEVC Main 10 z DW2 przez RGB48 do FFmpeg.
++
++## Budowa ze źródeł
++
++Wymagany Rust 1.95 i systemowe zależności opisane w bazowym repozytorium.
++Na Windows: `cargo build --release --locked -p filmcraft`.
++Na MX Linux: `cargo build --release --locked -p filmcraft -p filmcraft-cli`.
++Do samodzielnego przygotowania AppImage służy `packaging/linux/package.sh`.
++Źródła zawierają także Cargo.lock i dokumentację bazowego wydania.
++
++Nie opublikowano zmian na GitHubie.

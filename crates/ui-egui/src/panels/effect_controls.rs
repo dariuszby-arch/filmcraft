@@ -352,6 +352,9 @@ pub fn show(app: &mut FilmcraftApp, ui: &mut egui::Ui, rect: Rect) {
                 if !open {
                     continue;
                 }
+                if e.effect == "dw_video_denoise" {
+                    crate::panels::denoise::controls(app, bui, clip, idx);
+                }
                 if crate::panels::audio_fx_editor::has_editor(&e.effect) {
                     custom_setup_row(app, bui, body, &lane, clip, idx, &e.effect);
                 }
