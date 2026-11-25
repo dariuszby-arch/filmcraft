@@ -1,0 +1,98 @@
+[
+  {
+    "name": "FilmCraft_0.20.2_DW3_Denoise_Windows_x64.zip",
+    "size": 36670066,
+    "sha256": "b21d9b328ec0eee0dc92da6e9c7b544c83127ad39766a50c7a958a7c357672ef",
+    "chunks": [
+      {
+        "offset": 0,
+        "size": 8388608,
+        "git_blob": "75c36b65e7b6cb7a505671f0d875ec3980f102d0"
+      },
+      {
+        "offset": 8388608,
+        "size": 8388608,
+        "git_blob": "7d62c00764004233b0e10b3dcb8fc3db869f3676"
+      },
+      {
+        "offset": 16777216,
+        "size": 8388608,
+        "git_blob": "3247746f828223d91b7faee2f61bdc8fd86eedd4"
+      },
+      {
+        "offset": 25165824,
+        "size": 8388608,
+        "git_blob": "04788749cf4b77876d870074b65d77f437250b5e"
+      },
+      {
+        "offset": 33554432,
+        "size": 3115634,
+        "git_blob": "9e57c1aba5d4e9749ca1d2968e03e312e347afeb"
+      }
+    ]
+  },
+  {
+    "name": "FilmCraft_0.20.2_DW3_Denoise_MX23_x86_64.AppImage",
+    "size": 53578232,
+    "sha256": "1852b21279cfb3123eb01b1b3a03592d279297bde42266f3930b6823f6e93b68",
+    "chunks": [
+      {
+        "offset": 0,
+        "size": 8388608,
+        "git_blob": "48392685d0349b12acb329f890d02a8bdd999434"
+      },
+      {
+        "offset": 8388608,
+        "size": 8388608,
+        "git_blob": "65f690e16b57f910bfe5bd5e4d25ad65514ea145"
+      },
+      {
+        "offset": 16777216,
+        "size": 8388608,
+        "git_blob": "3bf1821489497524db25bbdf7018f86402e08c0f"
+      },
+      {
+        "offset": 25165824,
+        "size": 8388608,
+        "git_blob": "5cb2c8bb47c355f896bf2b486597f1c73f84c534"
+      },
+      {
+        "offset": 33554432,
+        "size": 8388608,
+        "git_blob": "5ab114e09a5c1ccbb7bd0f4fcca0637425c4e592"
+      },
+      {
+        "offset": 41943040,
+        "size": 8388608,
+        "git_blob": "06e76e94be054064b225250fab44bc236f495623"
+      },
+      {
+        "offset": 50331648,
+        "size": 3246584,
+        "git_blob": "a7f7ca7a8b8e9dbaa49606bb4d518f73270d18d5"
+      }
+    ]
+  },
+  {
+    "name": "FilmCraft_0.20.2_DW3_Denoise_zrodla.zip",
+    "size": 18304005,
+    "sha256": "5d111a2b180cc1008b1b60be389a91d4e84418b7b27d815664e0ed36a22140d9",
+    "chunks": [
+      {
+        "offset": 0,
+        "size": 4194304,
+        "git_blob": "ae4d89632f0275803159d762692de961a97a7f8a"
+      },
+      {
+        "offset": 4194304,
+        "size": 8388608,
+        "git_blob": "a249649ed92d43ee5d552b92c353ace65337425d"
+      },
+      {
+        "offset": 12582912,
+        "size": 5721093,
+        "git_blob": "473993f9fa307fc9f96c9a5bb33c5ef51d930fdd"
+      }
+    ]
+  }
+]

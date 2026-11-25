@@ -1,4 +1,4 @@
-name: Prepare verified FilmCraft DW3 Denoise release
+name: Publish verified FilmCraft DW3 Denoise release
 
 on:
   push:
@@ -7,6 +7,8 @@ on:
       - '.github/workflows/publish-dw3-denoise.yml'
       - 'docs/dw3-release/**'
       - 'docs/RELEASE_NOTES_0.20.2-DW3_DENOISE_PL.md'
+      - 'packaging/release/publish_dw3_originals.py'
+      - 'packaging/release/dw3-transfer.json'
   workflow_dispatch:
 
 permissions:
@@ -25,10 +27,11 @@ jobs:
       GH_REPO: ${{ github.repository }}
       DW3_TAG: v0.20.2-DW3-Denoise
       DW3_COMMIT: 2f59d1d405650110a413990ec7bd5f4cb7913a68
+      DW3_RELEASE_ID: '457975618'
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 0
       - name: Check identity and release documents
         run: |
           set -euo pipefail
@@ -60,4 +63,20 @@ jobs:
               --notes-file docs/RELEASE_NOTES_0.20.2-DW3_DENOISE_PL.md
           fi
           gh release upload "$DW3_TAG" docs/dw3-release/* --clobber
-          echo 'Draft prepared. Upload the three original packages listed in RELEASE_MANIFEST.json, then verify their sizes and SHA-256 before publishing.' >> "$GITHUB_STEP_SUMMARY"
+      - name: Restore original verified packages
+        run: python3 packaging/release/publish_dw3_originals.py restore release-originals
+      - name: Attach original packages
+        run: |
+          set -euo pipefail
+          gh release upload "$DW3_TAG" release-originals/* --clobber
+      - name: Download and verify every release asset
+        run: |
+          set -euo pipefail
+          gh release download "$DW3_TAG" --dir release-download-check
+          python3 packaging/release/publish_dw3_originals.py verify release-download-check
+      - name: Publish the complete verified release
+        run: |
+          set -euo pipefail
+          gh release edit "$DW3_TAG" --draft=false --prerelease --latest=false
+          test "$(gh release view "$DW3_TAG" --json isDraft --jq .isDraft)" = false
+          gh release view "$DW3_TAG" --json url --jq .url >> "$GITHUB_STEP_SUMMARY"
