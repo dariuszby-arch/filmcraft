@@ -1,0 +1,63 @@
+name: Prepare verified FilmCraft DW3 Denoise release
+
+on:
+  push:
+    branches: [publish-dw3-denoise]
+    paths:
+      - '.github/workflows/publish-dw3-denoise.yml'
+      - 'docs/dw3-release/**'
+      - 'docs/RELEASE_NOTES_0.20.2-DW3_DENOISE_PL.md'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: filmcraft-dw3-denoise-publication
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      DW3_TAG: v0.20.2-DW3-Denoise
+      DW3_COMMIT: 2f59d1d405650110a413990ec7bd5f4cb7913a68
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Check identity and release documents
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse "$DW3_COMMIT^{tree}")" = 88b7c8e208c5004509e7e98a69045e7d56cd9e9f
+          python3 - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          root = Path('docs/dw3-release')
+          manifest = json.loads((root / 'RELEASE_MANIFEST.json').read_text())
+          for entry in manifest['assets']:
+              path = root / entry['name']
+              if entry['kind'] == 'original-package':
+                  continue
+              data = path.read_bytes()
+              assert len(data) == entry['size_bytes'], entry['name']
+              assert hashlib.sha256(data).hexdigest() == entry['sha256'], entry['name']
+          print('Release documents and source tree verified.')
+          PY
+      - name: Create draft for the original verified packages
+        run: |
+          set -euo pipefail
+          if gh release view "$DW3_TAG" --json isDraft,targetCommitish > /tmp/dw3-state.json 2>/dev/null; then
+            test "$(jq -r .isDraft /tmp/dw3-state.json)" = true
+            test "$(jq -r .targetCommitish /tmp/dw3-state.json)" = "$DW3_COMMIT"
+          else
+            gh release create "$DW3_TAG" --draft --prerelease --latest=false \
+              --target "$DW3_COMMIT" \
+              --title "FilmCraft 0.20.2 DW3 Denoise – Advanced Denoise" \
+              --notes-file docs/RELEASE_NOTES_0.20.2-DW3_DENOISE_PL.md
+          fi
+          gh release upload "$DW3_TAG" docs/dw3-release/* --clobber
+          echo 'Draft prepared. Upload the three original packages listed in RELEASE_MANIFEST.json, then verify their sizes and SHA-256 before publishing.' >> "$GITHUB_STEP_SUMMARY"

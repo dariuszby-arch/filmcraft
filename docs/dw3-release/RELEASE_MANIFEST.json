@@ -1,0 +1,50 @@
+{
+  "tag": "v0.20.2-DW3-Denoise",
+  "source_commit": "2f59d1d405650110a413990ec7bd5f4cb7913a68",
+  "source_tree": "88b7c8e208c5004509e7e98a69045e7d56cd9e9f",
+  "original_build_revision": "a0d42bbc27f751a6b4825632e60e7449668afe46",
+  "assets": [
+    {
+      "name": "FilmCraft_0.20.2_DW3_Denoise_MX23_x86_64.AppImage",
+      "size_bytes": 53578232,
+      "sha256": "1852b21279cfb3123eb01b1b3a03592d279297bde42266f3930b6823f6e93b68",
+      "kind": "original-package"
+    },
+    {
+      "name": "FilmCraft_0.20.2_DW3_Denoise_Windows_x64.zip",
+      "size_bytes": 36670066,
+      "sha256": "b21d9b328ec0eee0dc92da6e9c7b544c83127ad39766a50c7a958a7c357672ef",
+      "kind": "original-package"
+    },
+    {
+      "name": "FilmCraft_0.20.2_DW3_Denoise_zrodla.zip",
+      "size_bytes": 18304005,
+      "sha256": "5d111a2b180cc1008b1b60be389a91d4e84418b7b27d815664e0ed36a22140d9",
+      "kind": "original-package"
+    },
+    {
+      "name": "FilmCraft_0.20.2_DW3_Denoise_raport_testow.md",
+      "size_bytes": 5040,
+      "sha256": "216aa6eb79e19b0247493f208ac0e4439b35104433edfad939df1fe66b6aa620",
+      "kind": "document"
+    },
+    {
+      "name": "INSTRUKCJA_PL.md",
+      "size_bytes": 3746,
+      "sha256": "e883dff83feb2068f2720a86bbee6e6cf10d3e1a3c2364104c91d41a72e74a26",
+      "kind": "document"
+    },
+    {
+      "name": "OPIS_WYDANIA_PL.md",
+      "size_bytes": 4742,
+      "sha256": "53f4b798a47e1a30f11e6b3d7fa61a6db2e5b6eef735ac65181c770e3799b3be",
+      "kind": "document"
+    },
+    {
+      "name": "Przyklad_odszumiania.fcproj",
+      "size_bytes": 3856,
+      "sha256": "01ce8a379704fd86c44572073cac13fc6f64cdfdd4225153d5af9d8e11f670a3",
+      "kind": "document"
+    }
+  ]
+}
